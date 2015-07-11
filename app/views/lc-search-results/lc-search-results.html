@@ -1,0 +1,58 @@
+<div layout="column" ng-controller="resultsCtrl">
+
+    <div class="bar">
+
+        <!-- These two buttons switch the layout variable,
+             which causes the correct UL to be shown. -->
+
+        <a class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></a>
+        <a class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></a>
+    </div>
+
+    <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
+    <!--<md-card flex-gt-sm="90" flex-gt-md="80">
+        <md-card-content>
+            <h2>Activity</h2>
+            <md-list>
+                <md-item ng-repeat="item in activity | filter:search">
+                    <md-item-content>
+                        <div class="md-tile-left inset" hide-sm>
+                            <user-avatar></user-avatar>
+                        </div>
+                        <div class="md-tile-content">
+                            <h3>{{item.what}}</h3>
+                            <h4>{{item.who}}</h4>
+                            <p>
+                                {{item.notes}}
+                            </p>
+                        </div>
+                    </md-item-content>
+                    <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+                    <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+                </md-item>
+                <md-divider></md-divider>
+                <md-item layout class="inset">
+                    <md-button layout layout-align="start center" flex class="md-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg> More
+                    </md-button>
+                </md-item>
+            </md-list>
+        </md-card-content>
+    </md-card>-->
+
+    <ul ng-show="layout == 'grid'" class="grid">
+        <!-- A view with big photos and no text -->
+        <li ng-repeat="p in results">
+            <a href="{{p.link}}" target="_blank"><img ng-src="{{p.imgurl}}" /></a>
+        </li>
+    </ul>
+
+    <ul ng-show="layout == 'list'" class="list">
+        <!-- A compact view smaller photos and titles -->
+        <li ng-repeat="r in results">
+            <a href="{{r.link}}" target="_blank"><img ng-src="{{r.imgurl}}" /></a>
+            <p>{{r.desc}}</p>
+            <p>{{r.price}}</p>
+        </li>
+    </ul>
+</div>

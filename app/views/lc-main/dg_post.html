@@ -1,0 +1,18 @@
+<md-dialog aria-label="Post" style="width: 550px" ng-controller="postCtrl">
+    <md-dialog-content>
+        <div ngf-drop ngf-select ng-model="files" class="drop-box"
+             ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+             ngf-accept="image/*">Select/Drop your Chic Image here</div>
+        <div ngf-no-file-drop>CHIC Img</div>
+        <!--<img ngf-src="post.image[0]" ngf-default-src="images/test_img/sample3.jpg" ngf-accept="'image/*'">-->
+        <md-input-container>
+            <label>Description</label>
+            <input ng-model="post.desc" type="password">
+        </md-input-container>
+    </md-dialog-content>
+    <div class="md-actions">
+        <!-- type=button is needed so form uses submit button -->
+        <md-button class="md-primary" ng-click="hide()">Chic Tag</md-button>
+        <md-button class="md-primary" type="submit" ng-click="hide()">Chic it</md-button>
+    </div>
+</md-dialog>

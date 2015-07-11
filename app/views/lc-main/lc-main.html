@@ -1,0 +1,58 @@
+<md-button class="md-fab md-fab-top-right md-raised" style="background-color: #C0C0C0" aria-label="Post" ng-click="showPost($event)">
+    <ng-md-icon icon="add">chic</ng-md-icon>
+</md-button>
+<md-content flex md-scroll-y style=" background: transparent; padding: 2% 5%;" ng-controller="mainCtrl" >
+        <md-card flex flex-gt-sm="90" flex-gt-md="80" ng-repeat="feed in feeds"  >
+            <md-card-content layout="row" style="opacity: 0.9">
+                <div flex="20" class="feed-owner" layout="column">
+                    <div class="md-tile-left inset" hide-sm>
+                        <img ng-src="{{feed.avatorurl}}" class="md-avatar" />
+                    </div>
+                    <div class="postorname" layout="column">
+                        {{feed.postername}}
+                        <div class="date sub-text">
+                            {{feed.postdate}}</div>
+                    </div>
+                </div>
+                <div flex class="feed-holder" layout="column">
+
+                     <div class="image-wrap" ondrop="drop(event)" ondragover="allowDrop(event)" style="opacity: 1">
+                         <img ng-src="{{feed.imgurl}}">
+                             <!--<div id="tag2" class="tag" draggable="true" ondragstart="drag(event)" style="top: 60%;
+                                         left: 55%">
+                                 <a href="#">
+                                     test2</a>
+                             </div>-->
+                     </div>
+
+                    <md-chips class="hashtags">
+                        <md-chip><a href="#">#hashtag1</a></md-chip>
+                        <md-chip><a href="#">#hashtag2</a></md-chip>
+                    </md-chips>
+                    <div class="likes">
+                        <a href="#" class="btn"> <span class="glyphicon glyphicon-heart">
+                                </span><span class="badge">618</span></a>
+                        <a href="#" class="btn"> <span class="glyphicon glyphicon-plus">
+                                </span></a>
+                        <a href="#" class="btn right"> <span class="glyphicon glyphicon-alert">
+                                </span></a>
+                    </div>
+
+                </div>
+                    <!--<div class="item item-avatar">
+                        <img src="https://graph.facebook.com/{{ item.from.id }}/picture"/>
+                        <h2>{{item.from.name}}</h2>
+                        <p>{{item.created_time | date:'MMM d, y h:mma'}}</p>
+                    </div>
+                    <div class="item item-body">
+                        <p ng-if="item.story">{{item.story}}</p>
+
+                        <p>{{item.message}}</p>
+
+                        <img ng-if="item.picture" ng-src="{{ item.picture }}"/>
+
+                    </div>-->
+
+            </md-card-content>
+        </md-card>
+    </md-content>

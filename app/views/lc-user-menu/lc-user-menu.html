@@ -1,0 +1,28 @@
+<div flex layout="row" layout-align="end center" ng-controller="userCtrl">
+    <form id="search_box" flex action="search" layout-align="end center">
+        <div flex class="form-group" layout-align="end center">
+            <div flex class="input-group">
+                <input class="form-control" id="navbarInput-01" type="search" placeholder="Search Chic..." ng-model="searchtext">
+                    <span class="input-group-btn">
+                        <button href="#" type="submit" class="btn">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+            </div>
+        </div>
+    </form>
+
+    <div class="btn-group" dropdown is-open="status.isopen">
+        <md-button aria-label="user" class="dropdown-toggle" dropdown-toggle>
+            <md-icon md-svg-src="./images/icons/ic_account_circle_white_18px.svg"></md-icon>
+        </md-button>
+        <ul class="dropdown-menu" role="menu" style="opacity: 0.9">
+            <li><a href="#">View Profile</a></li>
+            <li><a href="#">Edit Profile</a></li>
+            <li><a href="#">User Setting</a></li>
+            <li class="divider"></li>
+            <li><a href="#" ng-click="user_logout()">Log out</a></li>
+        </ul>
+    </div>
+    <md-button class="menuBtn" ng-click="user_logout()">LOGOUT</md-button>
+</div>

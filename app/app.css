@@ -1,0 +1,80 @@
+/* app css stylesheet */
+* {
+    position: relative;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+}
+
+body{
+    display: block;
+    font-family: 'robotoDraft', Helvetica, Arial, sans-serif;
+    background: url(images/Fashion.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+.right
+{
+    float: right;
+}
+.left
+{
+    float: left;
+}
+/* Logo Text Edit*/
+#logo {
+    text-align: center;
+    height: auto;
+    width: auto;
+    font-weight: bold;
+    font-size: 5rem;
+    color: rgba(200,200,200,1);
+    margin: 0 0 0 0;
+    text-transform: none;
+}
+#logo span{
+    color: #fff; /*rgba(0,0,0,1);*/
+    font-family: yahei;
+    font-size: 5.4rem;
+    /*vertical-align: 9%;*/
+}
+
+/* Header*/
+.header{
+    padding:0px 30px;
+    top:0;
+    height: 60px;
+}
+
+/* Menu Button*/
+.menuBtn {
+    color: rgba(255,255,255,1);
+    font-weight: bold;
+    border-radius:  0 0 0 0;
+    background: transparent;
+}
+
+/*Search Box*/
+#search_box {
+    /*background-color: white;
+    background: transparent;*/
+    background: rgba(255, 255, 255, 0.9);
+    color: #757575;
+    height: 40px;
+    position: relative;
+    padding: 0px 0px;
+}
+#search_box input {
+    border: none;
+    background: transparent;
+    font: inherit;
+    font-size: 14px;
+}
+#search_box .form-group {
+    margin-bottom: 0px;
+}
+#search_box .btn {
+    background: transparent;
+}
+#navbarInput-01{
+    height: 40px;
+}

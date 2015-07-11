@@ -1,0 +1,20 @@
+<md-dialog aria-label="Sign Up" style="width: 350px">
+    <md-dialog-content>
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="user.email" type="email">
+        </md-input-container>
+        <md-input-container>
+            <label>Password</label>
+            <input ng-model="user.password1" type="password">
+        </md-input-container>
+        <md-input-container>
+            <label>Repeat Password</label>
+            <input ng-model="user.password2" type="password">
+        </md-input-container>
+    </md-dialog-content>
+    <div class="md-actions">
+        <!-- type=button is needed so form uses submit button -->
+        <md-button class="md-primary" type="submit" ng-click="user_signup(user)">Sign Up</md-button>
+    </div>
+</md-dialog>
