@@ -37,16 +37,16 @@ config(['$routeProvider', function($routeProvider) {
         .otherwise({redirectTo: '/'});
 }]);
 
-lc.run(function ($rootScope, $location, $window, Auth) {
+lc.run(function ($rootScope, $location, $window,$http, Auth) {
    /* $rootScope.$on("$routeChangeSuccess", function(userInfo) {
         console.log(userInfo);
     });*/
     $rootScope.currentuser = $window.sessionStorage["userInfo"];
     if ($rootScope.currentuser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentuser.msg; // jshint ignore:line
+        console.log('logined info: ', $rootScope.currentuser);
     }
     $rootScope.$on('$routeChangeStart', function(currRoute, prevRoute) {
-
 
             // if route requires auth and user is not logged in
             if (!$rootScope.currentuser) {

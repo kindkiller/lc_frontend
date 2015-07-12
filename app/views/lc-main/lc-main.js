@@ -47,12 +47,36 @@ angular.module('lookchic.main', ['ngRoute','ngFileUpload'])
 })
 .controller('postCtrl', function ($scope, Upload, $timeout) {
     $scope.post={};
+    $scope.files={};
     $scope.$watch('files', function () {
-        $scope.upload();
+        $scope.upload($scope.files);
     });
 
-    $scope.upload = function () {
+    $scope.upload = function (files) {
         console.log('upload image');
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                Upload.upload({
+                    url: 'http://localhost:6543/upload',
+                    fields: {
+                        'username': $window.sessionStorage["userInfo"],
+                        'desc': post.desc
+                    },
+                    file: file
+                }).progress(function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    $scope.log = 'progress: ' + progressPercentage + '% ' +
+                        evt.config.file.name + '\n' + $scope.log;
+                }).success(function (data, status, headers, config) {
+                    $timeout(function() {
+                        $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                    });
+                }).error(function (data, status, headers, config) {
+                    console.log('error status: ' + status);
+                });
+            }
+        }
         /*if (image && image.length) {
             for (var i = 0; i < image.length; i++) {
                 var file = image[i];
@@ -73,5 +97,15 @@ angular.module('lookchic.main', ['ngRoute','ngFileUpload'])
                 });
             }
         }*/
+    };
+    $scope.lc_post = function (files){
+        console.log('post img');
+    }
+
+    $scope.isUpload = function(files) {
+        if(files[0])
+            return true;
+        else
+            return false;
     };
 });
