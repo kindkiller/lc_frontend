@@ -57,7 +57,7 @@ angular.module('lookchic.main', ['ngRoute','ngFileUpload'])
         var file = files[0];
         console.log(file);
         console.log(file.type);
-        $http.post({
+        $http.({
             method: 'POST',
             url: 'http://localhost:6543/post',
             headers : {
@@ -76,7 +76,7 @@ angular.module('lookchic.main', ['ngRoute','ngFileUpload'])
             console.log('error status: ' + status);
         });
 
-        if (files && files.length) {
+        /*if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
 
@@ -102,7 +102,7 @@ angular.module('lookchic.main', ['ngRoute','ngFileUpload'])
                     console.log('error status: ' + status);
                 });
             }
-        }
+        }*/
 
     };
     $scope.lc_post = function (files){
