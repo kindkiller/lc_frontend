@@ -5,7 +5,7 @@
 
 lc.controller('AuthCtrl',authController);
 
-function authController($scope, $mdDialog, $rootScope) {
+function authController($scope, $mdDialog) {
     $scope.user = {};
 
     $scope.auth_signup = function(ev) {

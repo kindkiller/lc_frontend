@@ -45,67 +45,75 @@ angular.module('lookchic.main', ['ngRoute','ngFileUpload'])
             };
         };
 })
-.controller('postCtrl', function ($scope, Upload, $timeout) {
+.controller('postCtrl', function ($scope, Upload, $timeout,$window,$http) {
     $scope.post={};
     $scope.files={};
     $scope.$watch('files', function () {
-        $scope.upload($scope.files);
+        //$scope.upload($scope.files);
     });
 
     $scope.upload = function (files) {
         console.log('upload image');
+        var file = files[0];
+        console.log(file);
+        console.log(file.type);
+        $http.post({
+            method: 'POST',
+            url: 'http://localhost:6543/post',
+            headers : {
+                'Content-Type': false
+            },
+            data: {
+                file: file,
+                username: $window.sessionStorage["userInfo"],
+                desc: $scope.post.desc
+            }
+        }).success(function (data, status, headers, config) {
+            $timeout(function() {
+                console.log ( 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) )
+            });
+        }).error(function (data, status, headers, config) {
+            console.log('error status: ' + status);
+        });
+
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
+
                 Upload.upload({
-                    url: 'http://localhost:6543/upload',
+                    method: 'POST',
+                    url: 'http://localhost:6543/post',
                     fields: {
                         'username': $window.sessionStorage["userInfo"],
-                        'desc': post.desc
+                        'desc': $scope.post.desc
                     },
-                    file: file
+                    file: file,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    $scope.log = 'progress: ' + progressPercentage + '% ' +
-                        evt.config.file.name + '\n' + $scope.log;
+                    console.log('progress: ' + progressPercentage + '% ' +
+                        evt.config.file.name);
                 }).success(function (data, status, headers, config) {
                     $timeout(function() {
-                        $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
+                        console.log('file: ' + config.file.name + ', Response: ' + JSON.stringify(data));
                     });
                 }).error(function (data, status, headers, config) {
                     console.log('error status: ' + status);
                 });
             }
         }
-        /*if (image && image.length) {
-            for (var i = 0; i < image.length; i++) {
-                var file = image[i];
-                Upload.upload({
-                    url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-                    fields: {
-                        'username': $scope.username
-                    },
-                    file: file
-                }).progress(function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    $scope.log = 'progress: ' + progressPercentage + '% ' +
-                        evt.config.file.name + '\n' + $scope.log;
-                }).success(function (data, status, headers, config) {
-                    $timeout(function() {
-                        $scope.log = 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) + '\n' + $scope.log;
-                    });
-                });
-            }
-        }*/
+
     };
     $scope.lc_post = function (files){
         console.log('post img');
-    }
+        console.log(files);
+        console.log(files[0]);
+        $scope.upload(files);
+    };
 
-    $scope.isUpload = function(files) {
-        if(files[0])
-            return true;
-        else
-            return false;
+    $scope.isEmpty = function (obj) {
+        for (var i in obj) if (obj.hasOwnProperty(i)) return false;
+        return true;
     };
 });

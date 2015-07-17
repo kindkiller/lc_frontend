@@ -12,7 +12,7 @@ angular.module('lookchic.results', ['ngRoute'])
         });
     }])
     .controller('resultsCtrl', function($scope) {
-        $scope.layout = list;
+        $scope.layout = 'list';
         $scope.results = [
             {
                 productname: 'Manolo Blahnik Hangisi Satin Pump',

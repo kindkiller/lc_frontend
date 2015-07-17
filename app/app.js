@@ -35,7 +35,11 @@ config(['$routeProvider', function($routeProvider) {
             controller  : 'contactController'
         })*/
         .otherwise({redirectTo: '/'});
-}]);
+}]).config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+]);
 
 lc.run(function ($rootScope, $location, $window,$http, Auth) {
    /* $rootScope.$on("$routeChangeSuccess", function(userInfo) {

@@ -23,10 +23,8 @@ lc.factory('Auth',function ($http, $rootScope, $window) {
 
     },
     authService.isLoggedIn = function(){
-        if (!user)
-            user = $window.sessionStorage["userInfo"];
 
-        return(user)? user : false;
+        return($window.sessionStorage["userInfo"])? true : false;
     }
 
     return authService;
