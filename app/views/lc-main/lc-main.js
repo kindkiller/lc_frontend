@@ -39,7 +39,7 @@ angular.module('lookchic.main', ['ngRoute'])
                 hasBackdrop: true
             })
         };
-        function DialogController($scope,Upload, $mdDialog, $http, $location, $q, $window, Auth) {
+        function DialogController($scope,Upload, $mdDialog, $http,$timeout, $location, $q, $window, Auth) {
             $scope.post={};
             $scope.files={};
             $scope.$watch('files', function () {
@@ -55,9 +55,9 @@ angular.module('lookchic.main', ['ngRoute'])
                 $mdDialog.hide();
             };
 
-            $scope.upload = function () {
+            $scope.upload = function (files) {
                 console.log('upload image');
-                var file = $scope.files[0];
+                var file = files[0];
                 console.log(file);
                 //console.log($scope.files);
 
@@ -66,28 +66,36 @@ angular.module('lookchic.main', ['ngRoute'])
                 fdata.append('username', $window.sessionStorage["userInfo"]);
                 fdata.append('desc', $scope.post.desc);
 
-                $http.post('http://localhost:6543/post', fdata, {
+                var pobj = new Object();
+                pobj.file = file;
+                pobj.username = $window.sessionStorage["userInfo"];
+                pobj.desc = $scope.post.desc;
+
+                /*$http.post('http://localhost:6543/post', fdata, {
                     transformRequest: angular.identity,
-                    headers: {'Content-Type': undefined}
-                });
-                /*$http({
+                    headers: {'Content-Type': 'multipart/form-data'},
+                    dataType: 'json'
+                });*/
+                $http({
                  method: 'POST',
                  url: 'http://localhost:6543/post',
-                 /!*headers : {
+                 /*headers : {
                  'Content-Type': file.type
-                 },*!/
+                 },*/
+                    dataType: 'json',
                  transformRequest: false,
-                 headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-                 data: fdata
+                 headers: { 'Content-Type': undefined},
+                 data: pobj
                  }).success(function (data, status, headers, config) {
                  $timeout(function() {
                  console.log ( 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) )
                  });
                  }).error(function (data, status, headers, config) {
                  console.log('error status: ' + status);
-                 });*/
+                 });
 
-                /*if (files && files.length) {
+
+               /* if (files && files.length) {
                  for (var i = 0; i < files.length; i++) {
                  var file = files[i];
 
@@ -113,14 +121,14 @@ angular.module('lookchic.main', ['ngRoute'])
                  console.log('error status: ' + status);
                  });
                  }
-                 }*/
-
+                 }
+*/
             };
-            $scope.lc_post = function (){
+            $scope.lc_post = function (files){
                 console.log('post img');
-                console.log($scope.files);
-                console.log($scope.files[0]);
-                $scope.upload();
+                console.log(files);
+                console.log(files[0]);
+                $scope.upload(files);
 
             };
         }
