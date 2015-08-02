@@ -76,16 +76,16 @@ angular.module('lookchic.main', ['ngRoute'])
                     headers: {'Content-Type': 'multipart/form-data'},
                     dataType: 'json'
                 });*/
-                $http({
+                /*$http({
                  method: 'POST',
                  url: 'http://localhost:6543/post',
-                 /*headers : {
+                 /!*headers : {
                  'Content-Type': file.type
-                 },*/
-                    dataType: 'json',
-                 transformRequest: false,
-                 headers: { 'Content-Type': undefined},
-                 data: pobj
+                 },*!/
+
+
+                 headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+                 data: fdata
                  }).success(function (data, status, headers, config) {
                  $timeout(function() {
                  console.log ( 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) )
@@ -93,9 +93,9 @@ angular.module('lookchic.main', ['ngRoute'])
                  }).error(function (data, status, headers, config) {
                  console.log('error status: ' + status);
                  });
+*/
 
-
-               /* if (files && files.length) {
+                if (files && files.length) {
                  for (var i = 0; i < files.length; i++) {
                  var file = files[i];
 
@@ -122,7 +122,6 @@ angular.module('lookchic.main', ['ngRoute'])
                  });
                  }
                  }
-*/
             };
             $scope.lc_post = function (files){
                 console.log('post img');
