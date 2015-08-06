@@ -11,8 +11,9 @@ angular.module('lookchic.main', ['ngRoute'])
         controller: 'mainCtrl'
     });
 }])
-.controller('mainCtrl', function($scope, $mdDialog) {
-    $scope.feeds = [
+.controller('mainCtrl', function($scope,$rootScope,$http, $mdDialog) {
+    //$scope.feeds = $scope.getFeeds();
+    /*[
         {
             postername: 'Yuan',
             avatorurl: '',
@@ -27,7 +28,26 @@ angular.module('lookchic.main', ['ngRoute'])
             imgurl: 'images/test_img/sample1.jpg',
             desc: 'New Day'
         }
-    ];
+    ];*/
+
+            var currentuserid = $rootScope.currentuserid;
+            console.log ( 'start get feeds ');
+            $http({
+                method: 'POST',
+                url: 'http://localhost:6543/main',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+                data: {
+                    userid: currentuserid
+                }
+            }).success(function (data, status, headers, config) {
+                    console.log ( 'get feeds ' + ', Response: ' + JSON.stringify(data) );
+                    console.log ( data.feeds);
+                    $scope.feeds = data.feeds;
+
+            }).error(function (data, status, headers, config) {
+                console.log('error status: ' + status);
+                //return data;
+            });
 
         $scope.showPost = function(ev) {
             $mdDialog.show({
@@ -61,39 +81,6 @@ angular.module('lookchic.main', ['ngRoute'])
                 console.log(file);
                 //console.log($scope.files);
 
-               /* var fdata = new FormData;
-                fdata.append('file', file);
-                fdata.append('username', $window.sessionStorage["userInfo"]);
-                fdata.append('desc', $scope.post.desc);
-
-                var pobj = new Object();
-                pobj.file = file;
-                pobj.username = $window.sessionStorage["userInfo"];
-                pobj.desc = $scope.post.desc;*/
-
-                /*$http.post('http://localhost:6543/post', fdata, {
-                    transformRequest: angular.identity,
-                    headers: {'Content-Type': 'multipart/form-data'},
-                    dataType: 'json'
-                });*/
-                /*$http({
-                 method: 'POST',
-                 url: 'http://localhost:6543/post',
-                 /!*headers : {
-                 'Content-Type': file.type
-                 },*!/
-
-
-                 headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-                 data: fdata
-                 }).success(function (data, status, headers, config) {
-                 $timeout(function() {
-                 console.log ( 'file: ' + config.file.name + ', Response: ' + JSON.stringify(data) )
-                 });
-                 }).error(function (data, status, headers, config) {
-                 console.log('error status: ' + status);
-                 });
-*/
 
                 if (files && files.length) {
                  for (var i = 0; i < files.length; i++) {

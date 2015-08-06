@@ -20,7 +20,8 @@ lc.factory('Auth',function ($http, $rootScope, $window) {
 
     authService.setUser = function(aUser){
         user = aUser;
-
+        $rootScope.currentuserid = aUser.userid;
+        $window.sessionStorage["userID"] = aUser.userid;
     },
     authService.isLoggedIn = function(){
 

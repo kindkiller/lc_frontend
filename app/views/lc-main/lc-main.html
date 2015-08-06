@@ -9,15 +9,15 @@
                         <img ng-src="{{feed.avatorurl}}" class="md-avatar" />
                     </div>
                     <div class="postorname" layout="column">
-                        {{feed.postername}}
+                        {{feed.username}}
                         <div class="date sub-text">
-                            {{feed.postdate}}</div>
+                            {{feed.time}}</div>
                     </div>
                 </div>
                 <div flex class="feed-holder" layout="column">
 
                      <div class="image-wrap" ondrop="drop(event)" ondragover="allowDrop(event)" style="opacity: 1">
-                         <img ng-src="{{feed.imgurl}}">
+                         <img ng-src="{{feed.url}}">
                              <!--<div id="tag2" class="tag" draggable="true" ondragstart="drag(event)" style="top: 60%;
                                          left: 55%">
                                  <a href="#">
