@@ -57,11 +57,11 @@ angular.module('lookchic.main', ['ngRoute'])
 
             $scope.upload = function (files) {
                 console.log('upload image');
-                var file = files[0];
+                //var file = files[0];
                 console.log(file);
                 //console.log($scope.files);
 
-                var fdata = new FormData;
+               /* var fdata = new FormData;
                 fdata.append('file', file);
                 fdata.append('username', $window.sessionStorage["userInfo"]);
                 fdata.append('desc', $scope.post.desc);
@@ -69,7 +69,7 @@ angular.module('lookchic.main', ['ngRoute'])
                 var pobj = new Object();
                 pobj.file = file;
                 pobj.username = $window.sessionStorage["userInfo"];
-                pobj.desc = $scope.post.desc;
+                pobj.desc = $scope.post.desc;*/
 
                 /*$http.post('http://localhost:6543/post', fdata, {
                     transformRequest: angular.identity,
@@ -97,38 +97,38 @@ angular.module('lookchic.main', ['ngRoute'])
 
                 if (files && files.length) {
                  for (var i = 0; i < files.length; i++) {
-                 var file = files[i];
+                    var file = files[i];
 
-                 Upload.upload({
-                 method: 'POST',
-                 url: 'http://localhost:6543/post',
-                 fields: {
-                 'username': $window.sessionStorage["userInfo"],
-                 'desc': $scope.post.desc
-                 },
-                 file: file,
-                 headers: {'Content-Type': 'application/json; charset=UTF-8'}
+                    Upload.upload({
+                         method: 'POST',
+                         url: 'http://localhost:6543/post',
+                         fields: {
+                         'username': $window.sessionStorage["userInfo"],
+                         'desc': $scope.post.desc
+                        },
+                        file: file,
+                        headers: {'Content-Type': 'application/json; charset=UTF-8'}
 
-                 }).progress(function (evt) {
-                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                 console.log('progress: ' + progressPercentage + '% ' +
-                 evt.config.file.name);
-                 }).success(function (data, status, headers, config) {
-                 $timeout(function() {
-                 console.log('file: ' + config.file.name + ', Response: ' + JSON.stringify(data));
-                 });
-                 }).error(function (data, status, headers, config) {
-                 console.log('error status: ' + status);
-                 });
+                    }).progress(function (evt) {
+                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                        console.log('progress: ' + progressPercentage + '% ' +
+                        evt.config.file.name);
+                    }).success(function (data, status, headers, config) {
+                        $timeout(function() {
+                            console.log('file: ' + config.file.name + ', Response: ' + JSON.stringify(data));
+                        });
+                    }).error(function (data, status, headers, config) {
+                        console.log('error status: ' + status);
+                    });
                  }
-                 }
+                }
             };
             $scope.lc_post = function (files){
                 console.log('post img');
                 console.log(files);
                 console.log(files[0]);
                 $scope.upload(files);
-
+                $mdDialog.hide();
             };
         }
 });
