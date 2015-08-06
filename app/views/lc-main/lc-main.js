@@ -25,7 +25,7 @@ angular.module('lookchic.main', ['ngRoute'])
             avatorurl: '',
             postdate: 'July 2 2015',
             imgurl: 'images/test_img/sample1.jpg',
-            desc: 'New Day'
+            desc: 'New Day12121'
         }
     ];
 
