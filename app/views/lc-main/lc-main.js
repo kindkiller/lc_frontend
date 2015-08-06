@@ -11,7 +11,7 @@ angular.module('lookchic.main', ['ngRoute'])
         controller: 'mainCtrl'
     });
 }])
-.controller('mainCtrl', function($scope,$rootScope,$http, $mdDialog) {
+.controller('mainCtrl', function($scope,$window,$http, $mdDialog) {
     //$scope.feeds = $scope.getFeeds();
     /*[
         {
@@ -30,7 +30,7 @@ angular.module('lookchic.main', ['ngRoute'])
         }
     ];*/
 
-            var currentuserid = $rootScope.currentuserid;
+            var currentuserid = $window.sessionStorage["userID"];
             console.log ( 'start get feeds ');
             $http({
                 method: 'POST',
