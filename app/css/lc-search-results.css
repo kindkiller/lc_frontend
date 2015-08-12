@@ -12,15 +12,15 @@ section, footer, header, aside, nav{
 --------------------------*/
 
 .bar{
-    background-color:#5c9bb7;
+    background-color:#E5E5EE;
 
-    background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
-    background-image:-moz-linear-gradient(top, #5c9bb7, #5392ad);
-    background-image:linear-gradient(top, #5c9bb7, #5392ad);
+    background-image:-webkit-linear-gradient(top, #E5E5EE, #E5E5EE);
+    background-image:-moz-linear-gradient(top, #E5E5EE, #E5E5EE);
+    background-image:linear-gradient(top, #E5E5EE, #E5E5EE);
 
     box-shadow: 0 1px 1px #ccc;
     border-radius: 2px;
-    width: 580px;
+    width: 80%;
     padding: 10px;
     margin: 45px auto 25px;
     position:relative;
@@ -29,7 +29,7 @@ section, footer, header, aside, nav{
 }
 
 .bar a{
-    background:#4987a1 center center no-repeat;
+    background:#000 center center no-repeat;
     width:32px;
     height:32px;
     display:inline-block;
@@ -40,7 +40,7 @@ section, footer, header, aside, nav{
 }
 
 .bar a.active{
-    background-color:#c14694;
+    background-color:#9d9d9d;
 }
 
 .bar a.list-icon{
@@ -76,9 +76,10 @@ section, footer, header, aside, nav{
 
 ul.list{
     list-style: none;
-    width: 500px;
+    width: 80%;
     margin: 0 auto;
     text-align: left;
+    background: #E5E5EE;
 }
 
 ul.list li{
@@ -106,13 +107,14 @@ ul.list li p{
 
 ul.grid{
     list-style: none;
-    width: 570px;
+    width: 80%;
     margin: 0 auto;
     text-align: left;
+    background: #E5E5EE;
 }
 
 ul.grid li{
-    padding: 2px;
+    padding: 5px;
     float:left;
 }
 
