@@ -4,6 +4,7 @@
 var lc = angular.module('lookchic', [
     'ngMaterial',
     'ngRoute',
+    'ngCookies',
     'ui.bootstrap',
     'flow',
     'ngFileUpload',
@@ -38,11 +39,11 @@ config(['$routeProvider', function($routeProvider) {
         .otherwise({redirectTo: '/'});
 }]);
 
-lc.run(function ($rootScope, $location, $window,$http, Auth) {
+lc.run(function ($rootScope, $location, $window,$http,$cookieStore, Auth) {
    /* $rootScope.$on("$routeChangeSuccess", function(userInfo) {
         console.log(userInfo);
     });*/
-    $rootScope.currentuser = $window.sessionStorage["userInfo"];
+    $rootScope.currentuser = $cookieStore.get('lcuser'); //$window.sessionStorage["userInfo"];
     if ($rootScope.currentuser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentuser.msg; // jshint ignore:line
         console.log('logined info: ', $rootScope.currentuser);

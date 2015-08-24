@@ -11,9 +11,16 @@ angular.module('lookchic.results', ['ngRoute'])
             controller: 'resultsCtrl'
         });
     }])
-    .controller('resultsCtrl', function($scope) {
+    .controller('resultsCtrl', function($scope,$routeParams, User) {
         $scope.layout = 'list';
-        $scope.results = [
+
+        var kword = $routeParams.keyword;
+        console.log(kword);
+        $scope.temp = User.searchitem(kword);
+
+        console.log($scope.temp);
+
+        /*$scope.results = [
             {
                 productname: 'Manolo Blahnik Hangisi Satin Pump',
                 price: '$965',
@@ -28,5 +35,5 @@ angular.module('lookchic.results', ['ngRoute'])
                 imgurl: 'images/test_img/sample4.jpg',
                 desc: '40% Off Select'
             }
-        ];
+        ];*/
     });

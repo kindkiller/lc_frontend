@@ -29,7 +29,7 @@ function authController($scope, $mdDialog) {
         })
     };
 
-    function DialogController($scope,$rootScope, $mdDialog, $http, $location, $q, $window, Auth) {
+    function DialogController($scope,$rootScope, $mdDialog, $http, $location,$cookieStore, $q, $window, Auth) {
         $scope.hide = function () {
             $mdDialog.hide();
         };
@@ -53,6 +53,7 @@ function authController($scope, $mdDialog) {
 
                      $rootScope.currentuser = data;
                      $window.sessionStorage["userInfo"] = JSON.stringify(data);
+                     $cookieStore.put('lcuser', $rootScope.currentuser);
                      Auth.setUser(data);
                      $location.path("/main");
                      $mdDialog.hide();

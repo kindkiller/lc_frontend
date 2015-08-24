@@ -3,7 +3,7 @@
  */
 'use strict';
 
-lc.factory('Auth',function ($http, $rootScope, $window) {
+lc.factory('Auth',function ($http, $rootScope, $window, $cookieStore) {
     var user;
     var authService = {};
 
@@ -25,7 +25,9 @@ lc.factory('Auth',function ($http, $rootScope, $window) {
     },
     authService.isLoggedIn = function(){
 
-        return($window.sessionStorage["userInfo"])? true : false;
+        //return($window.sessionStorage["userInfo"])? true : false;
+        return($cookieStore.get('lcuser'))? true : false;
+
     }
 
     return authService;

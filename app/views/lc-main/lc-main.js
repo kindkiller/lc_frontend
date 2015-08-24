@@ -12,42 +12,26 @@ angular.module('lookchic.main', ['ngRoute'])
     });
 }])
 .controller('mainCtrl', function($scope,$window,$http, $mdDialog) {
-    //$scope.feeds = $scope.getFeeds();
-    /*[
-        {
-            postername: 'Yuan',
-            avatorurl: '',
-            postdate: 'June 18 2015',
-            imgurl: 'images/test_img/sample4.jpg',
-            desc: 'Fantastic'
-        },
-        {
-            postername: 'Yao',
-            avatorurl: '',
-            postdate: 'July 2 2015',
-            imgurl: 'images/test_img/sample1.jpg',
-            desc: 'New Day12121'
-        }
-    ];*/
 
-            var currentuserid = $window.sessionStorage["userID"];
-            console.log ( 'start get feeds ');
-            $http({
-                method: 'POST',
-                url: 'http://localhost:6543/main',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-                data: {
-                    userid: currentuserid
-                }
-            }).success(function (data, status, headers, config) {
-                    console.log ( 'get feeds ' + ', Response: ' + JSON.stringify(data) );
-                    console.log ( data.feeds);
-                    $scope.feeds = data.feeds;
 
-            }).error(function (data, status, headers, config) {
-                console.log('error status: ' + status);
-                //return data;
-            });
+        var currentuserid = $window.sessionStorage["userID"];
+        console.log ( 'start get feeds ');
+        $http({
+            method: 'POST',
+            url: 'http://localhost:6543/main',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            data: {
+                userid: currentuserid
+            }
+        }).success(function (data, status, headers, config) {
+                console.log ( 'get feeds ' + ', Response: ' + JSON.stringify(data) );
+                console.log ( data.feeds);
+                $scope.feeds = data.feeds;
+
+        }).error(function (data, status, headers, config) {
+            console.log('error status: ' + status);
+            //return data;
+        });
 
         $scope.showPost = function(ev) {
             $mdDialog.show({
