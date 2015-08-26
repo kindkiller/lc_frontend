@@ -16,9 +16,9 @@ angular.module('lookchic.results', ['ngRoute'])
 
         var kword = $routeParams.keyword;
         console.log(kword);
-        $scope.temp = User.searchitem(kword);
+        $scope.results = User.searchitem(kword);
 
-        console.log($scope.temp);
+        console.log($scope.results);
 
         /*$scope.results = [
             {

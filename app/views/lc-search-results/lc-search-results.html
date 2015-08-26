@@ -42,16 +42,20 @@
 
     <ul ng-show="layout == 'grid'" class="grid">
         <!-- A view with big photos and no text -->
-        <li ng-repeat="p in results">
-            <a href="{{p.link}}" target="_blank"><img ng-src="{{p.imgurl}}" /></a>
+        <li ng-repeat="r in results">
+            <a href="{{r.url}}" target="_blank"><img ng-src="{{r.imgurl}}" /></a>
+            <p>{{r.name}}</p>
+            <p>{{r.brand}}</p>
+            <p>{{r.price}}</p>
         </li>
     </ul>
 
     <ul ng-show="layout == 'list'" class="list">
         <!-- A compact view smaller photos and titles -->
         <li ng-repeat="r in results">
-            <a href="{{r.link}}" target="_blank"><img ng-src="{{r.imgurl}}" /></a>
-            <p>{{r.desc}}</p>
+            <a href="{{r.url}}" target="_blank"><img ng-src="{{r.imgurl}}" /></a>
+            <p>{{r.name}}</p>
+            <p>{{r.brand}}</p>
             <p>{{r.price}}</p>
         </li>
     </ul>
