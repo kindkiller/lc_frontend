@@ -21,14 +21,14 @@ lc.factory('User',function ($http, $q) {
             // when the response is available
             console.log('search success: ', data);
             console.log('search success status: ', status);
-            return data;
+            return data.results;
         })
         .error(function(data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
             console.log('search error: ', data);
             console.log('search error status: ', status);
-            return data;
+            return data.results;
         });
     }
 
