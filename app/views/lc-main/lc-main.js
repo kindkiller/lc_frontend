@@ -11,11 +11,12 @@ angular.module('lookchic.main', ['ngRoute'])
         controller: 'mainCtrl'
     });
 }])
-.controller('mainCtrl', function($scope,$window,$http, $mdDialog) {
+.controller('mainCtrl', function($scope,$window,$http,$route, $mdDialog, Auth) {
 
 
-        var currentuserid = $window.sessionStorage["userID"];
-        console.log ( 'start get feeds ');
+        var currentuserid = Auth.getUser().userid; //$window.sessionStorage["userID"];
+        console.log ( 'start get feeds ', currentuserid);
+        console.log (Auth.getUser());
         $http({
             method: 'POST',
             url: 'http://localhost:6543/main',
@@ -27,6 +28,7 @@ angular.module('lookchic.main', ['ngRoute'])
                 console.log ( 'get feeds ' + ', Response: ' + JSON.stringify(data) );
                 console.log ( data.feeds);
                 $scope.feeds = data.feeds;
+                //$route.reload();
 
         }).error(function (data, status, headers, config) {
             console.log('error status: ' + status);
@@ -74,7 +76,7 @@ angular.module('lookchic.main', ['ngRoute'])
                          method: 'POST',
                          url: 'http://localhost:6543/post',
                          fields: {
-                         'username': $window.sessionStorage["userInfo"],
+                         'userid': Auth.getUser().userid,//$cookieStore.get('lcuser'), //$window.sessionStorage["userInfo"],
                          'desc': $scope.post.desc
                         },
                         file: file,

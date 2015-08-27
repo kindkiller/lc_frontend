@@ -23,6 +23,9 @@ lc.factory('Auth',function ($http, $rootScope, $window, $cookieStore) {
         $rootScope.currentuserid = aUser.userid;
         $window.sessionStorage["userID"] = aUser.userid;
     },
+    authService.getUser = function(){
+        return($rootScope.currentuser)? $rootScope.currentuser : $cookieStore.get('lcuser');
+    },
     authService.isLoggedIn = function(){
 
         //return($window.sessionStorage["userInfo"])? true : false;
