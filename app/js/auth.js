@@ -25,6 +25,7 @@ lc.factory('Auth',function ($http, $rootScope, $window, $cookieStore) {
             url: 'http://localhost:6543/signup',
             data: {
                 email: user.email,
+                username: user.username,
                 password: user.password1
             },
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}

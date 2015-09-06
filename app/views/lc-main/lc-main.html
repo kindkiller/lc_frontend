@@ -5,7 +5,7 @@
         <md-card flex flex-gt-sm="90" flex-gt-md="80" ng-repeat="feed in feeds"  >
             <md-card-content layout="row" style="opacity: 0.9">
                 <div flex="20" class="feed-owner" layout="column">
-                    <div style="display: none;">{{feed.pic_id}}</div>
+                    <div style="display: none;">{{feed.picid}}</div>
                     <div class="md-tile-left inset" hide-sm>
                         <img ng-src="{{feed.avatorurl}}" class="md-avatar" />
                     </div>
@@ -58,7 +58,7 @@
                                 <input class="form-control txtComment" type="text" placeholder="Write a comments" ng-model="commtext" />
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-default" ng-click="postcomment(commtext, feed.pic_id)">
+                                <button class="btn btn-default" ng-click="postcomment(commtext, feed.picid)">
                                     Comment</button>
                             </div>
                         </form>

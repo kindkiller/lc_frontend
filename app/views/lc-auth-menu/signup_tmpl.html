@@ -6,7 +6,7 @@
         </md-input-container>
         <md-input-container>
             <label>Username</label>
-            <input ng-model="user.email" type="email">
+            <input ng-model="user.username" type="text">
         </md-input-container>
         <md-input-container>
             <label>Password</label>
@@ -16,6 +16,7 @@
             <label>Confirm Password</label>
             <input ng-model="user.password2" type="password">
         </md-input-container>
+        <span ng-show="err" class="help-block">{{err}}</span>
     </md-dialog-content>
     <div class="md-actions">
         <!-- type=button is needed so form uses submit button -->
