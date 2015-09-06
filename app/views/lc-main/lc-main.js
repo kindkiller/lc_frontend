@@ -11,30 +11,24 @@ angular.module('lookchic.main', ['ngRoute'])
         controller: 'mainCtrl'
     });
 }])
-.controller('mainCtrl', function($scope,$window,$http,$route, $mdDialog, Auth) {
-
+.controller('mainCtrl', function($scope,$window,$http,$route, $mdDialog, Auth, User) {
 
         var currentuserid = Auth.getUser().userid; //$window.sessionStorage["userID"];
         console.log ( 'start get feeds ', currentuserid);
         console.log (Auth.getUser());
-        $http({
-            method: 'POST',
-            url: 'http://localhost:6543/main',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
-            data: {
-                userid: currentuserid
-            }
-        }).success(function (data, status, headers, config) {
-                console.log ( 'get feeds ' + ', Response: ' + JSON.stringify(data) );
-                console.log ( data.feeds);
-                $scope.feeds = data.feeds;
-                //$route.reload();
 
-        }).error(function (data, status, headers, config) {
-            console.log('error status: ' + status);
-            //return data;
-        });
-
+        $scope.initFirst=function(){
+            User.getFeeds(currentuserid)
+                .success(function (data, status, headers, config) {
+                    console.log ( 'get feeds ' + ', Response: ' + JSON.stringify(data) );
+                    console.log ( data.feeds);
+                    $scope.feeds = data.feeds;
+                    //$route.reload();
+                })
+                .error(function (data, status, headers, config) {
+                    console.log('error status: ' + status);
+                });
+        };
         $scope.showPost = function(ev) {
             $mdDialog.show({
                 controller: DialogController,
@@ -45,7 +39,48 @@ angular.module('lookchic.main', ['ngRoute'])
                 hasBackdrop: true
             })
         };
-        function DialogController($scope,Upload, $mdDialog, $http,$timeout, $location, $q, $window, Auth) {
+
+        $scope.postcomment = function(txt,feedid) {
+            //$scope.feeds.comments.push(txt);
+            if(txt !='') {
+
+                var comm = {
+                    picid: feedid,
+                    userid: currentuserid,
+                    comment: txt
+                };
+
+                User.postComment(comm)
+                .success(function (data, status, headers, config) {
+                    console.log('post comments ' + txt + ', feedid: ' + feedid);
+                    console.log(data);
+                    //$route.reload();
+                }).error(function (data, status, headers, config) {
+                    console.log('error status: ' + status);
+                    //return data;
+                });
+            }
+        };
+
+        $scope.likephoto = function(txt,feedid) {
+
+            var likedata = {
+                picid: feedid,
+                userid: currentuserid
+            };
+
+            User.like(likedata)
+                .success(function (data, status, headers, config) {
+                    console.log('post comments ' + txt + ', feedid: ' + feedid);
+                    console.log(data);
+                    //$route.reload();
+                }).error(function (data, status, headers, config) {
+                    console.log('error status: ' + status);
+                    //return data;
+                });
+        };
+
+        function DialogController($scope,Upload, $mdDialog,$timeout,Auth) {
             $scope.post={};
             $scope.files={};
             $scope.$watch('files', function () {
@@ -60,13 +95,17 @@ angular.module('lookchic.main', ['ngRoute'])
             $scope.hide = function () {
                 $mdDialog.hide();
             };
+            //Upload photo to server
+            $scope.lc_post = function (files){
+                console.log('post img');
+                console.log(files);
+                console.log(files[0]);
+                $scope.upload(files);
+                $mdDialog.hide();
+                $scope.initFirst();
+            };
 
             $scope.upload = function (files) {
-                console.log('upload image');
-                //var file = files[0];
-                console.log(file);
-                //console.log($scope.files);
-
 
                 if (files && files.length) {
                  for (var i = 0; i < files.length; i++) {
@@ -96,13 +135,7 @@ angular.module('lookchic.main', ['ngRoute'])
                  }
                 }
             };
-            $scope.lc_post = function (files){
-                console.log('post img');
-                console.log(files);
-                console.log(files[0]);
-                $scope.upload(files);
-                $mdDialog.hide();
-            };
+
         }
 });
 /*

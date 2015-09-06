@@ -7,30 +7,53 @@
 lc.factory('User',function ($http, $q) {
     var userService = {};
 
+    userService.postComment = function postComment(comment){
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:6543/addcomment',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: comment
+        })
+    }
+
+    userService.getFeeds = function getFeeds(userid){
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:6543/main',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            data: {
+                userid: userid
+            }
+        });
+    }
+
     userService.searchitem = function searchitem(kword){
-        $http({
+        return $http({
             method: 'GET',
             url: 'http://localhost:6543/search',
             params: {
                 keyword: kword
             }
             //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
-        .success(function(data, status, headers, config) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log('search success: ', data);
-            console.log('search success status: ', status);
-            return data.results;
-        })
-        .error(function(data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log('search error: ', data);
-            console.log('search error status: ', status);
-            return data.results;
         });
-    }
+    };
+
+    userService.like = function like(data){
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:6543/addlike',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: data
+        })
+    };
+
+    userService.addFavor = function addFavor(data){
+
+    };
+
+    userService.delPost = function delPost(data){
+
+    };
 
     return userService;
 });

@@ -1,10 +1,11 @@
 <md-button class="md-fab md-fab-top-right md-raised" style="background-color: #C0C0C0" aria-label="Post" ng-click="showPost($event)">
     <ng-md-icon icon="add">chic</ng-md-icon>
 </md-button>
-<md-content flex md-scroll-y style="background: transparent; padding: 2% 5%;" >
+<md-content flex md-scroll-y style="background: transparent; padding: 2% 5%;" ng-init="initFirst()">
         <md-card flex flex-gt-sm="90" flex-gt-md="80" ng-repeat="feed in feeds"  >
             <md-card-content layout="row" style="opacity: 0.9">
                 <div flex="20" class="feed-owner" layout="column">
+                    <div style="display: none;">{{feed.pic_id}}</div>
                     <div class="md-tile-left inset" hide-sm>
                         <img ng-src="{{feed.avatorurl}}" class="md-avatar" />
                     </div>
@@ -26,16 +27,41 @@
                      </div>
 
                     <md-chips class="hashtags" ng-repeat="ht in feed.hashtags">
-                        <md-chip><a href="#">#hashtag1</a></md-chip>
-                        <md-chip><a href="#">#hashtag2</a></md-chip>
+                        <md-chip><a href="#">#hashtag1{{ht}}</a></md-chip>
                     </md-chips>
                     <div class="likes">
-                        <a href="#" class="btn"> <span class="glyphicon glyphicon-heart">
-                                </span><span class="badge">618</span></a>
-                        <a href="#" class="btn"> <span class="glyphicon glyphicon-plus">
+                        <a class="btn"> <span class="glyphicon glyphicon-heart">
+                                </span><span class="badge">{{feed.likeCount}}</span></a>
+                        <a class="btn"> <span class="glyphicon glyphicon-plus">
                                 </span></a>
-                        <a href="#" class="btn right"> <span class="glyphicon glyphicon-alert">
+                        <a class="btn right"> <span class="glyphicon glyphicon-alert">
                                 </span></a>
+                    </div>
+                    <div class="comments">
+                        <ul class="commentList">
+                            <li ng-repeat="c in feed.comments">
+                                <!--<div class="commenterImage">
+                                    <img src="{{feed.avatorurl}}" />
+                                </div>-->
+                                <div>{{c.username}}</div>
+                                <div class="commentText">
+                                    <p class="">
+                                        {{c.comment}}</p>
+                                    <span class="date sub-text">{{c.time | date:"MM/dd/yyyy"}}</span>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
+                        </span>More</a>-->
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <input class="form-control txtComment" type="text" placeholder="Write a comments" ng-model="commtext" />
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" ng-click="postcomment(commtext, feed.pic_id)">
+                                    Comment</button>
+                            </div>
+                        </form>
                     </div>
 
                 </div>

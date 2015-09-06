@@ -12,26 +12,57 @@ lc.factory('Auth',function ($http, $rootScope, $window, $cookieStore) {
         return !!$window.sessionStorage["userInfo"]
     };
 
+    //check if the user is logged in
+    authService.isLoggedIn = function(){
+        //return($window.sessionStorage["userInfo"])? true : false;
+        return($cookieStore.get('lcuser'))? true : false;
+    };
+
+    //new user signup request
+    authService.signup = function (user) {
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:6543/signup',
+            data: {
+                email: user.email,
+                password: user.password1
+            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+    };
+
+    //user login request
+    authService.login = function(user) {
+        //var userInfo;
+        //var deferred = $q.defer();
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:6543/login',
+            data: {
+                email: user.email,
+                password: user.password
+            },
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+
+    };
+
     //log out the user and broadcast the logoutSuccess event
-    authService.logout = function(){
+    authService.user_logout = function(){
+        //Session.destroy();
         $window.sessionStorage.removeItem("userInfo");
-        //$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-    }
+        $cookieStore.remove("lcuser");
+        $location.path('/');
+    };
 
     authService.setUser = function(aUser){
         user = aUser;
         $rootScope.currentuserid = aUser.userid;
         $window.sessionStorage["userID"] = aUser.userid;
-    },
+    };
     authService.getUser = function(){
         return($rootScope.currentuser)? $rootScope.currentuser : $cookieStore.get('lcuser');
-    },
-    authService.isLoggedIn = function(){
-
-        //return($window.sessionStorage["userInfo"])? true : false;
-        return($cookieStore.get('lcuser'))? true : false;
-
-    }
+    };
 
     return authService;
 });

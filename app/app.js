@@ -47,6 +47,7 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore, Auth) {
     if ($rootScope.currentuser) {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentuser.msg; // jshint ignore:line
         console.log('logined info: ', $rootScope.currentuser);
+        $location.path('/main');
     }
     $rootScope.$on('$routeChangeStart', function(currRoute, prevRoute) {
 

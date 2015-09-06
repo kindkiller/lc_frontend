@@ -34,22 +34,12 @@ function authController($scope, $mdDialog) {
             $mdDialog.hide();
         };
         $scope.user_login = function(user){
-            //var userInfo;
-             //var deferred = $q.defer();
-             $http({
-                 method: 'POST',
-                 url: 'http://localhost:6543/login',
-                 data: {
-                     email: user.email,
-                     password: user.password
-                 },
-                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-             })
+
+            Auth.login(user)
                 .success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
                      console.log('login success: ', data);
-                     console.log('login success status: ', status);
 
                      $rootScope.currentuser = data;
                      $window.sessionStorage["userInfo"] = JSON.stringify(data);
@@ -83,24 +73,14 @@ function authController($scope, $mdDialog) {
             //var userInfo;
             //var deferred = $q.defer();
             if(user.password1 == user.password2){
-            $http({
-                method: 'POST',
-                url: 'http://localhost:6543/signup',
-                data: {
-                    email: user.email,
-                    password: user.password1
-                },
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            })
+                Auth.signup(user)
                 .success(function(data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
                     console.log('signup success: ', data);
-                    console.log('signup success status: ', status);
-
                     Auth.setUser(data);
-                    $location.path("/main");
                     $mdDialog.hide();
+                    $location.path("/main");
                 })
                 .error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs

@@ -1,7 +1,11 @@
 <md-dialog aria-label="Sign Up" style="width: 350px">
     <md-dialog-content>
         <md-input-container>
-            <label>Email</label>
+            <label>Email/Cell Phone</label>
+            <input ng-model="user.email" type="email">
+        </md-input-container>
+        <md-input-container>
+            <label>Username</label>
             <input ng-model="user.email" type="email">
         </md-input-container>
         <md-input-container>
@@ -9,7 +13,7 @@
             <input ng-model="user.password1" type="password">
         </md-input-container>
         <md-input-container>
-            <label>Repeat Password</label>
+            <label>Confirm Password</label>
             <input ng-model="user.password2" type="password">
         </md-input-container>
     </md-dialog-content>

@@ -46,3 +46,65 @@
     height: 400px;
     text-align: center;
 }
+
+/*Comments*/
+.comments
+{
+    height: 100%;
+    padding: 10px 20px;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+.commentList
+{
+    padding: 0;
+    list-style: none;
+    max-height: 200px;
+    overflow: auto;
+}
+.commentList li
+{
+    margin: 0;
+    margin-top: 10px;
+}
+.commentList li > div
+{
+    display: table-cell;
+}
+.commenterImage
+{
+    width: 30px;
+    margin-right: 5px;
+    height: 100%;
+    float: left;
+}
+.commenterImage img
+{
+    width: 100%;
+    border-radius: 50%;
+}
+.commentText p
+{
+    margin: 0;
+}
+.sub-text
+{
+    color: #aaa;
+    font-family: verdana;
+    font-size: 11px;
+}
+
+.comments .form-group:first-child
+{
+    width: 70%;
+}
+
+.comments .form-group:nth-child(2)
+{
+    width: 28%;
+}
+
+.txtComment
+{
+    width: 95%;
+}
