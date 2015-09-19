@@ -1,0 +1,19 @@
+/*
+@media screen and (max-width: 800px){
+    .sidebar-nav {
+        width: 28%;
+    }
+    .sidebar-nav, .sidebar-content {
+        width: 256px;
+        padding-right: 0;
+        background-color: #f7f7f7;
+        border-left: 1px solid #c3cfd9;
+        border-right: 1px solid #c3cfd9;
+        box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05);
+    }
+    .sidebar-nav {
+        float: left;
+        height: 100%;
+        margin: 0 0 0 -17px;
+        background-color: #eef2f5;
+    }}*/

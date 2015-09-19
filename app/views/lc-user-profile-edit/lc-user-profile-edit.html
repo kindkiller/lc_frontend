@@ -1,0 +1,66 @@
+    <md-content flex md-scroll-y style="background: transparent; padding: 2% 5%;">
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+            <md-toolbar style="background-color: lightgray">
+                <span flex></span>
+                <div layout="column" class="md-toolbar-tools-bottom inset">
+                    <user-avatar></user-avatar>
+                    <span></span>
+                    <div>Your Account</div>
+                    <!--<div>email@domainname.com</div>-->
+                </div>
+            </md-toolbar>
+            <nav class="sidebar-nav">
+                <div class="sidebar-content">
+                    <ul>
+                        <li>
+                            <a href="#/editprofile">
+                                Edit Profile
+                                <i class="disclosure"></i>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="/accounts/password/change/">
+                                Change Password
+                                <i class="disclosure"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/emails/settings">
+                                Email Preferences
+                                <i class="disclosure"></i>
+                            </a>
+
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+            <md-list>
+               <!-- <md-item ng-repeat="item in menu">
+                    <a>
+                        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                            <div class="inset">
+                                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                            </div>
+                            <div class="inset">{{item.title}}
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-item>-->
+                <md-divider></md-divider>
+                <md-subheader>Settings</md-subheader>
+                <md-item ng-repeat="item in menu">
+                    <a>
+                        <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                            <div class="inset">
+                                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                            </div>
+                            <div class="inset">{{item.title}}
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-item>
+            </md-list>
+        </md-sidenav>
+    </md-content>

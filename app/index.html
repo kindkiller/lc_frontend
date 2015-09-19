@@ -17,22 +17,23 @@
     <link rel="stylesheet" href="css/lc-main.css">
     <link rel="stylesheet" href="css/lc-search-results.css">
     <link rel="stylesheet" href="css/lc-user-profile.css">
+    <link rel="stylesheet" href="css/lc-edit-profile.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
 
 </head>
 <body layout="column">
-<div ng-controller="lcCtrl" layout="column" flex>
+    <div ng-controller="lcCtrl" layout="column" flex>
 
-    <div ng-include src="'views/lc-headbar/lc-headbar.html'"></div>
+        <div ng-include src="'views/lc-headbar/lc-headbar.html'"></div>
 
-    <!--[if lt IE 7]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+        <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-    <div ng-view layout="column" layout-fill></div>
+        <div ng-view layout="column" layout-fill></div>
 
-</div>
+    </div>
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
@@ -55,6 +56,7 @@
     <script src="views/lc-main/lc-main.js"></script>
     <script src="views/lc-search-results/lc-search-results.js"></script>
     <script src="views/lc-user-profile/lc-user-profile.js"></script>
+    <script src="views/lc-user-profile-edit/lc-user-profile-edit.js"></script>
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>

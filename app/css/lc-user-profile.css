@@ -1,0 +1,16 @@
+.user-avatar{
+    border-radius: 50%;
+}
+.user-statistics{
+    list-style: none;
+    margin: 0 0;
+    padding: 0 0;
+}
+.user-statistics li {
+    display: inline-block;
+    text-align: -webkit-match-parent;
+}
+#user{
+    padding: 40px 0;
+    background-color: #eee;
+}

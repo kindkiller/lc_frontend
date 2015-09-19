@@ -11,6 +11,7 @@ var lc = angular.module('lookchic', [
     'lookchic.main',
     'lookchic.results',
     'lookchic.userprofile',
+    'lookchic.editprofile',
     'lookchic.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
@@ -20,23 +21,25 @@ config(['$routeProvider', function($routeProvider) {
             templateUrl : 'views/home.html'
             //controller  : 'mainController'
         })*/
-
         // route for the main page
         .when('/main', {
             templateUrl : 'views/lc-main/lc-main.html',
             controller  : 'mainCtrl'
         })
-
         // route for results page
         .when('/results', {
             templateUrl : 'views/lc-search-results/lc-search-results.html',
             controller  : 'resultsCtrl'
         })
-
         // route for user profile page
         .when('/userprofile', {
             templateUrl : 'views/lc-user-profile/lc-user-profile.html',
             controller  : 'userprofileCtrl'
+        })
+        // route for user profile edit page
+        .when('/editprofile', {
+            templateUrl : 'views/lc-user-profile-edit/lc-user-profile-edit.html',
+            controller  : 'editprofileCtrl'
         })
         // route for the contact page
         /*.when('/contact', {

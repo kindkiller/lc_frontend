@@ -134,7 +134,7 @@ angular.module('lookchic.main', ['ngRoute'])
                 $('#imgtag').append( $compile('<div class="tagview" id="view_'+counter+'">'+txt+'</div>')($scope));
                 $('#view_' + counter).css({top:mouseY+"%",left:mouseX+"%"});
                 //var tag={"left":mouseX+"%","top":mouseY+"%","text":txt};
-                $scope.tags.push({"left":mouseX+"%","top":mouseY+"%","text":txt});
+                $scope.tags.push({"left":mouseX+"%","top":mouseY+"%","text":txt, "tagid":0});
                 $('#tagit').fadeOut();
                 console.log($scope.tags);
             };
