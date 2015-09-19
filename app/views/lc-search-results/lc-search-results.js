@@ -18,14 +18,7 @@ angular.module('lookchic.results', ['ngRoute'])
         console.log(kword);
         //$scope.results = User.searchitem(kword);
 
-        $http({
-            method: 'GET',
-            url: 'http://localhost:6543/search',
-            params: {
-                keyword: kword
-            }
-            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
+        User.searchitem(kword)
             .success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available

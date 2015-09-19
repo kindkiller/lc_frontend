@@ -108,3 +108,88 @@
 {
     width: 95%;
 }
+
+/*Tags*/
+#imgtag
+{
+    position:relative;
+
+    float:left;
+    border:solid 3px #fff;
+    cursor: crosshair;
+}
+.tagview
+{
+    /*border:solid 3px #fff;*/
+    position:absolute;
+    z-index: 200;
+    padding: 5px 10px;
+    background-color: #000;
+    color: #fff;
+    font-size: 12px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    /*max-width: 100px;*/
+    /*display:none;*/
+}
+#tagit
+{
+    position:absolute;
+    top:0;left:0;
+    width:250px;
+}
+#tagit .box
+{
+    border:solid 3px #fff;
+    border-radius: 50%;
+    width:10px;
+    height:10px;
+    float:left;
+}
+
+#tagit .name
+{
+    float:left;
+    background-color:#fff;
+    width:130px;
+    height:80px;
+    padding:5px;
+}
+#tagit div.text
+{
+    margin-bottom:5px;
+}
+#tagit input[type=text]
+{
+    margin-bottom:5px;
+}
+#tagit #tagname
+{
+    width:110px;
+}
+#taglist
+{
+    background-color:#012D4A;
+    width:300px;
+    min-height:200px;
+    height:auto !important;
+    height:200px;
+    float:left;
+    padding:10px;
+    margin-left:20px;
+    color:#BFC6D0;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+
+}
+#taglist ol { padding:0 20px;float:left;cursor:pointer}
+#taglist ol a { color:#BFC6D0;font-size:11px;}
+#taglist ol a:hover { text-decoration:underline }
+.tagtitle
+{
+    font-size:14px;
+    text-align:center;
+    width:100%;
+    float:left;
+}

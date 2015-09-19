@@ -80,9 +80,11 @@ angular.module('lookchic.main', ['ngRoute'])
                 });
         };
 
-        function DialogController($scope,Upload, $mdDialog,$timeout,Auth) {
+        function DialogController($scope,Upload, $mdDialog,$timeout,$compile,Auth) {
             $scope.post={};
             $scope.files={};
+            $scope.tags=[];
+            $scope.isAddTag=false;
             $scope.$watch('files', function () {
                 //$scope.upload($scope.files);
             });
@@ -97,12 +99,48 @@ angular.module('lookchic.main', ['ngRoute'])
             };
             //Upload photo to server
             $scope.lc_post = function (files){
-                console.log('post img');
+                /*console.log('post img');
                 console.log(files);
-                console.log(files[0]);
+                console.log(files[0]);*/
                 $scope.upload(files);
                 $mdDialog.hide();
                 $scope.initFirst();
+            };
+
+            $scope.st_addTag = function (event){
+                $scope.isAddTag=!$scope.isAddTag;
+                //alert(event.offsetX/document.getElementById('lc-photo').offsetWidth+', '+event.offsetY/document.getElementById('lc-photo').offsetHeight);
+            };
+
+            $scope.addTag = function (event){
+                //alert(event.offsetX/$(event.target).width()+', '+event.offsetY/$(event.target).height());
+                $scope.mouseX=(event.offsetX/$(event.target).width())*100;
+                $scope.mouseY=(event.offsetY/$(event.target).height())*100;
+                //alert(mouseX+","+ mouseY);
+                $('#tagit').remove( ); // remove any tagit div first
+                //insert an input box with save and cancel operations.
+                $('#imgtag').append( $compile('<div id="tagit"><div class="box"></div><div class="name"><div class="text">Type tag</div><input type="text" ng-model="tagtxt" name="txtname" id="tagname" /><input type="button" name="btnsave" ng-click="save_tag(tagtxt,mouseY,mouseX)" value="Save" id="btnsave" /><input type="button" name="btncancel" value="Cancel" ng-click="cancel_tag()" id="btncancel" /></div></div>')($scope) );
+
+                $('#tagit').css({ top:$scope.mouseY+"%", left:$scope.mouseX+"%" });
+
+                $('#tagname').focus();
+            };
+            var counter=0;
+            $scope.save_tag = function(tagtxt,mouseY,mouseX){
+                var txt = $('#tagname').val();
+
+                counter++;
+                $('#taglist ol').append('<li rel="'+counter+'"><a>'+txt+'</a> (<a class="remove">Remove</a>)</li>');
+                $('#imgtag').append( $compile('<div class="tagview" id="view_'+counter+'">'+txt+'</div>')($scope));
+                $('#view_' + counter).css({top:mouseY+"%",left:mouseX+"%"});
+                //var tag={"left":mouseX+"%","top":mouseY+"%","text":txt};
+                $scope.tags.push({"left":mouseX+"%","top":mouseY+"%","text":txt});
+                $('#tagit').fadeOut();
+                console.log($scope.tags);
+            };
+
+            $scope.cancel_tag = function(){
+                $('#tagit').fadeOut();
             };
 
             $scope.upload = function (files) {
@@ -119,6 +157,7 @@ angular.module('lookchic.main', ['ngRoute'])
                          'desc': $scope.post.desc
                         },
                         file: file,
+                        tags:$scope.tags,
                         headers: {'Content-Type': 'application/json; charset=UTF-8'}
 
                     }).progress(function (evt) {

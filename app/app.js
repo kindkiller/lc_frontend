@@ -10,15 +10,16 @@ var lc = angular.module('lookchic', [
     'ngFileUpload',
     'lookchic.main',
     'lookchic.results',
+    'lookchic.userprofile',
     'lookchic.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
     $routeProvider
         // route for the home page
-        .when('/', {
-            templateUrl : 'views/home.html',
+        /*.when('/', {
+            templateUrl : 'views/home.html'
             //controller  : 'mainController'
-        })
+        })*/
 
         // route for the main page
         .when('/main', {
@@ -29,7 +30,13 @@ config(['$routeProvider', function($routeProvider) {
         // route for results page
         .when('/results', {
             templateUrl : 'views/lc-search-results/lc-search-results.html',
-            controller  : 'mainCtrl'
+            controller  : 'resultsCtrl'
+        })
+
+        // route for user profile page
+        .when('/userprofile', {
+            templateUrl : 'views/lc-user-profile/lc-user-profile.html',
+            controller  : 'userprofileCtrl'
         })
         // route for the contact page
         /*.when('/contact', {
@@ -39,24 +46,24 @@ config(['$routeProvider', function($routeProvider) {
         .otherwise({redirectTo: '/'});
 }]);
 
-lc.run(function ($rootScope, $location, $window,$http,$cookieStore, Auth) {
+lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $route) {
    /* $rootScope.$on("$routeChangeSuccess", function(userInfo) {
         console.log(userInfo);
     });*/
+    $injector.get("$http").defaults.transformRequest = function(data, headersGetter)
+    { if ($rootScope.oauth) headersGetter()['Authorization'] = "Bearer "+$rootScope.oauth.access_token; if (data) { return angular.toJson(data); } };
     $rootScope.currentuser = $cookieStore.get('lcuser'); //$window.sessionStorage["userInfo"];
     if ($rootScope.currentuser) {
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentuser.msg; // jshint ignore:line
-        console.log('logined info: ', $rootScope.currentuser);
         $location.path('/main');
+        //$route.reload();
     }
     $rootScope.$on('$routeChangeStart', function(currRoute, prevRoute) {
 
-            // if route requires auth and user is not logged in
-            if (!$rootScope.currentuser) {
-                // redirects to index
-                $location.path('/');
-            }
-
+        // if route requires auth and user is not logged in
+        if (!$rootScope.currentuser) {
+            // redirects to index
+            $location.path('/');
+        }
     });
 });
 

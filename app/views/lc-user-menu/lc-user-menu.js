@@ -9,7 +9,7 @@ lc.controller('userCtrl', function($scope,$location,Auth, User) {
     $scope.search = function(kword){
         console.log(kword)
 
-        User.search(kword)
+        User.searchitem(kword)
             .success(function(data, status, headers, config) {
             // this callback will be called asynchronously
             // when the response is available

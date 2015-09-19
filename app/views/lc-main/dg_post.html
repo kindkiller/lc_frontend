@@ -7,7 +7,14 @@
              ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
              ngf-accept="'image/*'">Select/Drop your Chic Image here</div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-        <img class="img_pview" ngf-src="files[0]" ngf-accept="'image/*'" ng-show="!isEmpty(files)">
+        <div id="imgtag">
+            <img id="lc-photo" class="img_pview" ngf-src="files[0]" ngf-accept="'image/*'" ng-show="!isEmpty(files)" ng-click="isAddTag && addTag($event)">
+        </div>
+        <div id="taglist">
+            <span class="tagtitle">List of Tags</span>
+            <ol>
+            </ol>
+        </div>
 
         <md-input-container>
             <label>Description</label>
@@ -16,7 +23,7 @@
     </md-dialog-content>
     <div class="md-actions">
         <!-- type=button is needed so form uses submit button -->
-        <md-button class="md-primary" ng-click="alert('building...')">Chic Tag</md-button>
+        <md-button class="md-primary" ng-click="st_addTag($event)">Chic Tag</md-button>
         <md-button class="md-primary" ng-click="lc_post(files)" >Chic it</md-button>
     </div>
     </form>
