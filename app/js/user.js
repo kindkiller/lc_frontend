@@ -14,7 +14,7 @@ lc.factory('User',function ($http, $q) {
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: comment
         })
-    }
+    };
 
     userService.getFeeds = function getFeeds(userid){
         return $http({
@@ -25,7 +25,19 @@ lc.factory('User',function ($http, $q) {
                 userid: userid
             }
         });
-    }
+    };
+
+    userService.editProfile = function editProfile(userid,data){
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:6543/editprofile',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
+            data: {
+                userid: userid,
+                userdata: data
+            }
+        });
+    };
 
     userService.searchitem = function searchitem(kword){
         return $http({

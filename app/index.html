@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">-->
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="bower_components/cropper/dist/cropper.css">
+    <link rel="stylesheet" href="bower_components/ng-cropper/dist/ngCropper.all.css">
     <link rel="stylesheet" href="app.css">
     <link rel="stylesheet" href="css/lc-main.css">
     <link rel="stylesheet" href="css/lc-search-results.css">
@@ -20,9 +23,19 @@
     <link rel="stylesheet" href="css/lc-edit-profile.css">
     <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
+    <!-- Bootstrap Core CSS -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- Custom CSS -->
+    <link href="css/css/whitescale.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
 
 </head>
-<body layout="column">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" layout-fill>
     <div ng-controller="lcCtrl" layout="column" flex>
 
         <div ng-include src="'views/lc-headbar/lc-headbar.html'"></div>
@@ -31,22 +44,28 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div ng-view layout="column" layout-fill></div>
+        <div style="top:70px;" ng-view layout="column" layout-fill></div>
 
+        <!-- Footer -->
+        <div ng-include src="'views/lc-footer/lc-footer.html'"></div>
     </div>
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
-    <script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
+    <!--<script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>-->
     <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>-->
+
+    <script src="bower_components/cropper/dist/cropper.js"></script>
+    <script src="bower_components/ng-cropper/dist/ngCropper.js"></script>
     <script src="app.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/user.js"></script>
@@ -60,5 +79,10 @@
     <script src="components/version/version.js"></script>
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/whitescale.js"></script>
 </body>
 </html>

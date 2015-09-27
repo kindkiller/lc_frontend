@@ -6,7 +6,7 @@ var lc = angular.module('lookchic', [
     'ngRoute',
     'ngCookies',
     'ui.bootstrap',
-    'flow',
+    'ngCropper',
     'ngFileUpload',
     'lookchic.main',
     'lookchic.results',
@@ -17,10 +17,10 @@ var lc = angular.module('lookchic', [
 config(['$routeProvider', function($routeProvider) {
     $routeProvider
         // route for the home page
-        /*.when('/', {
+        .when('/', {
             templateUrl : 'views/home.html'
             //controller  : 'mainController'
-        })*/
+        })
         // route for the main page
         .when('/main', {
             templateUrl : 'views/lc-main/lc-main.html',
@@ -53,21 +53,25 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
    /* $rootScope.$on("$routeChangeSuccess", function(userInfo) {
         console.log(userInfo);
     });*/
-    $injector.get("$http").defaults.transformRequest = function(data, headersGetter)
-    { if ($rootScope.oauth) headersGetter()['Authorization'] = "Bearer "+$rootScope.oauth.access_token; if (data) { return angular.toJson(data); } };
-    $rootScope.currentuser = $cookieStore.get('lcuser'); //$window.sessionStorage["userInfo"];
-    if ($rootScope.currentuser) {
+    $rootScope.lcUser = $cookieStore.get('lc_user') || {};
+    if ($rootScope.lcUser.lc_userid) {
+        $http.defaults.headers.common['Authorization'] = 'Bearer ' + $rootScope.lcUser.lc_token;
+    } //$window.sessionStorage["userInfo"];
+
+    //$injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
+
+    if ($rootScope.lcUser.lc_userid) {
         $location.path('/main');
         //$route.reload();
     }
     $rootScope.$on('$routeChangeStart', function(currRoute, prevRoute) {
-
         // if route requires auth and user is not logged in
-        if (!$rootScope.currentuser) {
+        if (!$rootScope.lcUser) {
             // redirects to index
             $location.path('/');
         }
     });
+   // };
 });
 
 angular.module('lookchic').controller('lcCtrl', function($scope) {

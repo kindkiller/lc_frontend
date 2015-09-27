@@ -17,11 +17,13 @@
 
 .image-wrap
 {
-    background: #E5E5EE;
+    /*background: #E5E5EE;*/
+    background: #ffffff;
     opacity: 1;
     height: 510px;
     margin: 0 auto;
     text-align: center;
+    vertical-align: middle;
 }
 .image-wrap img
 {
@@ -42,8 +44,8 @@
     border: 5px dashed blue;
 }
 .img_pview{
+    max-height: 100%;
     max-width: 100%;
-    height: 400px;
     text-align: center;
 }
 
@@ -113,10 +115,16 @@
 #imgtag
 {
     position:relative;
-
-    float:left;
-    border:solid 3px #fff;
+    display: inline-block;
+    /*float:left;*/
     cursor: crosshair;
+
+}
+#imgtag img
+{
+    height: 100%;
+    width: 100%;
+    /*display: inline-block;*/
 }
 .tagview
 {
@@ -131,6 +139,9 @@
     border-radius: 3px;
     /*max-width: 100px;*/
     /*display:none;*/
+}
+.tagview a{
+    color:#fff;
 }
 #tagit
 {

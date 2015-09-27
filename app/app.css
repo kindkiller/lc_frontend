@@ -6,12 +6,12 @@
     -moz-box-sizing: border-box;
 }
 
-body{
+/*body{
     display: block;
     font-family: 'robotoDraft', Helvetica, Arial, sans-serif;
     background: url(images/Fashion.jpg) no-repeat center center fixed;
     background-size: cover;
-}
+}*/
 .right
 {
     float: right;
@@ -42,7 +42,7 @@ body{
 .header{
     padding:0px 30px;
     top:0;
-    height: 60px;
+    overflow: inherit;
 }
 
 /* Menu Button*/

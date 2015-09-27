@@ -1,11 +1,15 @@
 
 <div class="header" layout="row" layout-sm="column" ng-controller="headerCtrl">
-    <div flex="33" ng-include src="'views/lc-logo/lc-logo.html'"></div>
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation" layout="row">
 
-    <div flex layout="row" layout-align="end center">
+        <div flex="25" ng-include src="'views/lc-logo/lc-logo.html'"></div>
 
-        <div flex="65" ng-hide="!loggedin()" ng-include src="'./views/lc-user-menu/lc-user-menu.html'"></div>
-        <div flex ng-hide="loggedin()" ng-include src="'./views/lc-auth-menu/lc-auth-menu.html'"></div>
+        <div flex layout="row" layout-align="end center">
 
-    </div>
+            <div flex="75" ng-hide="!loggedin()" ng-include src="'./views/lc-user-menu/lc-user-menu.html'"></div>
+            <div flex ng-hide="loggedin()" ng-include src="'./views/lc-auth-menu/lc-auth-menu.html'"></div>
+
+        </div>
+
+    </nav>
 </div>

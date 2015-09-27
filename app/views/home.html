@@ -1,3 +1,39 @@
+<!-- Intro Header -->
+<div ng-controller="AuthCtrl">
+<div class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <!-- <h1 class="brand-heading">LookChic</h1> -->
+                    <!-- <p class="intro-text">Ready to look chic?</p> -->
+                    <a href="#register" class="btn btn-circle page-scroll">
+                        <i class="fa fa-angle-double-down animated"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Login Section -->
+<div id="login" class="content-section text-center">
+
+    <div class="login-card">
+        <h1>Log-in</h1><br>
+        <form>
+            <input type="text" name="user" placeholder="ÓÃ»§Ãû">
+            <input type="password" name="pass" placeholder="ÃÜÂë">
+            <input type="submit" name="login" class="login login-submit" value="µÇÂ½" ng-click="auth_login($event)">
+        </form>
+        <div class="login-help">
+            <a href="#" ng-click="auth_signup($event)">×¢²á</a> ? <a href="#">Íü¼ÇÃÜÂë?</a>
+        </div>
+    </div>
+    <!-- </div> -->
+</div>
+</div>
+<!--
 <md-content flex style="color:#fff; font-size: 56px; background: transparent" layout-align="center center">
-    <!--<h1 flex >The Go To Website for Getting <span>CHIC LOOK!</span></h1>-->
-</md-content>
+    &lt;!&ndash;<h1 flex >The Go To Website for Getting <span>CHIC LOOK!</span></h1>&ndash;&gt;
+</md-content>-->

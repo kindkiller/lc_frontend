@@ -1,5 +1,37 @@
 <div flex layout="row" layout-align="end center" ng-controller="userCtrl">
-    <form id="search_box" flex layout-align="end center" >
+    <div class="box">
+        <div class="container-1">
+            <span class="icon" ng-click="search(searchtext)"><i class="fa fa-search"></i></span>
+            <input type="search" id="search" placeholder="Search..." ng-model="searchtext" />
+        </div>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+        <ul class="nav navbar-nav">
+            <!-- Hidden li included to remove active class from register link when scrolled up past register section -->
+            <li class="hidden">
+                <a href="#page-top"></a>
+            </li>
+            <a href="#/userprofile">
+                <img title="Profile page" alt="我的主页" src="images/img/myprofile.png" width="38" height="38" class="navbar-function-buttons" />
+            </a>
+            <a ng-click="showPost($event)" >
+                <img title="Post" alt="发帖" src="images/img/camera.png" width="35" height="35" class="navbar-function-buttons" />
+            </a>
+            <a href="#/main">
+                <img title="Home" alt="首页" src="images/img/home.png" width="30" height="30" class="navbar-function-buttons" />
+            </a>
+            <a href="#">
+                <img title="Notification" alt="通知" src="images/img/bell.png" width="30" height="30" class="navbar-function-buttons" />
+            </a>
+            <a href="" ng-click="user_logout()">
+                <img title="Notification" alt="其他" src="images/img/grid.png" width="28" height="28" class="navbar-function-buttons" />
+            </a>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+    <!--<form id="search_box" flex layout-align="end center" >
         <div flex class="form-group" layout-align="end center">
             <div flex class="input-group">
                 <input class="form-control" id="navbarInput-01" type="search" placeholder="Search Chic..." ng-model="searchtext">
@@ -24,5 +56,5 @@
             <li><a href="#" ng-click="user_logout()">Log out</a></li>
         </ul>
     </div>
-    <md-button class="menuBtn" ng-click="user_logout()">LOGOUT</md-button>
+    <md-button class="menuBtn" ng-click="user_logout()">LOGOUT</md-button>-->
 </div>

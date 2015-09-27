@@ -1,5 +1,5 @@
-    <md-content flex md-scroll-y style="background: transparent; padding: 2% 5%;">
-        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+    <md-content layout="row" flex md-scroll-y style="background: transparent; padding: 2% 5%;"  ng-init="initProfile()">
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex="33">
             <md-toolbar style="background-color: lightgray">
                 <span flex></span>
                 <div layout="column" class="md-toolbar-tools-bottom inset">
@@ -26,7 +26,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#/emails/settings">
+                            <a href="#/userprofile">
                                 Email Preferences
                                 <i class="disclosure"></i>
                             </a>
@@ -63,4 +63,79 @@
                 </md-item>
             </md-list>
         </md-sidenav>
+        <md-content flex>
+        <div layout="column" class="relative" layout-fill role="main">
+            <div class="edit-profile-item" layout="row">
+                <label>Profile Pic</label>
+                <img ng-src="{{user.userProfileUrl}}" src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg" alt="user-img" class="user-avatar">
+                <md-button >
+                    <div ngf-drop ngf-select ng-model="files"  type="file"
+                         ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+                         ngf-accept="'image/*'">Change</div>
+                </md-button>
+            </div>
+            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+            <div class="edit-profile-item" layout="row">
+                <md-input-container>
+                    <label>User Name</label>
+                    <input ng-model="userprofile.username" >
+                </md-input-container>
+            </div>
+
+            <div class="edit-profile-item" layout="row">
+                <md-input-container>
+                    <label>Email</label>
+                    <input ng-model="userprofile.email" type="email">
+                </md-input-container>
+            </div>
+
+            <div class="edit-profile-item" layout="row">
+                <md-input-container>
+                    <label>Location</label>
+                    <input ng-model="userprofile.location">
+                </md-input-container>
+            </div>
+
+            <div class="edit-profile-item" layout="row">
+                <label>Gender</label>
+                <md-select name="gender" ng-model="userprofile.Gender" required>
+                    <md-option value="1">Male</md-option>
+                    <md-option value="2">Female</md-option>
+                </md-select>
+            </div>
+
+            <div class="edit-profile-item" layout="row">
+                <md-input-container>
+                    <label>Birthday</label>
+                    <md-datepicker ng-model="userprofile.brithday" md-placeholder="Enter date"></md-datepicker>
+                </md-input-container>
+            </div>
+
+            <div class="edit-profile-item" layout="row">
+                <md-input-container>
+                    <label>Occupation</label>
+                    <input ng-model="userprofile.Occupation">
+                </md-input-container>
+            </div>
+
+            <div class="edit-profile-item" layout="row">
+                <md-input-container>
+                    <label>Height</label>
+                    <input ng-model="userprofile.Height">
+                </md-input-container>
+            </div>
+
+            <div class="edit-profile-item" layout="row">
+                <md-input-container>
+                    <label>Weight</label>
+                    <input ng-model="userprofile.Weight">
+                </md-input-container>
+            </div>
+
+        </div>
+        <div class="md-actions">
+            <md-button class="md-primary" ng-click="update_profile(files,userprofile)" >UPDATE</md-button>
+        </div>
+        </md-content>
     </md-content>

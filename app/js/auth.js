@@ -3,7 +3,7 @@
  */
 'use strict';
 
-lc.factory('Auth',function ($http, $rootScope, $window, $cookieStore) {
+lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) {
     var user;
     var authService = {};
 
@@ -15,7 +15,7 @@ lc.factory('Auth',function ($http, $rootScope, $window, $cookieStore) {
     //check if the user is logged in
     authService.isLoggedIn = function(){
         //return($window.sessionStorage["userInfo"])? true : false;
-        return($cookieStore.get('lcuser'))? true : false;
+        return($cookieStore.get('lc_user'))? true : false;
     };
 
     //new user signup request
@@ -52,17 +52,24 @@ lc.factory('Auth',function ($http, $rootScope, $window, $cookieStore) {
     authService.user_logout = function(){
         //Session.destroy();
         $window.sessionStorage.removeItem("userInfo");
+        $cookieStore.remove("lc_user");
         $cookieStore.remove("lcuser");
+        $cookieStore.remove("lc_token");
         $location.path('/');
     };
 
     authService.setUser = function(aUser){
         user = aUser;
-        $rootScope.currentuserid = aUser.userid;
-        $window.sessionStorage["userID"] = aUser.userid;
+
+        $rootScope.lcUser = {
+            lc_userid: user.userid,
+            lc_token: user.accessToken
+        };
+        //$window.sessionStorage["userID"] = aUser.userid;
+        $cookieStore.put('lc_user',  $rootScope.lcUser);
     };
     authService.getUser = function(){
-        return($rootScope.currentuser)? $rootScope.currentuser : $cookieStore.get('lcuser');
+        return($rootScope.lcUser.userid)? $rootScope.lcUser : $cookieStore.get('lc_user');
     };
 
     return authService;

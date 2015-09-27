@@ -2,15 +2,22 @@
     <form id="postForm" method="post" accept-charset="utf-8"
           enctype="multipart/form-data">
 
-    <md-dialog-content>
+    <md-dialog-content layout="column">
         <div ngf-drop ngf-select ng-model="files" class="drop-box" ng-show="isEmpty(files)" type="file"
              ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
              ngf-accept="'image/*'">Select/Drop your Chic Image here</div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
         <div id="imgtag">
-            <img id="lc-photo" class="img_pview" ngf-src="files[0]" ngf-accept="'image/*'" ng-show="!isEmpty(files)" ng-click="isAddTag && addTag($event)">
+            <img
+                 id="lc_photo" ngf-src="files[0]" class="img_pview" ngf-accept="'image/*'" ng-show="!isEmpty(files)" ng-click="isAddTag && addTag($event)">
         </div>
-        <div id="taglist">
+
+        <!--<div class="preview-container">
+            <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}">
+        </div>-->
+
+        <div id="taglist" ng-show="false">
             <span class="tagtitle">List of Tags</span>
             <ol>
             </ol>
@@ -23,6 +30,7 @@
     </md-dialog-content>
     <div class="md-actions">
         <!-- type=button is needed so form uses submit button -->
+        <md-button class="md-primary" ng-click="lc_cropper()">Chic Img</md-button>
         <md-button class="md-primary" ng-click="st_addTag($event)">Chic Tag</md-button>
         <md-button class="md-primary" ng-click="lc_post(files)" >Chic it</md-button>
     </div>
