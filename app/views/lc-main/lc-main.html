@@ -1,82 +1,93 @@
 
     <md-content flex md-scroll-y style="background: transparent; padding: 2% 5%;" ng-init="initFirst()">
-        <!--<div class="colmask threecol">
+        <div class="colmask threecol">
             <div class="colmid">
                 <div class="colleft">
                     <div class="col1">
-                        &lt;!&ndash; Column 1 start &ndash;&gt;
+                        <!-- Column 1 start -->
 
-                        &lt;!&ndash; Feeds &ndash;&gt;
-                        <div class="main-feed-wrap" ng-repeat="feed in feeds">
-                            <a href="">
-                                <img title="" alt="" ng-src="{{feed.avatorurl}}" class="main-feed-profile-pic"/>
-                            </a> <br>
-                            <h6 class="main-feed-profile-desc"> {{feed.username}} <br> New York, NY </h6>
-                            <div style="display: none;">{{feed.picid}}</div>
-                            <div style="display: inline-block;height: 100%;width: 100%;position: relative;vertical-align: middle;">
-                                <img title="" alt="" ng-src="{{feed.url}}" class="main-feed-post" />
-                                <div ng-repeat="t in feed.tags" class="tagview" style="top:{{t.top}};left:{{t.left}}"><a ng-href="#/results?keyword={{t.text}}">{{t.text}}</a></div>
-                            </div>
-                            <div class="likes">
-                                <a class="btn"> <span class="glyphicon glyphicon-heart">
-                                </span><span class="badge">{{feed.likeCount}}</span></a>
-                                <a class="btn"> <span class="glyphicon glyphicon-plus">
-                                </span></a>
-                                <a class="btn right"> <span class="glyphicon glyphicon-alert">
-                                </span></a>
-                            </div>
-                            <div class="comments">
-                                <ul class="commentList">
-                                    <li ng-repeat="c in feed.comments">
-                                        &lt;!&ndash;<div class="commenterImage">
-                                        <img src="{{feed.avatorurl}}" />
-                                    </div>&ndash;&gt;
-                                        <div>{{c.username}}</div>
-                                        <div class="commentText">
-                                            <p class="">
-                                                {{c.comment}}</p>
-                                            <span class="date sub-text">{{c.time | date:"MM/dd/yyyy"}}</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                                &lt;!&ndash;<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
-                        </span>More</a>&ndash;&gt;
-                                <form class="form-inline" role="form">
-                                    <div class="form-group">
-                                        <input class="form-control txtComment" type="text" placeholder="Write a comments" ng-model="commtext" />
+                        <!-- Feed 1 -->
+                        <div class="main-feed-wrap" ng-repeat="feed in feeds"  class="column">
+                            <div class="row">
+                                <div class="column col-md-2 col-lg-2 col-sm-2" style="min-width: 50px;">
+                                    <a href="">
+                                        <img title="" alt="" ng-src="{{feed.avatorurl}}" class="main-feed-profile-pic"/>
+                                    </a>
+                                    <div class="column sub-text">
+                                        {{feed.username}}
+                                        <div class="date sub-text">
+                                            {{feed.time}}</div>
                                     </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-default" ng-click="postcomment(commtext, feed.picid)">
-                                            Comment</button>
-                                    </div>
-                                </form>
-                            </div>
+                                    <!--<h6 class="main-feed-profile-desc"> {{feed.username}} <br> {{feed.time}} </h6>-->
+                                </div>
+                                <div class="main-feed-mask-container col-md-10 col-lg-10 col-sm-10">
+                                    <div style="display: none;">{{feed.picid}}</div>
+                                    <img title="" alt="" ng-src="{{feed.url}}" class="main-feed-post" />
+                                    <div ng-repeat="t in feed.tags" class="tagview" style="top:{{t.top}};left:{{t.left}}"><a ng-href="#/results?keyword={{t.text}}">{{t.text}}</a></div>
+                                    <div class="main-feed-mask-textbox">
+                                        <span ng-click="cmmntshow=!cmmntshow">
+                                            <img title="" alt="" src="img/icon_comment.png" class="main-feed-btn" />
+                                        </span>
+                                        <img title="" alt="" src="img/icon_like.png" class="main-feed-btn" ng-click="changeLikeStatus()"/> {{feed.likeCount}}
+                                        <img title="" alt="" src="img/icon_share.png" class="main-feed-btn"/>
+                                        <img title="" alt="" src="img/icon_flag.png" class="main-feed-btn-flag"/>
 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-lg-2 col-sm-2"></div>
+                                <div ng-show="cmmntshow" class="comment-box-container col-md-10 col-lg-10 col-sm-10" >
+                                    <ul class="comments" >
+                                        <li class="cmmnt" ng-repeat="c in feed.comments" >
+                                            <div layout="row">
+                                                <div class="cmmnt-avatar col-md-2 col-lg-2 col-sm-2"><a href="javascript:void(0);"><img src={{c.avatorurl}} alt=""></a></div>
+                                                <div class="cmmnt-content" >
+                                                    <header><a href="javascript:void(0);" class="userlink">{{c.username}}</a> - <span class="pubdate">{{c.time | date:"MM/dd/yyyy"}}</span></header>
+                                                    <p>{{c.comment}}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <from class="cmmnt" >
+                                            <div layout="row">
+                                                <div class="cmmnt-avatar"><a href="javascript:void(0);"><img src="" alt=""></a></div>
+                                                <div class="cmmnt-content" >
+                                                    <header><a href="javascript:void(0);" class="userlink"></a><span class="pubdate"></span></header>
+                                                    <div class="mycomment">
+                                                        <textarea class="mycomment" rows="3" placeholder="Write a comment ... ...." ng-model="commtext" ng-keypress="postcomment($event,commtext, feed.picid)"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </from>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
 
-                        &lt;!&ndash; Feed n ++ &ndash;&gt;
 
-                        &lt;!&ndash; Column 1 end &ndash;&gt;
+                        <!-- Column 1 end -->
 
                     </div>
 
                     <div class="col2">
-                        &lt;!&ndash; Column 2 start &ndash;&gt;
+                        <!-- Column 2 start -->
 
-                        &lt;!&ndash; To edit &ndash;&gt;
+                        <!-- To edit -->
 
-                        &lt;!&ndash; Column 2 end &ndash;&gt;
+                        <!-- Column 2 end -->
                     </div>
 
                     <div class="col3">
-                        &lt;!&ndash; Column 3 start &ndash;&gt;
+                        <!-- Column 3 start -->
 
-                        &lt;!&ndash; Column 3 end &ndash;&gt;
+                        <!-- Column 3 end -->
                     </div>
                 </div>
             </div>
-        </div>-->
-        <md-card flex flex-gt-sm="90" flex-gt-md="80" ng-repeat="feed in feeds"  >
+        </div>
+
+       <!-- <md-card flex flex-gt-sm="90" flex-gt-md="80" ng-repeat="feed in feeds"  >
             <md-card-content layout="row" style="opacity: 0.9">
                 <div flex="20" class="feed-owner" layout="column">
                     <div style="display: none;">{{feed.picid}}</div>
@@ -123,8 +134,8 @@
                                 </div>
                             </li>
                         </ul>
-                        <!--<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
-                        </span>More</a>-->
+                        &lt;!&ndash;<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
+                        </span>More</a>&ndash;&gt;
                         <form class="form-inline" role="form">
                             <div class="form-group">
                                 <input class="form-control txtComment" type="text" placeholder="Write a comments" ng-model="commtext" />
@@ -137,5 +148,5 @@
                     </div>
                 </div>
             </md-card-content>
-        </md-card>
+        </md-card>-->
     </md-content>

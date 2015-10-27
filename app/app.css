@@ -78,3 +78,12 @@
 #navbarInput-01{
     height: 40px;
 }
+
+.img-preview {
+    background-color: #f7f7f7;
+    overflow: hidden;
+    width:480px;
+    height: 640px;
+    text-align: center;
+}
+

@@ -1,0 +1,251 @@
+/*sass variables used*/
+/*$full:100%;
+$auto:0 auto;
+$align:center;
+
+@mixin disable{
+  outline:none;
+  border:none;
+}
+
+@mixin easeme{
+  -webkit-transition:1s ease;
+  -moz-transition:1s ease;
+  -o-transition:1s ease;
+  -ms-transition:1s ease;
+  transition:1s ease;
+}*/
+
+.overlay {
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  height: 1000px;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.register-form {
+  /*margin: 70px auto;*/
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 3%;
+  padding-right: 3%;
+  background: #000;
+  border-radius: 5px;
+  width: 100%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  opacity: 0.7;
+
+  background: #000;
+  /* simple linear gradient */
+  /*background: linear-gradient(#000, #777);*/
+  /*background: -webkit-linear-gradient(left top, black , gray); /* For Safari 5.1 to 6.0 */
+  /*background: -o-linear-gradient(bottom right, black, gray); /* For Opera 11.1 to 12.0 */
+  /*background: -moz-linear-gradient(bottom right, black, gray); /* For Firefox 3.6 to 15 */
+  /*background: linear-gradient(to bottom right, black , gray); /* Standard syntax */
+}
+
+.register-form h2 {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  color: #FFF;
+  /*font-family: Tahoma, Arial, sans-serif;*/
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.register-form p {
+  font: 14px Open Sans;
+  /*color: #333;*/
+  font-family: Tahoma, Arial, sans-serif;
+
+  color:#6E6E6E;
+  /*text-shadow: #000 0px 1px 7px;*/
+  margin-bottom:30px;
+
+}
+
+.register-form .reg-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  /*color: #333;*/
+  color: white;
+}
+
+.register-form .reg-close:hover {
+  color: orange;
+}
+
+.register-form .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.register-social-media { /*The wrapper*/
+  text-align: center;
+}
+
+.register-buttons { /*Social media buttons*/
+  height: 50px;
+  width: 50px;
+  opacity: 0.70;
+  margin-left: 10px;
+  margin-right: 10px; 
+}
+
+.register-buttons:hover {
+  opacity: 1;
+}
+
+hr.divider-line {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.register-form .form-basic a{
+
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  color: #FFF;
+  opacity: 0.9;
+}
+
+.register-form input{
+  font-size: 16px;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.register-form .form-basic input[type="text"], input[type="email"]{
+  width:98%;
+  padding:8px 8px 8px 8px;
+  border-radius:5px;
+  /*box-shadow:inset 4px 6px 10px -4px rgba(0,0,0,0.3), 0 1px 1px -1px rgba(255,255,255,0.3);*/
+  background:rgba(0,0,0,0.2);
+  @include disable;
+  border:1px solid rgba(51, 45, 45, 1);
+  margin-bottom:10px;
+  color:#6E6E6E;
+  /*text-shadow:#000 0px 1px 5px;*/
+}
+
+.register-form .form-basic input[type="password"]{
+  width:98%;
+  padding:8px 8px 8px 8px;
+  border-radius:5px;
+  /*box-shadow:inset 4px 6px 10px -4px rgba(0,0,0,0.3), 0 1px 1px -1px rgba(255,255,255,0.3);*/
+  background:rgba(0,0,0,0.2);
+  @include disable;
+  border:1px solid rgba(51, 45, 45, 1);
+  margin-bottom:10px;
+  color:#6E6E6E;
+  /*text-shadow:#000 0px 1px 5px;*/
+}
+
+.register-form input[type="submit"]{
+  width:98%;
+  padding:12px;
+  border-radius:5px;
+  @include disable;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#28D2DE), to(#1A878F));
+  background-image: -webkit-linear-gradient(#28D2DE 0%, #1A878F 100%);
+  background-image: -moz-linear-gradient(#28D2DE 0%, #1A878F 100%);
+  background-image: -o-linear-gradient(#28D2DE 0%, #1A878F 100%);
+  background-image: linear-gradient(#28D2DE 0%, #1A878F 100%);
+  font:16px Oswald;
+  color:#FFF;
+  text-transform:uppercase;
+  text-shadow:#000 0px 1px 5px;
+  border:1px solid #000;
+  opacity:0.7;
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+  -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+  box-shadow: 0 8px 6px -6px rgba(0,0,0,0.7);
+  border-top:1px solid rgba(255,255,255,0.8)!important;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(50%, transparent), to(rgba(255,255,255,0.2)));
+}
+
+.register-form input:focus{
+  box-shadow:inset 4px 6px 10px -4px rgba(0,0,0,0.7), 0 1px 1px -1px rgba(255,255,255,0.3);
+  background:rgba(0,0,0,0.3);
+  border:1px solid rgba(51, 45, 45, 0.5);
+  border: none; 
+  @include easeme;
+}
+
+.register-form input[type="submit"]:hover{
+  opacity:1;
+  cursor:pointer;
+}
+
+.reg-last-name-help,.reg-first-name-help,.reg-id-help, .reg-password-help, .reg-password-conf-help{
+  /*font-family: #989494;*/
+  display:none;
+  padding:5px;
+  margin:0px 0px 15px 0px;
+}
+
+
+/*.reg-last-name, .reg-first-name, .reg-id, .reg-password,  .reg-password-conf, input#text::-webkit-input-placeholder {*/
+.register-form input[type=text]::-webkit-input-placeholder {
+   /*color: #65737e;*/
+   font-size: 16px;
+   opacity: 0.3;
+}
+
+.register-form input[type=password]::-webkit-input-placeholder {
+  font-size: 16px;
+  opacity: 0.3;
+}
+
+.register-form input[type=text]:-moz-placeholder { /* Firefox 18- */
+   font-size: 16px;
+   opacity: 0.5;
+}
+
+.register-form input[type=password]:-moz-placeholder { /* Firefox 18- */
+   font-size: 16px;
+   opacity: 0.5;
+}
+
+.register-form input[type=text]::-moz-placeholder {  /* Firefox 19+ */
+   font-size: 16px;
+   opacity: 0.5;
+}
+
+.register-form input[type=password]::-moz-placeholder {  /* Firefox 19+ */
+   font-size: 16px;
+   opacity: 0.5;
+}
+
+.register-form input[type=text]ut#text:-ms-input-placeholder {  
+   font-size: 16px;
+   opacity: 0.5;
+}
+
+.register-form input[type=password]:-ms-input-placeholder {  
+   font-size: 16px;
+   opacity: 0.5;
+}
+
+.optimize{
+  position:fixed;
+  right:3%;
+  top:0px;
+}

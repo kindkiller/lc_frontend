@@ -69,7 +69,7 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
         $cookieStore.put('lc_user',  $rootScope.lcUser);
     };
     authService.getUser = function(){
-        return($rootScope.lcUser.userid)? $rootScope.lcUser : $cookieStore.get('lc_user');
+        return($rootScope.lcUser.lc_userid)? $rootScope.lcUser : $cookieStore.get('lc_user');
     };
 
     return authService;

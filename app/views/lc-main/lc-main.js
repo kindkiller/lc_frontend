@@ -11,9 +11,10 @@ angular.module('lookchic.main', ['ngRoute'])
         controller: 'mainCtrl'
     });
 }])
-.controller('mainCtrl', function($scope,$window,$http,$route, $mdDialog, Auth, User) {
+.controller('mainCtrl', function($scope,$window,$http,$route, $mdDialog,$filter, Auth, User) {
 
         var currentuserid = Auth.getUser().lc_userid; //$window.sessionStorage["userID"];
+        //TODO: var currentuserAvator = Auth.getUser().lc_userAvator;
 /*        console.log ( 'start get feeds ', currentuserid);
         console.log (Auth.getUser());*/
 
@@ -28,9 +29,10 @@ angular.module('lookchic.main', ['ngRoute'])
                 });
         };
 
-        $scope.postcomment = function(txt,feedid) {
-            //$scope.feeds.comments.push(txt);
-            if(txt !='') {
+        $scope.postcomment = function(keyevent,txt,feedid) {
+
+            //$scope.feeds.comments.push(txt); txt !=''
+            if(keyevent.which === 13 && txt.length > 0) {
 
                 var comm = {
                     picid: feedid,
@@ -42,7 +44,7 @@ angular.module('lookchic.main', ['ngRoute'])
                 .success(function (data, status, headers, config) {
                     console.log('post comments ' + txt + ', feedid: ' + feedid);
                     console.log(data);
-                    //$route.reload();
+                    $filter('filter')($scope.feeds, {picid: feedid}).comments.push(txt);
                 }).error(function (data, status, headers, config) {
                     console.log('error status: ' + status);
                     //return data;
@@ -66,6 +68,14 @@ angular.module('lookchic.main', ['ngRoute'])
                     console.log('error status: ' + status);
                     //return data;
                 });
+        };
+
+        $scope.toggle_visibility = function(id) {
+            var e = document.getElementById(id);
+            if(e.style.display == 'block')
+                e.style.display = 'none';
+            else
+                e.style.display = 'block';
         };
 
 });

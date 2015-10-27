@@ -10,16 +10,39 @@ angular.module('lookchic.userprofile', ['ngRoute'])
 
         var uid = $routeParams.keyword;
         console.log(uid);
-        var currentuserid = Auth.getUser().userid;
+        var currentuserid = Auth.getUser().lc_userid;
+
+        $scope.images = [
+            {'url': 'img/feed-01.jpg'},
+            {'url': 'img/feed-02.jpg'},
+            {'url': 'img/feed-03.jpg'},
+            {'url': 'img/feed-04.jpg'},
+            {'url': 'img/feed-05.jpg'},
+            {'url': 'img/feed-06.jpg'},
+            {'url': 'img/feed-07.jpg'},
+            {'url': 'img/feed-08.jpg'},
+            {'url': 'img/feed-09.jpg'}
+        ];
+
+        $scope.options = {
+            visible: 3,
+            startSlide: 0,
+            border: 3,
+            width: 300,
+            height: 400,
+            space: 300,
+            perspective: 35
+        };
 
         $scope.userp_initFirst=function(){
             User.getUserProfile(currentuserid)
             .success(function(data, status, headers, config) {
                 // this callback will be called asynchronously
                 // when the response is available
-                console.log('user profile success: ', data);
+
                 $scope.user = data.profile;
                 $scope.posts = data.profile.favorites;
+                console.log('user profile success: ', $scope.user);
             })
             .error(function(data, status, headers, config) {
                 // called asynchronously if an error occurs

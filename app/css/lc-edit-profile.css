@@ -17,3 +17,15 @@
         margin: 0 0 0 -17px;
         background-color: #eef2f5;
     }}*/
+.avatar_pview{
+    height:150px;
+    width:150px;
+    overflow: hidden;
+    text-align: center;
+}
+.avatar{
+    height:150px;
+    width:150px;
+    overflow: hidden;
+    text-align: center;
+}

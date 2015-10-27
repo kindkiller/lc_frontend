@@ -1,12 +1,12 @@
-    <md-content layout="row" flex md-scroll-y style="background: transparent; padding: 2% 5%;"  ng-init="initProfile()">
-        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex="33">
+    <div layout="row" flex md-scroll-y style="background: transparent;top:50px;"  ng-init="initProfile()">
+        <!--<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" flex="33">
             <md-toolbar style="background-color: lightgray">
                 <span flex></span>
                 <div layout="column" class="md-toolbar-tools-bottom inset">
                     <user-avatar></user-avatar>
                     <span></span>
                     <div>Your Account</div>
-                    <!--<div>email@domainname.com</div>-->
+                    &lt;!&ndash;<div>email@domainname.com</div>&ndash;&gt;
                 </div>
             </md-toolbar>
             <nav class="sidebar-nav">
@@ -37,17 +37,7 @@
                 </div>
             </nav>
             <md-list>
-               <!-- <md-item ng-repeat="item in menu">
-                    <a>
-                        <md-item-content md-ink-ripple layout="row" layout-align="start center">
-                            <div class="inset">
-                                <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                            </div>
-                            <div class="inset">{{item.title}}
-                            </div>
-                        </md-item-content>
-                    </a>
-                </md-item>-->
+
                 <md-divider></md-divider>
                 <md-subheader>Settings</md-subheader>
                 <md-item ng-repeat="item in menu">
@@ -67,14 +57,27 @@
         <div layout="column" class="relative" layout-fill role="main">
             <div class="edit-profile-item" layout="row">
                 <label>Profile Pic</label>
-                <img ng-src="{{user.userProfileUrl}}" src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg" alt="user-img" class="user-avatar">
-                <md-button >
-                    <div ngf-drop ngf-select ng-model="files"  type="file"
-                         ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
-                         ngf-accept="'image/*'">Change</div>
-                </md-button>
+                <div class="img-container" ng-show="isEmpty(afiles)&&!isCropped">
+                    <img ng-src="{{user.userProfileUrl}}" src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg" alt="user-img" class="user-avatar" >
+                </div>
+
+                <div class="img-container" ng-show="!isCropped">
+                <img ng-cropper ng-cropper-proxy="cropperProxy" ng-cropper-options="options" ng-cropper-show="showEvent" ng-cropper-hide="hideEvent"
+                     id="lc_avatar" ngf-src="afiles[0]" class="avatar_pview" ngf-accept="'image/*'"  ng-show="!isEmpty(afiles)">
+                </div>
+
+                <div class="img-container ">
+                    <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}" class="user-avatar avatar">
+                </div>
+
+                &lt;!&ndash;<md-button >&ndash;&gt;
+                <div ngf-drop ngf-select ng-model="afiles"  type="file" class="button"
+                     ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+                     ngf-accept="'image/*'">Change</div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                &lt;!&ndash;</md-button>&ndash;&gt;
+                <md-button ng-show="!isEmpty(afiles)" ng-click="avatar_cropper()">Confirm</md-button>
             </div>
-            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
             <div class="edit-profile-item" layout="row">
                 <md-input-container>
@@ -135,7 +138,272 @@
 
         </div>
         <div class="md-actions">
-            <md-button class="md-primary" ng-click="update_profile(files,userprofile)" >UPDATE</md-button>
+            <md-button class="md-primary" ng-click="update_profile(afiles)" >UPDATE</md-button>
         </div>
-        </md-content>
-    </md-content>
+        </md-content>-->
+
+        <div class="navbar-default sidebar" role="navigation" style="margin-top:1px ">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="#/editprofile"><i class="fa fa-dashboard fa-fw"></i> 用户信息</a>
+                    </li>
+                    <li>
+                        <a href="#/editprofile"><i class="fa fa-dashboard fa-fw"></i> 隐私设置</a>
+                    </li>
+                    <li>
+                        <a href="#/editprofile"><i class="fa fa-dashboard fa-fw"></i> 获得帮助</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+
+        <div id="page-wrapper">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-clock-o fa-fw"></i> In progress...
+                </div>
+                <!-- /.panel-heading -->
+                <div class="container">
+                    <h1>Edit Profile</h1>
+                    <hr>
+                    <div class="row">
+                        <!-- left column -->
+                        <div class="col-md-3">
+                            <div class="text-center">
+                                <div class="img-container" ng-show="isEmpty(afiles)&&!isCropped">
+                                    <img ng-src="{{user.userProfileUrl}}" src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg" alt="user-img" class="user-avatar" >
+                                </div>
+
+                                <div class="img-container" ng-show="!isCropped">
+                                    <img ng-cropper ng-cropper-proxy="cropperProxy" ng-cropper-options="options" ng-cropper-show="showEvent" ng-cropper-hide="hideEvent"
+                                         id="lc_avatar" ngf-src="afiles[0]" class="avatar_pview" ngf-accept="'image/*'"  ng-show="!isEmpty(afiles)">
+                                </div>
+
+                                <div class="img-container ">
+                                    <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}" class="user-avatar avatar">
+                                </div>
+                                <!--<img src="../../img/myprofile.png" class="dashboard-img-upload" alt="avatar">-->
+                                <h6>Upload a different photo...</h6>
+
+                                <div ngf-drop ngf-select ng-model="afiles"  type="file" class="form-control"
+                                     ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+                                     ngf-accept="'image/*'">Change</div>
+                                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                                <!--</md-button>-->
+                                <div ng-show="isCropped" ng-click="avatar_cropper()" class="form-control">Confirm</div>
+
+                                <!--<input type="file" class="form-control">-->
+                            </div>
+                        </div>
+
+                        <!-- edit form column -->
+                        <div class="col-md-9 personal-info">
+                            <div class="alert alert-info alert-dismissable">
+                                <a class="panel-close close" data-dismiss="alert">×</a>
+                                <i class="fa fa-coffee"></i>
+                                This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                            </div>
+                            <h3>Personal info</h3>
+
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Username:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" ng-model="userprofile.username">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Location:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" ng-model="userprofile.location">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Occupation:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" ng-model="userprofile.Occupation">
+                                    </div>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label class="col-lg-3 control-label">Phone number:</label>
+                                    &lt;!&ndash; <div class="col-sm-1"><input type="text" class="form-control" placeholder="000"><div class="help">area</div></div> &ndash;&gt;
+                                    <div class="col-lg-2"><input id="phone" class="form-control"  type="tel"></div>
+                                    <div class="col-lg-1"><input type="text" class="form-control" placeholder="000">&lt;!&ndash; <div class="help">local</div> &ndash;&gt;</div>
+                                    <div class="col-lg-3"><input type="text" class="form-control" placeholder="1111">&lt;!&ndash; <div class="help">number</div> &ndash;&gt;</div>
+                                    <div class="col-lg-2"><input type="text" class="form-control" placeholder="123">&lt;!&ndash; <div class="help">ext</div> &ndash;&gt;</div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Email:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" ng-model="userprofile.email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Gender:</label>
+                                    <div class="col-lg-8">
+                                        <div class="ui-select">
+                                            <select id="user_time_zone" class="form-control" ng-model="userprofile.Gender">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Brithday:</label>
+                                    <div class="col-lg-8">
+                                        <p class="input-group">
+                                        <input class="form-control" type="text" ng-model="userprofile.brithday" uib-datepicker-popup="yyyy-MM-dd" is-open="status.opened"  max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" >
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                        </span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Height:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" ng-model="userprofile.Height">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Weight:</label>
+                                    <div class="col-lg-8">
+                                        <input class="form-control" type="text" ng-model="userprofile.Weight">
+                                    </div>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label class="col-md-3 control-label">Username:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" ng-model="userprofile.username">
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Password:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="password" ng-model="userprofile.password1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Confirm password:</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="password" ng-model="userprofile.password2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label"></label>
+                                    <div class="col-md-8">
+                                        <input type="button" class="btn btn-primary" value="Save Changes" ng-click="update_profile(afiles)">
+                                        <span></span>
+                                        <input type="reset" class="btn btn-default" value="Cancel">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+                <!--<div class="panel-body">
+                    <div class="relative" layout-fill role="main">
+                        <div class="edit-profile-item" layout="row">
+                            <label>Profile Pic</label>
+                            <div class="img-container" ng-show="isEmpty(afiles)&&!isCropped">
+                                <img ng-src="{{user.userProfileUrl}}" src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg" alt="user-img" class="user-avatar" >
+                            </div>
+
+                            <div class="img-container" ng-show="!isCropped">
+                                <img ng-cropper ng-cropper-proxy="cropperProxy" ng-cropper-options="options" ng-cropper-show="showEvent" ng-cropper-hide="hideEvent"
+                                     id="lc_avatar" ngf-src="afiles[0]" class="avatar_pview" ngf-accept="'image/*'"  ng-show="!isEmpty(afiles)">
+                            </div>
+
+                            <div class="img-container ">
+                                <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}" class="user-avatar avatar">
+                            </div>
+
+                            &lt;!&ndash;<md-button >&ndash;&gt;
+                            <div ngf-drop ngf-select ng-model="afiles"  type="file" class="button"
+                                 ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
+                                 ngf-accept="'image/*'">Change</div>
+                            <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                            &lt;!&ndash;</md-button>&ndash;&gt;
+                            <md-button ng-show="isCropped" ng-click="avatar_cropper()">Confirm</md-button>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <md-input-container>
+                                <label>User Name</label>
+                                <input ng-model="userprofile.username" >
+                            </md-input-container>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <md-input-container>
+                                <label>Email</label>
+                                <input ng-model="userprofile.email" type="email">
+                            </md-input-container>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <md-input-container>
+                                <label>Location</label>
+                                <input ng-model="userprofile.location">
+                            </md-input-container>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <label>Gender</label>
+                            <md-select name="gender" ng-model="userprofile.Gender" required>
+                                <md-option value="1">Male</md-option>
+                                <md-option value="2">Female</md-option>
+                            </md-select>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <md-input-container>
+                                <label>Birthday</label>
+                                <md-datepicker ng-model="userprofile.brithday" md-placeholder="Enter date"></md-datepicker>
+                            </md-input-container>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <md-input-container>
+                                <label>Occupation</label>
+                                <input ng-model="userprofile.Occupation">
+                            </md-input-container>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <md-input-container>
+                                <label>Height</label>
+                                <input ng-model="userprofile.Height">
+                            </md-input-container>
+                        </div>
+
+                        <div class="edit-profile-item" layout="row">
+                            <md-input-container>
+                                <label>Weight</label>
+                                <input ng-model="userprofile.Weight">
+                            </md-input-container>
+                        </div>
+
+                    </div>
+                    <div class="md-actions">
+                        <md-button class="md-primary" ng-click="update_profile(afiles)" >UPDATE</md-button>
+                    </div>
+                </div>-->
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+        </div>
+    </div>

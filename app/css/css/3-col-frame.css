@@ -26,9 +26,9 @@ p {
 	margin:.4em 0 .8em 0;
 	padding:0;
 }
-img {
+/*img {
 	margin:10px 0 5px;
-}
+}*/
 #ads img {
 	display:block;
 	padding-top:10px;
@@ -96,13 +96,13 @@ img {
 }
 
 /* Footer styles */
-/*#footer {
-	clear:both;
-	float:left;
-	width:100%;
-	border-top:1px solid #000;
-}
-#footer p {
-	padding:10px;
-	margin:0;
-}*/
+	/*#footer {
+		clear:both;
+		float:left;
+		width:100%;
+		border-top:1px solid #000;
+	}
+	#footer p {
+		padding:10px;
+		margin:0;
+	}*/

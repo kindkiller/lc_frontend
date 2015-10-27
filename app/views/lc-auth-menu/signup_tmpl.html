@@ -1,25 +1,75 @@
-<md-dialog aria-label="Sign Up" style="width: 350px">
-    <md-dialog-content>
-        <md-input-container>
-            <label>Email/Cell Phone</label>
-            <input ng-model="user.email" type="email">
-        </md-input-container>
-        <md-input-container>
-            <label>Username</label>
-            <input ng-model="user.username" type="text">
-        </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input ng-model="user.password1" type="password">
-        </md-input-container>
-        <md-input-container>
-            <label>Confirm Password</label>
-            <input ng-model="user.password2" type="password">
-        </md-input-container>
-        <span ng-show="err" class="help-block">{{err}}</span>
+<md-dialog aria-label="Sign Up" style="max-height:none" >
+    <!-- Registration form -->
+
+    <md-dialog-content style="padding: 0;width: auto; height: auto;">
+        <!--<div id="reg-form" class="overlay">-->
+            <div class="register-form" style="width:350px">
+                <h2>新用户注册</h2>
+                <!--<a class="reg-close" href="index.html">x</a>-->
+                <div class="content">
+                    <!-- <h1>Register For An Account</h1> -->
+                    <hr class = "divider-line"></hr>
+                    <p>如果您有微信或微博账户，您可以用以下方式注册</p>
+                    <div class="register-social-media">
+                        <a href=" ">
+                            <img title="Register with Weibo account" alt="我的主页" src="img/reg-weibo.png" class="register-buttons" />
+                        </a>
+                        <a href=" ">
+                            <img title="Register with WeChat account" alt="我的主页" src="img/reg-wechat.png" class="register-buttons" />
+                        </a>
+                    </div>
+                    <br>
+                    <hr class = "divider-line"></hr>
+                    <p>您也可以用常用邮箱或手机号码新建一个账号</p>
+                    <form class="form-basic" method="post" action="dashboard.html">
+                        <input type="text" id="reg-last-name" class="reg-last-name" placeholder="姓" autofocus>
+                        <div>
+                            <p class="reg-last-name-help" ng-model="user.username">在此填写您的姓氏</p>
+                        </div>
+
+                        <input type="text" id="reg-firt-name" class="reg-first-name" placeholder="名">
+                        <div>
+                            <p class="reg-first-name-help">在此填写您的名字</p>
+                        </div>
+
+                        <!-- <input type="radio" name="Method" id="Reg-Cell" value="Cell" />
+                        <a class="reg-radio">�ֻ�ע��</a>
+                        <input type="radio" name="Method" id="Reg-Email" value="Email" />
+                        <a class="reg-radio">����ע��</a> -->
+
+                        <!-- if(document.getElementById('Cell').checked) {
+
+                        }else if(document.getElementById('Email').checked) {
+
+                    } -->
+
+                        <!-- Back-end should identify type of ID, email or cellphone number. -->
+                        <input type="text" id="reg-id" class="reg-id" ng-model="user.email" placeholder="手机/邮箱">
+                        <div>
+                            <p class="reg-id-help">请输入您有效的手机号或者常用邮箱. </p>
+                        </div>
+
+                        <input type="password" id="reg-password" class="reg-password" placeholder="密码" ng-model="user.password1">
+                        <div>
+                            <p class="reg-password-help">请设置账号密码. 密码要求由数字，字母，和特殊字符组成，长度8位以上，16位以内.</p>
+                        </div>
+
+                        <input type="password" id="reg-password-conf" class="reg-password-conf" placeholder="密码确认" ng-model="user.password2">
+                        <div>
+                            <p class="reg-password-conf-help">请您再次输入密码已确认.</p>
+                        </div>
+
+                        <br>
+
+                        <input type="submit" class="submit" value="我要加入" ng-click="user_signup(user)">
+
+                    </form>
+                </div>
+            </div>
+        <!--</div>-->
     </md-dialog-content>
-    <div class="md-actions">
-        <!-- type=button is needed so form uses submit button -->
-        <md-button class="md-primary" type="submit" ng-click="user_signup(user)">Sign Up</md-button>
-    </div>
+    <!--<div class="md-actions">
+        &lt;!&ndash; type=button is needed so form uses submit button &ndash;&gt;
+        <md-button class="md-primary" type="submit" ng-click="user_signup(user)">我要加入</md-button>
+    </div>-->
 </md-dialog>

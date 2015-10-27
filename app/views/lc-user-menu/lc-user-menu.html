@@ -8,26 +8,107 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav  ">
             <!-- Hidden li included to remove active class from register link when scrolled up past register section -->
             <li class="hidden">
                 <a href="#page-top"></a>
             </li>
-            <a href="#/userprofile">
-                <img title="Profile page" alt="我的主页" src="images/img/myprofile.png" width="38" height="38" class="navbar-function-buttons" />
-            </a>
-            <a ng-click="showPost($event)" >
-                <img title="Post" alt="发帖" src="images/img/camera.png" width="35" height="35" class="navbar-function-buttons" />
-            </a>
-            <a href="#/main">
-                <img title="Home" alt="首页" src="images/img/home.png" width="30" height="30" class="navbar-function-buttons" />
-            </a>
-            <a href="#">
-                <img title="Notification" alt="通知" src="images/img/bell.png" width="30" height="30" class="navbar-function-buttons" />
-            </a>
-            <a href="" ng-click="user_logout()">
-                <img title="Notification" alt="其他" src="images/img/grid.png" width="28" height="28" class="navbar-function-buttons" />
-            </a>
+            <li class="dropdown">
+                <a href="#/userprofile">
+                    <img title="Profile page" alt="鎴戠殑涓婚〉" src="images/img/myprofile.png" width="34" height="34" class="navbar-function-buttons"/>
+                </a>
+            </li>
+            <li>
+                <a ng-click="showPost($event)" >
+                    <img title="Post" alt="鍙戝笘" src="images/img/camera.png" width="35" height="35" class="navbar-function-buttons" />
+                </a>
+                <!-- <a href="#croppic-wrapper"> -->
+                <!--<a href="javascript:void(0)" onclick = "document.getElementById('croppic-wrapper').style.display='block';document.getElementById('fade').style.display='block'">-->
+                    <!--<img title="Post" alt="鍙戝笘" src="img/camera.png" width="35" height="35" class="navbar-function-buttons" />-->
+                <!--</a>-->
+            </li>
+            <li class="dropdown">
+                <a href="#/main">
+                    <img title="Home" alt="棣栭〉" src="images/img/home.png" width="32" height="32" class="navbar-function-buttons" />
+                </a>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" >
+                    <!-- <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i> -->
+                    <img title="Notification" alt="閫氱煡" src="img/bell.png" width="32" height="32" class="navbar-function-buttons" />
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a >
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a >
+                            <div>
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                <span class="pull-right text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a >
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a >
+                            <div>
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a >
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    <!-- <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i> -->
+                    <img title="Notification" alt="鍏朵粬" src="img/grid.png" width="29" height="29" class="navbar-function-buttons" />
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#/userprofile"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#/editprofile"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#" ng-click="user_logout()"><i class="fa fa-sign-out fa-fw"></i> Log out</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->

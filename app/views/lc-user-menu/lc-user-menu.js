@@ -48,9 +48,6 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
         $scope.files={};
         $scope.tags=[];
         $scope.isAddTag=false;
-        $scope.$watch('files', function () {
-            //$scope.upload($scope.files);
-        });
 
         $scope.isEmpty = function (obj) {
             for (var i in obj) if (obj.hasOwnProperty(i)) return false;
@@ -62,14 +59,12 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
         };
         //Upload photo to server
         $scope.lc_post = function (files){
-            /*console.log('post img');
-             console.log(files);
-             console.log(files[0]);*/
-            $scope.upload(files);
+
+            $scope.upload(files)
+                .then($route.reload());
             //$location.path('/main');
             $scope.hide();
-            $route.reload();
-            //$scope.initFirst();
+
         };
 
         $scope.st_addTag = function (event){
@@ -96,17 +91,23 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             var txt = $('#tagname').val();
 
             counter++;
-            $('#taglist ol').append('<li rel="'+counter+'"><a>'+txt+'</a> (<a class="remove">Remove</a>)</li>');
-            $('#imgtag').append( $compile('<div class="tagview" id="view_'+counter+'">'+txt+'</div>')($scope));
+            $('#taglist ol').append('<li rel="'+counter+'"><a>'+txt+'</a> (<a class="remove" ng-click="">Remove</a>)</li>');
+            $('#imgtag').append( $compile('<div class="tagview" id="view_'+counter+'">'+txt+'</a> (<a class="remove" ng-click="remove_tag('+counter+','+txt+')">Remove</a>)</div>')($scope));
             $('#view_' + counter).css({top:mouseY+"%",left:mouseX+"%"});
             //var tag={"left":mouseX+"%","top":mouseY+"%","text":txt};
             $scope.tags.push({"left":mouseX+"%","top":mouseY+"%","text":txt, "tagid":0});
             $('#tagit').fadeOut();
-            console.log($scope.tags);
         };
 
         $scope.cancel_tag = function(){
             $('#tagit').fadeOut();
+        };
+
+        $scope.remove_tag = function(counter,txt){
+            console.log($scope.tags);
+            $('#view_'+counter).remove();
+            $scope.tags.splice( $scope.tags.indexOf(txt), 1);
+            console.log($scope.tags);
         };
 
         $scope.upload = function (files) {
@@ -114,14 +115,14 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             if (files && files.length) {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
-
+                    file.name=$scope.filename;
                     Upload.upload({
                         method: 'POST',
                         url: 'http://localhost:6543/post',
                         fields: {
-                            'userid': Auth.getUser().userid,//$cookieStore.get('lcuser'), //$window.sessionStorage["userInfo"],
+                            'userid': Auth.getUser().lc_userid,
                             'desc': $scope.post.desc,
-                            'tags':$scope.tags,
+                            'tags':$scope.tags
                         },
                         file: file,
 
@@ -145,66 +146,60 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
         var file, data;
         $scope.options = {
             //maximize: true,
-            aspectRatio: 9 / 16,
+            aspectRatio: 3/4,
             autoCropArea: 0.75,
 
-            /*strict: false,
-            guides: false,
+            strict: false,
+            /*guides: false,
             highlight: false,
 
             cropBoxMovable: false,*/
             dragCrop: false,
             cropBoxResizable: false,
+            preview: '.img-preview',
             crop: function(dataNew) {
                 data = dataNew;
             }
         };
 
+        $scope.isCropped=false;
         $scope.$watch("files",function(newValue, oldValue) {
-
+            $scope.filename=$scope.files[0].name;
             var blob = newValue;
-            if (!$scope.isEmpty(blob)){
+            if (!$scope.isEmpty(blob)&&!$scope.isCropped){
                 Cropper.encode((file = blob[0])).then(function(dataUrl) {
                     $scope.dataUrl = dataUrl;
                     $timeout(showCropper);  // wait for $digest to set image's src
                 });
             }
         });
-        /*$scope.preview = function() {
+        $scope.preview = function() {
             if (!file || !data) return;
 
             Cropper.crop(file, data).then(Cropper.encode).then(function(dataUrl) {
                 ($scope.preview || ($scope.preview = {})).dataUrl = dataUrl;
             });
-        };*/
+        };
         $scope.lc_cropper = function(){
-            //if (!file || !data) return;
-            //return Cropper.crop(file);
-            /*Cropper.crop(file, data).then(Cropper.encode).then(function(dataUrl) {
-                ($scope.lc_cropper || ($scope.lc_cropper = {})).dataUrl = dataUrl;
-            });*/
+            if (!file || !data) return;
+
             $('#lc_photo').cropper('getCroppedCanvas');
 
             $('#lc_photo').cropper('getCroppedCanvas', {
-                width: 90,
-                height: 160
+                width: 480,
+                height: 640
             });
 
-            $('#lc_photo').cropper('getCroppedCanvas').toBlob(function (blob) {
-                var formData = new FormData();
-                formData.append('croppedImage', blob);
-            });
+            var durl = $('#lc_photo').cropper('getCroppedCanvas').toDataURL();
+            var blob = dataURItoBlob(durl);
+
+            $scope.isCropped=true;
+            $scope.preview();
+
+            $scope.files[0]=blob;
+
         };
 
-        $scope.onFile = function(blob) {
-            //var blob = $scope.files[0];
-            //if (!$scope.isEmpty(blob)){
-            Cropper.encode((file = blob)).then(function(dataUrl) {
-                $scope.dataUrl = dataUrl;
-                $timeout(showCropper);  // wait for $digest to set image's src
-            });
-            //}
-        };
         $scope.cropper = {};
         $scope.cropperProxy = 'cropper.first';
 
@@ -213,5 +208,25 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
 
         function showCropper() { $scope.$broadcast($scope.showEvent); }
         function hideCropper() { $scope.$broadcast($scope.hideEvent); }
+        function dataURItoBlob(dataURI) {
+            // convert base64/URLEncoded data component to raw binary data held in a string
+            var byteString;
+            if (dataURI.split(',')[0].indexOf('base64') >= 0)
+                byteString = atob(dataURI.split(',')[1]);
+            else
+                byteString = unescape(dataURI.split(',')[1]);
+
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+            // write the bytes of the string to a typed array
+            var ia = new Uint8Array(byteString.length);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            return new Blob([ia], {type:mimeString});
+        }
     }
+
 });

@@ -5,7 +5,7 @@
 
 lc.controller('AuthCtrl',authController);
 
-function authController($scope, $mdDialog) {
+function authController($scope,$mdDialog,$location,$anchorScroll,Auth,$rootScope,$cookieStore) {
     $scope.user = {};
 
     $scope.auth_signup = function(ev) {
@@ -15,7 +15,7 @@ function authController($scope, $mdDialog) {
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true,
-            hasBackdrop: true,
+            hasBackdrop: true
         })
     };
     $scope.auth_login = function(ev) {
@@ -25,8 +25,50 @@ function authController($scope, $mdDialog) {
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true,
-            hasBackdrop: true,
+            hasBackdrop: true
         })
+    };
+
+    $scope.goto = function(){
+        $location.hash('login');
+        $anchorScroll();
+    };
+
+    $scope.user_login = function(user){
+
+        Auth.login(user)
+            .success(function(data, status, headers, config) {
+                // this callback will be called asynchronously
+                // when the response is available
+                console.log('login success: ', data);
+
+                $rootScope.currentuser = data;
+                //$window.sessionStorage["userInfo"] = JSON.stringify(data);
+                $cookieStore.put('lcuser', $rootScope.currentuser);
+                Auth.setUser(data);
+                $location.path("/main");
+                $mdDialog.hide();
+            })
+            .error(function(data, status, headers, config) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log('login error: ', data);
+                console.log('login error status: ', status);
+            });
+
+
+        /*.then(function(result) {
+         userInfo = {
+         accessToken: result.data.access_token,
+         userName: result.data.userName
+         };
+         $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
+         deferred.resolve(userInfo);
+         }, function(error) {
+         deferred.reject(error);
+         });
+
+         return deferred.promise;*/
     };
 
     function DialogController($scope,$rootScope, $mdDialog, $http, $location,$cookieStore, $q, $window, Auth) {

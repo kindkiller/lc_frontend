@@ -558,6 +558,7 @@ footer {
     background-color: #CACAD1;
     padding-bottom: 80px;
     position:relative;
+    top:100px;
 }
 
 footer p {

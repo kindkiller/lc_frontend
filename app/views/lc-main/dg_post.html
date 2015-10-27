@@ -8,14 +8,14 @@
              ngf-accept="'image/*'">Select/Drop your Chic Image here</div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
-        <div id="imgtag">
-            <img
-                 id="lc_photo" ngf-src="files[0]" class="img_pview" ngf-accept="'image/*'" ng-show="!isEmpty(files)" ng-click="isAddTag && addTag($event)">
+        <div class="img-container" ng-show="!isCropped">
+            <img ng-cropper ng-cropper-proxy="cropperProxy" ng-cropper-options="options" ng-cropper-show="showEvent" ng-cropper-hide="hideEvent"
+                 id="lc_photo" ngf-src="files[0]" class="img_pview" ngf-accept="'image/*'" ng-show="!isEmpty(files)" >
         </div>
 
-        <!--<div class="preview-container">
-            <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}">
-        </div>-->
+        <div id="imgtag">
+            <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}" ng-click="isAddTag && addTag($event)">
+        </div>
 
         <div id="taglist" ng-show="false">
             <span class="tagtitle">List of Tags</span>

@@ -6,6 +6,7 @@ var lc = angular.module('lookchic', [
     'ngRoute',
     'ngCookies',
     'ui.bootstrap',
+    'angular-carousel-3d',
     'ngCropper',
     'ngFileUpload',
     'lookchic.main',
@@ -18,8 +19,8 @@ config(['$routeProvider', function($routeProvider) {
     $routeProvider
         // route for the home page
         .when('/', {
-            templateUrl : 'views/home.html'
-            //controller  : 'mainController'
+            templateUrl : 'views/home.html',
+            controller  : 'AuthCtrl'
         })
         // route for the main page
         .when('/main', {
@@ -61,8 +62,13 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
     //$injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
 
     if ($rootScope.lcUser.lc_userid) {
-        $location.path('/main');
-        //$route.reload();
+        if ($location.path() == "/"){
+           $location.path('/main');
+        }
+        else{
+            $route.reload();
+        }
+
     }
     $rootScope.$on('$routeChangeStart', function(currRoute, prevRoute) {
         // if route requires auth and user is not logged in
