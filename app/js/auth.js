@@ -22,7 +22,7 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
     authService.signup = function (user) {
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/signup',
+            url: 'http://www.lukchic.com:6543/signup',
             data: {
                 email: user.email,
                 username: user.username,
@@ -38,7 +38,7 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
         //var deferred = $q.defer();
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/login',
+            url: 'http://www.lukchic.com:6543/login',
             data: {
                 email: user.email,
                 password: user.password
@@ -71,6 +71,11 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
     authService.getUser = function(){
         return($rootScope.lcUser.lc_userid)? $rootScope.lcUser : $cookieStore.get('lc_user');
     };
+
+    authService.getAccessToken=function(){
+        return ("123456789");
+            //$cookieStore.get('accessToken'));
+    }
 
     return authService;
 });
