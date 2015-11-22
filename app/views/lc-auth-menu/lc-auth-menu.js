@@ -122,7 +122,7 @@ function authController($scope,$mdDialog,$location,$anchorScroll,Auth,$rootScope
                     console.log('signup success: ', data);
                     Auth.setUser(data);
                     $mdDialog.hide();
-                    $location.path("/main");
+                    $location.path("/editprofile");
                 })
                 .error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
