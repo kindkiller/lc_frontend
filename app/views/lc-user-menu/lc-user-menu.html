@@ -1,39 +1,52 @@
 <div flex layout="row" layout-align="end center" ng-controller="userCtrl">
-    <div class="box">
-        <div class="container-1">
-            <span class="icon" ng-click="search(searchtext)"><i class="fa fa-search"></i></span>
-            <input type="search" id="search" placeholder="Search..." ng-model="searchtext" />
+
+        <div class="searchbox row col-md-6" style="float: left;">
+            <!-- <span class="icon"><i class="fa fa-search"></i></span> -->
+            <div flex><input type="search" id="search" ng-model="searchtext" placeholder="Search..." autocomplete="off" required /></div>
+
+            <button type="button" class="btn btn-customize-search right" aria-expanded="false" ng-click="search(searchtext)">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+
+            <button type="button" class="btn dropdown-toggle btn-customize-search-option right" data-toggle="dropdown" aria-expanded="false">
+                Product
+                <span class="glyphicon glyphicon-triangle-bottom"></span>
+            </button>
+            <ul class="dropdown-menu ">
+                <li><a >Product</a></li>
+                <li><a >Tags</a></li>
+                <li><a >User</a></li>
+            </ul>
         </div>
-    </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-        <ul class="nav navbar-nav  ">
+    <div  style="margin-left: 12px">
+        <ul class="nav navbar-nav navbar-right" style="margin-right:0;">
             <!-- Hidden li included to remove active class from register link when scrolled up past register section -->
             <li class="hidden">
                 <a href="#page-top"></a>
             </li>
             <li class="dropdown">
                 <a href="#/userprofile">
-                    <img title="Profile page" alt="我的主页" src="images/img/myprofile.png" width="34" height="34" class="navbar-function-buttons"/>
+                    <img title="Profile page" alt="我的主页" src="images/img/myprofile.png" width="32" height="32" class="navbar-function-buttons"/>
                 </a>
             </li>
             <li>
                 <a ng-click="showPost($event)" >
-                    <img title="Post" alt="发帖" src="images/img/camera.png" width="35" height="35" class="navbar-function-buttons" />
+                    <img title="Post" alt="发帖" src="images/img/camera.png" width="32" height="32" class="navbar-function-buttons" />
                 </a>
                 <!-- <a href="#croppic-wrapper"> -->
                 <!--<a href="javascript:void(0)" onclick = "document.getElementById('croppic-wrapper').style.display='block';document.getElementById('fade').style.display='block'">-->
                     <!--<img title="Post" alt="发帖" src="img/camera.png" width="35" height="35" class="navbar-function-buttons" />-->
                 <!--</a>-->
             </li>
-            <li class="dropdown">
+            <li >
                 <a href="#/main">
                     <img title="Home" alt="首页" src="images/img/home.png" width="32" height="32" class="navbar-function-buttons" />
                 </a>
             </li>
 
-            <li class="dropdown">
+            <li >
                 <a class="dropdown-toggle" data-toggle="dropdown" >
                     <!-- <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i> -->
                     <img title="Notification" alt="通知" src="img/bell.png" width="32" height="32" class="navbar-function-buttons" />
@@ -93,7 +106,7 @@
                 </ul>
                 <!-- /.dropdown-alerts -->
             </li>
-            <li class="dropdown">
+            <li>
                 <a class="dropdown-toggle" data-toggle="dropdown">
                     <!-- <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i> -->
                     <img title="Notification" alt="其他" src="img/grid.png" width="29" height="29" class="navbar-function-buttons" />
@@ -112,30 +125,5 @@
         </ul>
     </div>
     <!-- /.navbar-collapse -->
-    <!--<form id="search_box" flex layout-align="end center" >
-        <div flex class="form-group" layout-align="end center">
-            <div flex class="input-group">
-                <input class="form-control" id="navbarInput-01" type="search" placeholder="Search Chic..." ng-model="searchtext">
-                    <span class="input-group-btn">
-                        <button ng-click="search(searchtext)" class="btn" >
-                            <span class="glyphicon glyphicon-search" ></span>
-                        </button>
-                    </span>
-            </div>
-        </div>
-    </form>
 
-    <div class="btn-group" dropdown is-open="status.isopen">
-        <md-button aria-label="user" class="dropdown-toggle" dropdown-toggle>
-            <md-icon md-svg-src="./images/icons/ic_account_circle_white_18px.svg"></md-icon>
-        </md-button>
-        <ul class="dropdown-menu" role="menu" style="opacity: 0.9">
-            <li><a href="#/userprofile">View Profile</a></li>
-            <li><a href="#/editprofile">Edit Profile</a></li>
-            <li><a href="#">User Setting</a></li>
-            <li class="divider"></li>
-            <li><a href="#" ng-click="user_logout()">Log out</a></li>
-        </ul>
-    </div>
-    <md-button class="menuBtn" ng-click="user_logout()">LOGOUT</md-button>-->
 </div>

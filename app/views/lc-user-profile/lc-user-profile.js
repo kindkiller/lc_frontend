@@ -12,21 +12,9 @@ angular.module('lookchic.userprofile', ['ngRoute'])
         console.log(uid);
         var currentuserid = Auth.getUser().lc_userid;
 
-        $scope.images = [
-            {'url': 'img/feed-01.jpg'},
-            {'url': 'img/feed-02.jpg'},
-            {'url': 'img/feed-03.jpg'},
-            {'url': 'img/feed-04.jpg'},
-            {'url': 'img/feed-05.jpg'},
-            {'url': 'img/feed-06.jpg'},
-            {'url': 'img/feed-07.jpg'},
-            {'url': 'img/feed-08.jpg'},
-            {'url': 'img/feed-09.jpg'}
-        ];
-
         $scope.options = {
-            visible: 3,
-            startSlide: 0,
+            visible: 5,
+            startSlide: 3,
             border: 3,
             width: 300,
             height: 400,

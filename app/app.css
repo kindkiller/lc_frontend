@@ -6,12 +6,9 @@
     -moz-box-sizing: border-box;
 }
 
-/*body{
-    display: block;
-    font-family: 'robotoDraft', Helvetica, Arial, sans-serif;
-    background: url(images/Fashion.jpg) no-repeat center center fixed;
-    background-size: cover;
-}*/
+body{
+    background: #fff;
+}
 .right
 {
     float: right;

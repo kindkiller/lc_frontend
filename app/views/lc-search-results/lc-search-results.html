@@ -1,16 +1,466 @@
-<div layout="column" ng-controller="resultsCtrl">
+<div ng-controller="resultsCtrl" >
 
-    <div class="bar">
+    <div >
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" class="col-sm-3 col-md-3 col-lg-3">
 
-        <!-- These two buttons switch the layout variable,
-             which causes the correct UL to be shown. -->
+            <div class="search-body" >
+                <div id="search-filter">
+                    <uib-accordion close-others="oneAtATime">
+                            <!--<uib-accordion-group heading="新款"  is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+
+                            </uib-accordion-group>-->
+                            <uib-accordion-group is-open="status.open1">
+                                <uib-accordion-heading>
+                                    <span class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open1, 'glyphicon-chevron-right': !status.open1}"></span> 新款
+                                    <!--I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>-->
+                                </uib-accordion-heading>
+                                <div class="list-group">
+                                    <a  class="list-group-item">
+                                        <span class="glyphicon glyphicon-remove"></span>清除选择
+                                    </a>
+                                </div>
+                                <div class="list-group">
+
+                                    <a ng-repeat="c in category" class="list-group-item">
+                                        <label>
+                                            <input type="checkbox"/>
+                                        </label>
+                                        {{c.name}}
+                                        <span class="badge">{{c.count}}</span>
+                                    </a>
+                                </div>
+                            </uib-accordion-group>
+                            <uib-accordion-group is-open="status.open2">
+                                <uib-accordion-heading>
+                                    <span class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open2, 'glyphicon-chevron-right': !status.open2}"></span> 品牌
+                                    <!--I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>-->
+                                </uib-accordion-heading>
+                                <div class="list-group">
+                                    <a class="list-group-item">
+                                        <span class="glyphicon glyphicon-remove"></span>清除选择
+                                    </a>
+                                </div>
+                            </uib-accordion-group>
+                            <uib-accordion-group is-open="status.open3">
+                                <uib-accordion-heading>
+                                    <span class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open3, 'glyphicon-chevron-right': !status.open3}"></span> 色系
+                                </uib-accordion-heading>
+                                <div class="list-group">
+                                    <a class="list-group-item">
+                                        <span class="glyphicon glyphicon-remove"></span>清除选择
+                                    </a>
+                                </div>
+                                <div class="list-group">
+                                    <div class="squaredWhite">
+                                        <input type="checkbox" value="None" id="squaredWhite" name="check" />
+                                        <label for="squaredWhite"></label>
+                                    </div>
+
+                                    <div class="squaredYellow">
+                                        <input type="checkbox" value="None" id="squaredYellow" name="check" />
+                                        <label for="squaredYellow"></label>
+                                    </div>
+
+                                    <div class="squaredOrange">
+                                        <input type="checkbox" value="None" id="squaredOrange" name="check" />
+                                        <label for="squaredOrange"></label>
+                                    </div>
+
+                                    <div class="squaredCaramel">
+                                        <input type="checkbox" value="None" id="squaredCaramel" name="check" />
+                                        <label for="squaredCaramel"></label>
+                                    </div>
+
+                                    <div class="squaredRed">
+                                        <input type="checkbox" value="None" id="squaredRed" name="check" />
+                                        <label for="squaredRed"></label>
+                                    </div>
+
+                                    <div class="squaredGreen">
+                                        <input type="checkbox" value="None" id="squaredGreen" name="check" />
+                                        <label for="squaredGreen"></label>
+                                    </div>
+
+                                    <div class="squaredBlue">
+                                        <input type="checkbox" value="None" id="squaredBlue" name="check" />
+                                        <label for="squaredBlue"></label>
+                                    </div>
+
+                                    <div class="squaredGrey">
+                                        <input type="checkbox" value="None" id="squaredGrey" name="check" />
+                                        <label for="squaredGrey"></label>
+                                    </div>
+
+                                    <div class="squaredBlack">
+                                        <input type="checkbox" value="None" id="squaredBlack" name="check" />
+                                        <label for="squaredBlack"></label>
+                                    </div>
+                                </div>
+                            </uib-accordion-group>
+                            <uib-accordion-group is-open="status.open4">
+                                <uib-accordion-heading>
+                                    <span class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open4, 'glyphicon-chevron-right': !status.open4}"></span> 风格
+                                    <!--I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>-->
+                                </uib-accordion-heading>
+                                <div class="list-group">
+                                    <a class="list-group-item">
+                                        <span class="glyphicon glyphicon-remove"></span>清除选择
+                                    </a>
+                                </div>
+                            </uib-accordion-group>
+
+
+                        <div class="panel-group" id="accordion">
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading panel-heading-custom">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            <!-- <span class="glyphicon glyphicon-eye-open"></span> -->
+                                        <span class="glyphicon glyphicon-chevron-right">
+                                        新款</span></a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <ul class="list-group list-group-item-custom">
+                                        <li class="list-group-item"><span class="glyphicon glyphicon-remove"></span><a href="">清除选择</a></li>
+                                        <li class="list-group-item"><!-- <span class="glyphicon glyphicon-pencil text-primary"> </span>--><a href="">上装</a>
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <label>
+                                                        <input type="checkbox"/>
+                                                    </label>
+                                                    <a href="">大衣外套</a>
+                                                    <span class="badge">422</span>
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <label>
+                                                        <input type="checkbox"/>
+                                                    </label>
+                                                    <a href="">夹克衫</a>
+                                                    <span class="badge">21</span>
+                                                </li>
+
+                                                <li class="list-group-item">
+                                                    <label>
+                                                        <input type="checkbox"/>
+                                                    </label>
+                                                    <a href="">牛仔</a>
+                                                    <span class="badge">31</span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="list-group-item"><!-- <span class="glyphicon glyphicon-flash text-success"> </span>--><a href="">下装</a></li>
+                                        <li class="list-group-item"><!-- <span class="glyphicon glyphicon-file text-info"> </span>--><a href="">饰品</a></li>
+                                        <li class="list-group-item"><!-- <span class="glyphicon glyphicon-comment text-success"></span> --><a href="">皮包</a></li>
+                                        <li class="list-group-item"><!-- <span class="glyphicon glyphicon-comment text-success"></span> --><a href="">鞋</a>
+                                            <ul class="list-group">
+                                                <li class="list-group-item"><a href="">平底鞋</a><span class="badge">422</span></li>
+                                                <li class="list-group-item"><a href="">高跟鞋</a><span class="badge">22</span></li>
+                                                <li class="list-group-item"><a href="">长靴</a><span class="badge">32</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            <span class="glyphicon glyphicon-chevron-right">
+                            </span>
+                                            品牌
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <span class="glyphicon glyphicon-remove"></span>清除选择
+                                        </a>
+                                    </div>
+
+                                    <!-- <ul class="list-group list-group-item-custom">
+                                      <li class="list-group-item"><span class="glyphicon glyphicon-remove"></span><a href="">清除选择</a></li>
+                                    <ul> -->
+
+                                    <div class="list-group">
+
+                                        <a href="#" class="list-group-item">
+                                            <label>
+                                                <input type="checkbox"/>
+                                            </label>
+                                            Aqua
+                                            <span class="badge">422</span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <label>
+                                                <input type="checkbox"/>
+                                            </label>
+                                            Burberry
+                                            <span class="badge">502</span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <label>
+                                                <input type="checkbox"/>
+                                            </label>
+                                            Eileen Fisher
+                                            <span class="badge">121</span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <label>
+                                                <input type="checkbox"/>
+                                            </label>
+                                            Free People
+                                            <span class="badge">142</span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <label>
+                                                <input type="checkbox"/>
+                                            </label>
+                                            Theory
+                                            <span class="badge">232</span>
+                                        </a>
+                                        <a href="#" class="list-group-item">
+                                            <label>
+                                                <input type="checkbox"/>
+                                            </label>
+                                            Vince
+                                            <span class="badge">12</span>
+                                        </a>
+
+                                        <!-- <ul class="list-group list-group-item-custom">
+                                          <li class="list-group-item"><a href="">所有</a></li>
+                                        <ul> -->
+                                        <!-- <a href="#" class="list-group-item"></a> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            <span class="glyphicon glyphicon-chevron-right">
+                            </span>
+                                            色系
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <span class="glyphicon glyphicon-remove"></span>清除选择
+                                        </a>
+                                    </div>
+
+
+                                    <div class="list-group">
+                                        <div class="squaredWhite">
+                                            <input type="checkbox" value="None" id="squaredWhite" name="check" />
+                                            <label for="squaredWhite"></label>
+                                        </div>
+
+                                        <div class="squaredYellow">
+                                            <input type="checkbox" value="None" id="squaredYellow" name="check" />
+                                            <label for="squaredYellow"></label>
+                                        </div>
+
+                                        <div class="squaredOrange">
+                                            <input type="checkbox" value="None" id="squaredOrange" name="check" />
+                                            <label for="squaredOrange"></label>
+                                        </div>
+
+                                        <div class="squaredCaramel">
+                                            <input type="checkbox" value="None" id="squaredCaramel" name="check" />
+                                            <label for="squaredCaramel"></label>
+                                        </div>
+
+                                        <div class="squaredRed">
+                                            <input type="checkbox" value="None" id="squaredRed" name="check" />
+                                            <label for="squaredRed"></label>
+                                        </div>
+
+                                        <div class="squaredGreen">
+                                            <input type="checkbox" value="None" id="squaredGreen" name="check" />
+                                            <label for="squaredGreen"></label>
+                                        </div>
+
+                                        <div class="squaredBlue">
+                                            <input type="checkbox" value="None" id="squaredBlue" name="check" />
+                                            <label for="squaredBlue"></label>
+                                        </div>
+
+                                        <div class="squaredGrey">
+                                            <input type="checkbox" value="None" id="squaredGrey" name="check" />
+                                            <label for="squaredGrey"></label>
+                                        </div>
+
+                                        <div class="squaredBlack">
+                                            <input type="checkbox" value="None" id="squaredBlack" name="check" />
+                                            <label for="squaredBlack"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                            <!-- <img class="sidebar-nav-icon" title="LookChic" alt="LookChic" src="img/size.png"/> -->
+                                            风格
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">简洁</h4>
+                                            <p class="list-group-item-text">白领一族专属</p>
+                                        </a>
+                                    </div>
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item active">
+                                            <h4 class="list-group-item-heading">英伦</h4>
+                                            <p class="list-group-item-text">经典永不褪色</p>
+                                        </a>
+                                    </div>
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">流行</h4>
+                                            <p class="list-group-item-text">为时尚新潮代言</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        </uib-accordion>
+                </div>
+            </div>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div class="col-sm-9 col-md-9 col-lg-9">
+            <div >
+                <div class="row sidebar-content">
+                    <div >
+                        <a href="#menu-toggle" class="btn btn-default btn-fixed text-center" id="menu-toggle"> <!-- btn-circle -->
+                            <span class="glyphicon glyphicon-triangle-right" style="vertical-align:middle; horizontal-align:middle" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div >
+                    <!-- <div class="page-header">
+                      <h1 class="text-center">Who am I?</h1>
+                    </div> -->
+
+                    <div >
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                SORT BY
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Price (high to low) </a></li>
+                                <li><a href="#">Price (low to high) </a></li>
+                                <li><a href="#">Deals</a></li>
+                                <li><a href="#">New arrivals</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row stylish-panel">
+                        <div class="col-md-6 col-lg-4" ng-repeat="r in results">
+
+                                <a href="{{r.url}}" target="_blank"><img ng-src="{{r.imgurl}}" class="img-thumbnail"/></a>
+                                <h4>{{r.name}}</h4>
+                                <p>{{r.brand}}</p>
+                                <p>{{r.price}}</p>
+
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div>
+                                <img src="img/search-2.jpg" alt="Texto Alternativo" class="img-thumbnail">
+                                <h4>ALMA BB</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                                <!-- <a href="#" class="btn btn-primary" title="See more">See works »</a> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row stylish-panel">
+
+                        <div class="col-md-4">
+                            <div>
+                                <img src="img/search-5.jpg" alt="Texto Alternativo" class="img-thumbnail">
+                                <h4>DORA PM BICOLOR</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                                <a href="#" class="btn btn-primary btn-search-pg" title="See more">点击查看 »</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                <img src="img/search-6.jpg" alt="Texto Alternativo" class="img-thumbnail">
+                                <h4>PETITE MALLE CROISIÈRE</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua.
+                                </p>
+                                <a href="#" class="btn btn-primary btn-search-pg" title="See more">点击查看 »</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /container -->
+                <div class="text-center">
+                    <nav>
+                        <ul class="pagination">
+                            <li class=""><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li class="inactive"><a href="#">2 <span class="sr-only">(current)</span></a></li>
+                            <li class="inactive"><a href="#">3 <span class="sr-only">(current)</span></a></li>
+                            <li class="inactive"><a href="#">4 <span class="sr-only">(current)</span></a></li>
+                            <li class="inactive"><a href="#">5 <span class="sr-only">(current)</span></a></li>
+                            <li class=""><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!--<div class="bar">
+
+        &lt;!&ndash; These two buttons switch the layout variable,
+             which causes the correct UL to be shown. &ndash;&gt;
 
         <a class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></a>
         <a class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></a>
     </div>
 
-    <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
-    <!--<md-card flex-gt-sm="90" flex-gt-md="80">
+    &lt;!&ndash; We have two layouts. We choose which one to show depending on the "layout" binding &ndash;&gt;
+    &lt;!&ndash;<md-card flex-gt-sm="90" flex-gt-md="80">
         <md-card-content>
             <h2>Activity</h2>
             <md-list>
@@ -38,10 +488,10 @@
                 </md-item>
             </md-list>
         </md-card-content>
-    </md-card>-->
+    </md-card>&ndash;&gt;
 
     <ul ng-show="layout == 'grid'" class="grid">
-        <!-- A view with big photos and no text -->
+        &lt;!&ndash; A view with big photos and no text &ndash;&gt;
         <li ng-repeat="r in results">
             <a href="{{r.url}}" target="_blank"><img ng-src="{{r.imgurl}}" /></a>
             <p>{{r.name}}</p>
@@ -51,12 +501,12 @@
     </ul>
 
     <ul ng-show="layout == 'list'" class="list">
-        <!-- A compact view smaller photos and titles -->
+        &lt;!&ndash; A compact view smaller photos and titles &ndash;&gt;
         <li ng-repeat="r in results">
             <a href="{{r.url}}" target="_blank"><img ng-src="{{r.imgurl}}" /></a>
             <p>{{r.name}}</p>
             <p>{{r.brand}}</p>
             <p>{{r.price}}</p>
         </li>
-    </ul>
+    </ul>-->
 </div>
