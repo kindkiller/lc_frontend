@@ -78,13 +78,27 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             $scope.mouseY=(event.offsetY/$(event.target).height())*100;
             //alert(mouseX+","+ mouseY);
             $('#tagit').remove( ); // remove any tagit div first
+            $('#c-menu').remove( );
             $scope.tagtxt=''; //remove tag text text
             //insert an input box with save and cancel operations.
-            $('#imgtag').append( $compile('<div id="tagit"><div class="box"></div><div class="name"><div class="text">Type tag</div><input type="text" ng-model="tagtxt" name="txtname" id="tagname" /><input type="button" name="btnsave" ng-click="save_tag(tagtxt,mouseY,mouseX)" value="Save" id="btnsave" /><input type="button" name="btncancel" value="Cancel" ng-click="cancel_tag()" id="btncancel" /></div></div>')($scope) );
+            $('#imgtag').append( $compile('<div class="menu" id="c-menu">' +
 
-            $('#tagit').css({ top:$scope.mouseY+"%", left:$scope.mouseX+"%" });
+                '<div class="btn trigger" ng-click="cmenu()" > <span class="fa fa-bars fa-2x" ></span> </div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-html5"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-facebook"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-google-plus"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-twitter"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-css3"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-instagram"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-github"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-linkedin"></i> </div></div>' +
+                '</div>' )($scope) );
 
-            $('#tagname').focus();
+            //$('#imgtag').append( $compile('<div id="tagit"><div class="box"></div><div class="name"><div class="text">Type tag</div><input type="text" ng-model="tagtxt" name="txtname" id="tagname" /><input type="button" name="btnsave" ng-click="save_tag(tagtxt,mouseY,mouseX)" value="Save" id="btnsave" /><input type="button" name="btncancel" value="Cancel" ng-click="cancel_tag()" id="btncancel" /></div></div>')($scope) );
+            $('#c-menu').css({ top:$scope.mouseY+"%", left:$scope.mouseX+"%" });
+            //$('#tagit').css({ top:$scope.mouseY+"%", left:$scope.mouseX+"%" });
+
+            //$('#tagname').focus();
         };
         var counter=0;
         $scope.save_tag = function(tagtxt,mouseY,mouseX){
@@ -108,6 +122,10 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             $('#view_'+counter).remove();
             $scope.tags.splice( $scope.tags.indexOf(txt), 1);
             console.log($scope.tags);
+        };
+
+        $scope.cmenu = function(){
+            $(".menu").toggleClass("active");
         };
 
         $scope.upload = function (files) {

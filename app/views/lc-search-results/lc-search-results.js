@@ -34,6 +34,8 @@ angular.module('lookchic.results', ['ngRoute'])
                 $scope.results = data.results;
             });
 
+
+
         console.log($scope.results);
 
         /*$scope.results = [

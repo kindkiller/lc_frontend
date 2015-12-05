@@ -1,22 +1,31 @@
 <div flex layout="row" layout-align="end center" ng-controller="userCtrl">
 
-        <div class="searchbox row col-md-6" style="float: left;">
+        <div class="searchbox row" style="display: inline-block;">
             <!-- <span class="icon"><i class="fa fa-search"></i></span> -->
-            <div flex><input type="search" id="search" ng-model="searchtext" placeholder="Search..." autocomplete="off" required /></div>
 
-            <button type="button" class="btn btn-customize-search right" aria-expanded="false" ng-click="search(searchtext)">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
+                <div class="col-md-8" style="padding: 0"><input type="search" id="search" ng-model="searchtext" placeholder="Search..." autocomplete="off" required /></div>
 
-            <button type="button" class="btn dropdown-toggle btn-customize-search-option right" data-toggle="dropdown" aria-expanded="false">
-                Product
-                <span class="glyphicon glyphicon-triangle-bottom"></span>
-            </button>
-            <ul class="dropdown-menu ">
-                <li><a >Product</a></li>
-                <li><a >Tags</a></li>
-                <li><a >User</a></li>
-            </ul>
+                <div class="col-md-4 right" style="width:140px;padding: 0">
+                    <button type="button"  class="btn dropdown-toggle btn-customize-search-option" data-toggle="dropdown" aria-expanded="false">
+                        Product
+                        <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </button>
+                    <button type="button" class="btn btn-customize-search" aria-expanded="false" ng-click="search(searchtext)">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    <ul class="dropdown-menu ">
+                        <li><a >Product</a></li>
+                        <li><a >Tags</a></li>
+                        <li><a >User</a></li>
+                    </ul>
+                </div>
+
+                <!--<div class="col-md-3 right" style="width:90px" >-->
+
+                <!--</div>-->
+
+
+
         </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

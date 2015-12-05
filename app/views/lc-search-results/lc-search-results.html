@@ -353,13 +353,27 @@
         <!-- Page Content -->
         <div class="col-sm-9 col-md-9 col-lg-9">
             <div >
-                <div class="row sidebar-content">
+                <!--<div class="row sidebar-content">
                     <div >
-                        <a href="#menu-toggle" class="btn btn-default btn-fixed text-center" id="menu-toggle"> <!-- btn-circle -->
+                        <a href="#menu-toggle" class="btn btn-default btn-fixed text-center" id="menu-toggle"> &lt;!&ndash; btn-circle &ndash;&gt;
                             <span class="glyphicon glyphicon-triangle-right" style="vertical-align:middle; horizontal-align:middle" aria-hidden="true"></span>
                         </a>
                     </div>
+                </div>-->
+
+<!--
+                <div class="menu">
+                    <div class="btn trigger" ng-click="cmenu()"> <span class="line"></span> </div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-html5"></i> </div></div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-facebook"></i> </div></div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-google-plus"></i> </div></div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-twitter"></i> </div></div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-css3"></i> </div></div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-instagram"></i> </div></div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-github"></i> </div></div>
+                    <div class="rotater"><div class="btn btn-icon"> <i class="fa fa-linkedin"></i> </div></div>
                 </div>
+-->
 
 
                 <div >
@@ -374,16 +388,16 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a href="#">Price (high to low) </a></li>
-                                <li><a href="#">Price (low to high) </a></li>
-                                <li><a href="#">Deals</a></li>
-                                <li><a href="#">New arrivals</a></li>
+                                <li><a >Price (high to low) </a></li>
+                                <li><a >Price (low to high) </a></li>
+                                <li><a >Deals</a></li>
+                                <li><a >New arrivals</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="row stylish-panel">
-                        <div class="col-md-6 col-lg-4" ng-repeat="r in results">
+                        <div class="col-md-6 col-lg-4" ng-repeat="r in results | filter: filterBy ">
 
                                 <a href="{{r.url}}" target="_blank"><img ng-src="{{r.imgurl}}" class="img-thumbnail"/></a>
                                 <h4>{{r.name}}</h4>
@@ -403,7 +417,7 @@
                         </div>
 
                     </div>
-                    <div class="row stylish-panel">
+                    <!--<div class="row stylish-panel">
 
                         <div class="col-md-4">
                             <div>
@@ -425,7 +439,7 @@
                                 <a href="#" class="btn btn-primary btn-search-pg" title="See more">点击查看 »</a>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
 
 
                 </div>
