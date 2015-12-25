@@ -22,7 +22,47 @@
             <ol>
             </ol>
         </div>
-
+        <div id="tagit">
+            <div class="box"></div>
+            <div class="name">
+                <div class="text">Type tag</div>
+                <div id="collection-panel" class="collection-panel">
+                    <select data-placeholder="选择一个收藏夹..." class="chosen-select" style="width:300px;" tabindex="2">
+                        <option value=""></option>
+                        <option value="Add New Collection" class="glyphicon glyphicon-plus">新建收藏夹</option>
+                        <option value="Collection 1">Collection 1</option>
+                        <option value="Collection 2">Collection 2</option>
+                        <option value="Collection 3">Collection 3</option>
+                        <option value="Collection 4">Collection 4</option>
+                        <option value="Collection 5">Collection 5</option>
+                        <option value="Collection 6">Collection 6</option>
+                        <option value="Collection 7">Collection 7</option>
+                        <option value="Collection 8">Collection 8</option>
+                        <option value="Collection 9">Collection 9</option>
+                        <option value="Collection 10">Collection 10</option>
+                        <option value="Collection 11">Collection 11</option>
+                        <option value="Collection 12">Collection 12</option>
+                        <option value="Collection 13">Collection 13</option>
+                        <option value="Collection 14">Collection 14</option>
+                        <option value="Collection 15">Collection 15</option>
+                        <option value="Collection 16">Collection 16</option>
+                        <option value="Collection 17">Collection 17</option>
+                        <option value="Collection 18">Collection 18</option>
+                        <option value="Collection 19">Collection 19</option>
+                        <option value="Collection 20">Collection 20</option>
+                        <option value="Collection 21">Collection 21</option>
+                        <option value="Collection 22">Collection 22</option>
+                        <option value="Collection 23">Collection 23</option>
+                        <option value="Collection 24">Collection 24</option>
+                        <option value="Collection 25">Collection 25</option>
+                        <option value="Collection 26">Collection 26</option>
+                    </select>
+                </div>
+                <input type="text" ng-model="tagtxt" name="txtname" id="tagname" />
+                <input type="button" name="btnsave" ng-click="save_tag(tagtxt,mouseY,mouseX)" value="Save" id="btnsave" />
+                <input type="button" name="btncancel" value="Cancel" ng-click="cancel_tag()" id="btncancel" />
+            </div>
+        </div>
         <md-input-container>
             <label>Description</label>
             <input ng-model="post.desc" >

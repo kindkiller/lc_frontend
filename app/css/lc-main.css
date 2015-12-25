@@ -132,17 +132,67 @@
 .tagview
 {
     /*border:solid 3px #fff;*/
-    position:absolute;
+    /*position:absolute;
     z-index: 200;
     padding: 5px 10px;
     background-color: #000;
     color: #fff;
     font-size: 12px;
     border: 1px solid #eee;
-    border-radius: 3px;
+    border-radius: 3px;*/
     /*max-width: 100px;*/
     /*display:none;*/
+    color: #fff;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: absolute;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+    opacity: 0.8;
+    background:rgba(0,0,0,0.5);
 }
+/*the hole*/
+.tagview::before {
+    background: #fff;
+    /*background:rgba(0,0,0,0.2);*/
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.2);
+    content: '';
+    height: 6px;
+    left: 10px;
+    position: absolute;
+    width: 6px;
+    top: 10px;
+    opacity: 0.8;
+}
+
+.tagview::after {
+    /*background: #fff;*/
+    background:rgba(0,0,0,0.2);
+    border-bottom: 13px solid transparent;
+    /*border-left: 10px solid #eee;*/
+    border-left: 10px solid rgba(0,0,0,0.2);
+
+    border-top: 13px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    /*opacity: 0;*/
+}
+
+.tagview:hover {
+    opacity: 0.9;
+    color: white;
+}
+
+.tagview:hover::after {
+    opacity: 0.9;
+    /*border-color: transparent transparent transparent;  */
+}
+
 .tagview a{
     color:#fff;
 }
@@ -208,73 +258,6 @@
     float:left;
 }
 
-.circular-menu {
-    width: 250px;
-    height: 250px;
-    margin: 0 auto;
-    position: absolute;
-}
-
-.circle {
-    width: 250px;
-    height: 250px;
-    opacity: 0;
-
-    -webkit-transform: scale(0);
-    -moz-transform: scale(0);
-    transform: scale(0);
-
-    -webkit-transition: all 0.4s ease-out;
-    -moz-transition: all 0.4s ease-out;
-    transition: all 0.4s ease-out;
-}
-
-.open.circle {
-    opacity: 1;
-
-    -webkit-transform: scale(1);
-    -moz-transform: scale(1);
-    transform: scale(1);
-}
-
-.circle a {
-    text-decoration: none;
-    color: white;
-    display: block;
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    margin-left: -20px;
-    margin-top: -20px;
-    position: absolute;
-    text-align: center;
-
-}
-
-.circle a:hover {
-    color: #eef;
-}
-
-.menu-button {
-    position: absolute;
-    top: calc(50% - 30px);
-    left: calc(50% - 30px);
-    text-decoration: none;
-    text-align: center;
-    color: #444;
-    border-radius: 50%;
-    display: block;
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    padding: 10px;
-    background: #dde;
-}
-
-.menu-button:hover {
-    background-color: #eef;
-}
-
 /*another circle menu*/
 
 /**:before,
@@ -297,8 +280,8 @@
 }
 
 .menu {
-    width: 5em;
-    height: 5em;
+    width: 3em;
+    height: 3em;
 }
 
 .menu .btn {
@@ -320,7 +303,7 @@
 }
 
 .menu .btn .fa {
-    font-size: 3em;
+    font-size: 1em;
     -webkit-transition: color 0.3s;
     transition: color 0.3s;
 }
@@ -395,8 +378,9 @@
 }
 
 .menu.active .btn-icon {
-    opacity: 1;
+    opacity: 0.8;
     z-index: 50;
+    padding: 5px 5px;
 }
 
 .menu.active .trigger .line {
@@ -428,9 +412,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(1) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(22.5deg);
-    -ms-transform: translateX(-10em) rotate(22.5deg);
-    transform: translateX(-10em) rotate(22.5deg);
+    -webkit-transform: translateX(-6em) rotate(22.5deg);
+    -ms-transform: translateX(-6em) rotate(22.5deg);
+    transform: translateX(-6em) rotate(22.5deg);
 }
 
 .rotater:nth-child(2) {
@@ -440,9 +424,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(2) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-22.5deg);
-    -ms-transform: translateX(-10em) rotate(-22.5deg);
-    transform: translateX(-10em) rotate(-22.5deg);
+    -webkit-transform: translateX(-6em) rotate(-22.5deg);
+    -ms-transform: translateX(-6em) rotate(-22.5deg);
+    transform: translateX(-6em) rotate(-22.5deg);
 }
 
 .rotater:nth-child(3) {
@@ -452,9 +436,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(3) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-67.5deg);
-    -ms-transform: translateX(-10em) rotate(-67.5deg);
-    transform: translateX(-10em) rotate(-67.5deg);
+    -webkit-transform: translateX(-6em) rotate(-67.5deg);
+    -ms-transform: translateX(-6em) rotate(-67.5deg);
+    transform: translateX(-6em) rotate(-67.5deg);
 }
 
 .rotater:nth-child(4) {
@@ -464,9 +448,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(4) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-112.5deg);
-    -ms-transform: translateX(-10em) rotate(-112.5deg);
-    transform: translateX(-10em) rotate(-112.5deg);
+    -webkit-transform: translateX(-6em) rotate(-112.5deg);
+    -ms-transform: translateX(-6em) rotate(-112.5deg);
+    transform: translateX(-6em) rotate(-112.5deg);
 }
 
 .rotater:nth-child(5) {
@@ -476,9 +460,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(5) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-157.5deg);
-    -ms-transform: translateX(-10em) rotate(-157.5deg);
-    transform: translateX(-10em) rotate(-157.5deg);
+    -webkit-transform: translateX(-6em) rotate(-157.5deg);
+    -ms-transform: translateX(-6em) rotate(-157.5deg);
+    transform: translateX(-6em) rotate(-157.5deg);
 }
 
 .rotater:nth-child(6) {
@@ -488,9 +472,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(6) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-202.5deg);
-    -ms-transform: translateX(-10em) rotate(-202.5deg);
-    transform: translateX(-10em) rotate(-202.5deg);
+    -webkit-transform: translateX(-6em) rotate(-202.5deg);
+    -ms-transform: translateX(-6em) rotate(-202.5deg);
+    transform: translateX(-6em) rotate(-202.5deg);
 }
 
 .rotater:nth-child(7) {
@@ -500,9 +484,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(7) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-247.5deg);
-    -ms-transform: translateX(-10em) rotate(-247.5deg);
-    transform: translateX(-10em) rotate(-247.5deg);
+    -webkit-transform: translateX(-6em) rotate(-247.5deg);
+    -ms-transform: translateX(-6em) rotate(-247.5deg);
+    transform: translateX(-6em) rotate(-247.5deg);
 }
 
 .rotater:nth-child(8) {
@@ -512,9 +496,9 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(8) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-292.5deg);
-    -ms-transform: translateX(-10em) rotate(-292.5deg);
-    transform: translateX(-10em) rotate(-292.5deg);
+    -webkit-transform: translateX(-6em) rotate(-292.5deg);
+    -ms-transform: translateX(-6em) rotate(-292.5deg);
+    transform: translateX(-6em) rotate(-292.5deg);
 }
 
 .rotater:nth-child(9) {
@@ -524,7 +508,7 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 }
 
 .menu.active .rotater:nth-child(9) .btn-icon {
-    -webkit-transform: translateX(-10em) rotate(-337.5deg);
-    -ms-transform: translateX(-10em) rotate(-337.5deg);
-    transform: translateX(-10em) rotate(-337.5deg);
+    -webkit-transform: translateX(-6em) rotate(-337.5deg);
+    -ms-transform: translateX(-6em) rotate(-337.5deg);
+    transform: translateX(-6em) rotate(-337.5deg);
 }

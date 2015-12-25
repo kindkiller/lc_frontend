@@ -22,6 +22,7 @@ angular.module('lookchic.main', ['ngRoute'])
             User.getFeeds(currentuserid)
                 .success(function (data, status, headers, config) {
                     $scope.feeds = data.feeds;
+                    console.log(feeds);
                     //$route.reload();
                 })
                 .error(function (data, status, headers, config) {

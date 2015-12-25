@@ -48,6 +48,8 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
         $scope.files={};
         $scope.tags=[];
         $scope.isAddTag=false;
+        $scope.mouseX=0;
+        $scope.mouseY=0;
 
         $scope.isEmpty = function (obj) {
             for (var i in obj) if (obj.hasOwnProperty(i)) return false;
@@ -83,15 +85,15 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             //insert an input box with save and cancel operations.
             $('#imgtag').append( $compile('<div class="menu" id="c-menu">' +
 
-                '<div class="btn trigger" ng-click="cmenu()" > <span class="fa fa-bars fa-2x" ></span> </div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-html5"></i> </div></div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-facebook"></i> </div></div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-google-plus"></i> </div></div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-twitter"></i> </div></div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-css3"></i> </div></div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-instagram"></i> </div></div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-github"></i> </div></div>' +
-                '<div class="rotater"><div class="btn btn-icon"> <i class="fa fa-linkedin"></i> </div></div>' +
+                '<div class="btn trigger" ng-click="cmenu()" > <span class="fa fa-bars" ></span> </div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("bags")"> <img ng-src="images/fashion-category-icons/bags.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("shoe")"> <img ng-src="images/fashion-category-icons/shoe7.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("dress")"> <img ng-src="images/fashion-category-icons/dress2.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("jacket")"> <img ng-src="images/fashion-category-icons/jacket2.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("pents")"> <img ng-src="images/fashion-category-icons/long35.png"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("accessory")"> <img ng-src="images/fashion-category-icons/scarf.png"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("skirt")"> <img ng-src="images/fashion-category-icons/skirt.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("t-shirt")"> <img ng-src="images/fashion-category-icons/t-shirt4.png"> </div></div>' +
                 '</div>' )($scope) );
 
             //$('#imgtag').append( $compile('<div id="tagit"><div class="box"></div><div class="name"><div class="text">Type tag</div><input type="text" ng-model="tagtxt" name="txtname" id="tagname" /><input type="button" name="btnsave" ng-click="save_tag(tagtxt,mouseY,mouseX)" value="Save" id="btnsave" /><input type="button" name="btncancel" value="Cancel" ng-click="cancel_tag()" id="btncancel" /></div></div>')($scope) );
@@ -100,6 +102,36 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
 
             //$('#tagname').focus();
         };
+        $scope.addTagB = function (cata){
+            $('#c-menu').remove( );
+            $('#imgtag').append( $compile('<div id="tagcontent">' +
+
+                '<div class="" ng-click="cmenu()" > <span class="fa fa-bars" ></span> </div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("bags")"> <img ng-src="images/fashion-category-icons/bags.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("shoe")"> <img ng-src="images/fashion-category-icons/shoe7.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("dress")"> <img ng-src="images/fashion-category-icons/dress2.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("jacket")"> <img ng-src="images/fashion-category-icons/jacket2.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("pents")"> <img ng-src="images/fashion-category-icons/long35.png"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("accessory")"> <img ng-src="images/fashion-category-icons/scarf.png"></i> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("skirt")"> <img ng-src="images/fashion-category-icons/skirt.png"> </div></div>' +
+                '<div class="rotater"><div class="btn btn-icon" ng-click="addTagB("t-shirt")"> <img ng-src="images/fashion-category-icons/t-shirt4.png"> </div></div>' +
+                '</div>' )($scope) );
+        };
+        $scope.movies = ["Lord of the Rings",
+            "Drive",
+            "Science of Sleep",
+            "Back to the Future",
+            "Oldboy"];
+
+        // gives another movie array on change
+        $scope.updateMovies = function(typed){
+            // MovieRetriever could be some service returning a promise
+            $scope.newmovies = MovieRetriever.getmovies(typed);
+            $scope.newmovies.then(function(data){
+                $scope.movies = data;
+            });
+        }
+
         var counter=0;
         $scope.save_tag = function(tagtxt,mouseY,mouseX){
             var txt = $('#tagname').val();

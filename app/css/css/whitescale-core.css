@@ -737,6 +737,7 @@ body {
 .main-feed-mask-container {
   position:relative;
   overflow:hidden;
+    padding: 0 0;
 }
 
 .main-feed-mask-container .main-feed-mask-textbox {
