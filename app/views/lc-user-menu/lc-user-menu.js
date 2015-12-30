@@ -109,9 +109,9 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
 
                 '<div class="box"></div>' +
                 '<div class="name">' +
-                '<input type="text" ng-model="selected" placeholder="品牌" uib-typeahead="state for state in brands | filter:$viewValue | limitTo:8" class="form-control">' +
+                '<input type="text" ng-model="tagbrand" placeholder="品牌" uib-typeahead="state for state in brands | filter:$viewValue | limitTo:8" class="form-control">' +
                 '<input type="text" ng-model="tagtxt" placeholder="Tag" id="tagname" class="form-control" />' +
-                '<input type="button" class="btn-xs" ng-click="save_tag(tagcata,tagtxt,mouseY,mouseX)" value="Save" id="btnsave" />' +
+                '<input type="button" class="btn-xs" ng-click="save_tag(tagcata,tagbrand,tagtxt,mouseY,mouseX)" value="Save" id="btnsave" />' +
                 '<input type="button" class="btn-xs" value="Cancel" ng-click="cancel_tag()" id="btncancel" />' +
                 '</div>' +
                 '</div>' )($scope) );
@@ -125,7 +125,7 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             "Oldboy"];
 
         var counter=0;
-        $scope.save_tag = function(tagcata,tagtxt,mouseY,mouseX){
+        $scope.save_tag = function(tagcata,tagbrand,tagtxt,mouseY,mouseX){
             var txt = $('#tagname').val();
 
             counter++;
@@ -133,7 +133,7 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             $('#imgtag').append( $compile('<div class="tagview" id="view_'+counter+'">'+txt+'</a><span ng-click="remove_tag('+counter+','+txt+')" class="glyphicon glyphicon-remove-sign tag-del" ></span></div>')($scope));
             $('#view_' + counter).css({top:mouseY+"%",left:mouseX+"%"});
             //var tag={"left":mouseX+"%","top":mouseY+"%","text":txt};
-            $scope.tags.push({"left":mouseX+"%","top":mouseY+"%","text":txt, "tagid":0, "cata":tagcata });
+            $scope.tags.push({"left":mouseX+"%","top":mouseY+"%","text":txt, "tagid":0, "cata":tagcata,"brand":tagbrand });
             $('#tagit').fadeOut();
         };
 
