@@ -66,7 +66,10 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
            $location.path('/main');
         }
         else{
-            $route.reload();
+            if ($location.path() != "/editprofile")
+            {
+                $route.reload();
+            }
         }
 
     }
@@ -74,7 +77,10 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
         // if route requires auth and user is not logged in
         if (!$rootScope.lcUser) {
             // redirects to index
-            $location.path('/');
+            if ($location.path() != "/editprofile")
+            {
+                $location.path('/');
+            }
         }
     });
    // };

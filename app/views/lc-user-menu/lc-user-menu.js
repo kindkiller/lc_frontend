@@ -118,11 +118,11 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
             $('#tagit').css({ top:$scope.mouseY+"%", left:$scope.mouseX+"%" });
         };
         //TODO: get brands list from backend
-        $scope.brands = ["Lord of the Rings",
-            "Drive",
-            "Science of Sleep",
-            "Back to the Future",
-            "Oldboy"];
+        $scope.brands = ["Burberry",
+            "Theory",
+            "Vince",
+            "Christian Louboutin",
+            "Nike"];
 
         var counter=0;
         $scope.save_tag = function(tagcata,tagbrand,tagtxt,mouseY,mouseX){

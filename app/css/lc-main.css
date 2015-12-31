@@ -41,7 +41,7 @@
     margin: 10px 10px;
 }
 .dragover {
-    border: 5px dashed blue;
+    border: 5px dashed grey;
 }
 .img-container{
     height:400px;
