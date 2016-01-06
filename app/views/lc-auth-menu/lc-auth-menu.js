@@ -3,7 +3,8 @@
  */
 'use strict';
 
-lc.controller('AuthCtrl',authController);
+angular.module('lookchic.home', ['ngRoute'])
+    .controller('authCtrl',authController);
 
 function authController($scope,$mdDialog,$location,$anchorScroll,Auth,$rootScope,$cookieStore) {
     $scope.user = {};
@@ -134,7 +135,7 @@ function authController($scope,$mdDialog,$location,$anchorScroll,Auth,$rootScope
             else
             {$scope.err = 'Password not match'}
         };
-    };
+    }
 
 
 }

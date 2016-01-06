@@ -3,7 +3,7 @@
  */
 'use strict';
 
-lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper) {
+lc.controller('userCtrl', function($scope,$location,$route,$mdDialog,Auth,User,Cropper) {
     $scope.searchtext='';
 
     $scope.search = function(kword){
@@ -41,6 +41,8 @@ lc.controller('userCtrl', function($scope,$location,$mdDialog,Auth,User,Cropper)
     $scope.user_logout = function(){
         //Session.destroy();
         Auth.user_logout();
+        //$location.path('/home');
+        //$route.reload();
     };
 
     function DialogController($scope,Upload, $mdDialog,$timeout,$compile,$location,$route,Auth) {

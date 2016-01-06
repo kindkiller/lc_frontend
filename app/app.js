@@ -9,6 +9,7 @@ var lc = angular.module('lookchic', [
     'angular-carousel-3d',
     'ngCropper',
     'ngFileUpload',
+    'lookchic.home',
     'lookchic.main',
     'lookchic.results',
     'lookchic.userprofile',
@@ -17,10 +18,15 @@ var lc = angular.module('lookchic', [
 ]).
 config(['$routeProvider', function($routeProvider) {
     $routeProvider
+    // route for the home page
+       /* .when('/', {
+            templateUrl : 'views/lc-home/lc-home.html',
+            controller  : 'authCtrl'
+        })*/
         // route for the home page
-        .when('/', {
-            templateUrl : 'views/home.html',
-            controller  : 'AuthCtrl'
+        .when('/home', {
+            templateUrl : 'views/lc-home/lc-home.html',
+            controller  : 'authCtrl'
         })
         // route for the main page
         .when('/main', {
@@ -47,7 +53,7 @@ config(['$routeProvider', function($routeProvider) {
             templateUrl : 'pages/contact.html',
             controller  : 'contactController'
         })*/
-        .otherwise({redirectTo: '/'});
+        .otherwise({redirectTo: '/home'});
 }]);
 
 lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $route) {
@@ -63,7 +69,8 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
 
     if ($rootScope.lcUser.lc_userid) {
         if ($location.path() == "/"){
-           $location.path('/main');
+            $location.path('/main');
+            //if (!$rootScope.$$phase) $rootScope.$apply();
         }
         else{
             if ($location.path() != "/editprofile")
@@ -79,7 +86,8 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
             // redirects to index
             if ($location.path() != "/editprofile")
             {
-                $location.path('/');
+                $location.path('/home');
+                //if (!$rootScope.$$phase) $rootScope.$apply();
             }
         }
     });

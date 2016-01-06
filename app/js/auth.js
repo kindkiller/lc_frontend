@@ -6,6 +6,7 @@
 lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) {
     var user;
     var authService = {};
+    var serviceURL = "http://localhost:6543";
 
     //check if the user is authenticated
     authService.isAuthenticated = function() {
@@ -22,7 +23,7 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
     authService.signup = function (user) {
         return $http({
             method: 'POST',
-            url: 'http://www.lukchic.com:6543/signup',
+            url: serviceURL + '/signup',
             data: {
                 email: user.email,
                 username: user.username,
@@ -38,7 +39,7 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
         //var deferred = $q.defer();
         return $http({
             method: 'POST',
-            url: 'http://www.lukchic.com:6543/login',
+            url: serviceURL + '/login',
             data: {
                 email: user.email,
                 password: user.password
@@ -51,11 +52,14 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
     //log out the user and broadcast the logoutSuccess event
     authService.user_logout = function(){
         //Session.destroy();
+        $location.path('/home');
         $window.sessionStorage.removeItem("userInfo");
         $cookieStore.remove("lc_user");
         $cookieStore.remove("lcuser");
         $cookieStore.remove("lc_token");
-        $location.path('/');
+
+       /* $location.path('/').replace();
+        $rootScope.$apply();*/
     };
 
     authService.setUser = function(aUser){
@@ -89,7 +93,7 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
             //$http.post('users.json').success(function(data) {
             $http({
                 method: 'POST',
-                url: 'http://localhost:6543/login',
+                url: serviceURL + '/login',
                 data: {
                     email: user.email,
                     password: user.password
