@@ -46,6 +46,7 @@ angular.module('lookchic.main', ['ngRoute'])
                     console.log('post comments ' + txt + ', feedid: ' + feedid);
                     console.log(data);
                     $filter('filter')($scope.feeds, {picid: feedid}).comments.push(txt);
+                    $('#cmmt-'+feedid).val('');
                 }).error(function (data, status, headers, config) {
                     console.log('error status: ' + status);
                     //return data;
@@ -53,8 +54,11 @@ angular.module('lookchic.main', ['ngRoute'])
             }
         };
 
-        $scope.likephoto = function(txt,feedid) {
-
+        $scope.changeLikeStatus = function(feedid, likeStatus) {
+            if (likeStatus == 1)
+                $filter('filter')($scope.feeds, {picid: feedid})[0].liked = 0;//!likeStatus;
+            else
+                $filter('filter')($scope.feeds, {picid: feedid})[0].liked = 1;
             var likedata = {
                 picid: feedid,
                 userid: currentuserid
@@ -62,13 +66,13 @@ angular.module('lookchic.main', ['ngRoute'])
 
             User.like(likedata)
                 .success(function (data, status, headers, config) {
-                    console.log('post comments ' + txt + ', feedid: ' + feedid);
-                    console.log(data);
-                    //$route.reload();
+                    console.log(data.likeCount + ', feedid: ' + feedid);
+                    $filter('filter')($scope.feeds, {picid: feedid})[0].likeCount = data.likeCount;
                 }).error(function (data, status, headers, config) {
                     console.log('error status: ' + status);
                     //return data;
                 });
+            $scope.feeds.$apply();
         };
 
         $scope.toggle_visibility = function(id) {

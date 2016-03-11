@@ -79,7 +79,7 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
     authService.getAccessToken=function(){
         return ("123456789");
             //$cookieStore.get('accessToken'));
-    }
+    };
 
     return authService;
 });

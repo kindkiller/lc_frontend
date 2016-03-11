@@ -22,26 +22,10 @@
                     <hr class = "divider-line"></hr>
                     <p>您也可以用常用邮箱或手机号码新建一个账号</p>
                     <form class="form-basic" method="post" >
-                        <input type="text" id="reg-last-name" class="reg-last-name" placeholder="用户名" autofocus>
+                        <input type="text" id="reg-last-name" class="reg-last-name" placeholder="用户名" ng-model="user.username" autofocus>
                         <div>
-                            <p class="reg-last-name-help" ng-model="user.username">在此填写您的用户名</p>
+                            <p class="reg-last-name-help" >在此填写您的用户名</p>
                         </div>
-
-                        <!--<input type="text" id="reg-firt-name" class="reg-first-name" placeholder="名">
-                        <div>
-                            <p class="reg-first-name-help">在此填写您的名字</p>
-                        </div>-->
-
-                        <!-- <input type="radio" name="Method" id="Reg-Cell" value="Cell" />
-                        <a class="reg-radio">�ֻ�ע��</a>
-                        <input type="radio" name="Method" id="Reg-Email" value="Email" />
-                        <a class="reg-radio">����ע��</a> -->
-
-                        <!-- if(document.getElementById('Cell').checked) {
-
-                        }else if(document.getElementById('Email').checked) {
-
-                    } -->
 
                         <!-- Back-end should identify type of ID, email or cellphone number. -->
                         <input type="text" id="reg-id" class="reg-id" ng-model="user.email" placeholder="手机/邮箱">

@@ -33,7 +33,7 @@
                                         <span ng-click="cmmntshow=!cmmntshow">
                                             <img title="" alt="" src="img/icon_comment.png" class="main-feed-btn" />
                                         </span>
-                                        <img title="" alt="" src="img/icon_like.png" class="main-feed-btn" ng-click="changeLikeStatus()"/> {{feed.likeCount}}
+                                        <img title="" alt="" ng-src="{{feed.liked == 0 && 'img/icon_liked.png' || 'img/icon_like.png'}}" class="main-feed-btn" ng-click="changeLikeStatus(feed.picid,feed.liked)"/> {{feed.likeCount}}
                                         <img title="" alt="" src="img/icon_share.png" class="main-feed-btn"/>
                                         <img title="" alt="" src="img/icon_flag.png" class="main-feed-btn-flag"/>
 
@@ -60,7 +60,7 @@
                                                 <div class="cmmnt-content" >
                                                     <header><a href="javascript:void(0);" class="userlink"></a><span class="pubdate"></span></header>
                                                     <div class="mycomment">
-                                                        <textarea class="mycomment" rows="3" placeholder="Write a comment ... ...." ng-model="commtext" ng-keypress="postcomment($event,commtext, feed.picid)"></textarea>
+                                                        <textarea id="{{'cmmt-'+ feed.picid}}" class="mycomment" rows="3" placeholder="Write a comment ... ...." ng-model="commtext" ng-keypress="postcomment($event,commtext, feed.picid)"></textarea>
                                                     </div>
                                                 </div>
                                             </div>

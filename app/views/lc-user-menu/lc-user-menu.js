@@ -64,11 +64,16 @@ lc.controller('userCtrl', function($scope,$location,$route,$mdDialog,Auth,User,C
         //Upload photo to server
         $scope.lc_post = function (files){
 
-            $scope.upload(files)
-                .then($route.reload());
+            if($scope.upload(files))
+            {
+                $scope.hide();
+                $route.reload();
+            }
             //$location.path('/main');
-            $scope.hide();
+            else{
 
+                $scope.hide();
+            }
         };
 
         $scope.st_addTag = function (event){
@@ -179,9 +184,11 @@ lc.controller('userCtrl', function($scope,$location,$route,$mdDialog,Auth,User,C
                     }).success(function (data, status, headers, config) {
                         $timeout(function() {
                             console.log('file: ' + config.file.name + ', Response: ' + JSON.stringify(data));
+                            return true;
                         });
                     }).error(function (data, status, headers, config) {
                         console.log('error status: ' + status);
+                        return false;
                     });
                 }
             }
