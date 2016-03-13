@@ -68,7 +68,7 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
     //$injector.get("$http").defaults.transformRequest = function(data, headersGetter) {
 
     if ($rootScope.lcUser.lc_userid) {
-        if ($location.path() == "/"){
+        if ($location.path() == ""){
             $location.path('/main');
             //if (!$rootScope.$$phase) $rootScope.$apply();
         }
