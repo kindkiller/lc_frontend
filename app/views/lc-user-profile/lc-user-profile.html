@@ -205,8 +205,8 @@
     </div>
     <div layout="column">
         <div>My Forites</div>
-        <ul ng-show="true" class="list">
-            <!-- A compact view smaller photos and titles -->
+        <!--<ul ng-show="true" class="list">
+            &lt;!&ndash; A compact view smaller photos and titles &ndash;&gt;
             <li ng-repeat="p in user.favorites">
                 <md-card-content layout="row" style="background-color: #ffffff">
                     <div style="display: none;">{{p.picid}}</div>
@@ -215,11 +215,11 @@
 
                         <div ondrop="drop(event)" ondragover="allowDrop(event)" style="opacity: 1">
                             <img ng-src="{{p.url}}">
-                            <!--<div id="tag2" class="tag" draggable="true" ondragstart="drag(event)" style="top: 60%;
+                            &lt;!&ndash;<div id="tag2" class="tag" draggable="true" ondragstart="drag(event)" style="top: 60%;
                                         left: 55%">
                                 <a href="#">
                                     test2</a>
-                            </div>-->
+                            </div>&ndash;&gt;
                         </div>
 
                         <md-chips class="hashtags" ng-repeat="ht in p.hashtags">
@@ -236,9 +236,9 @@
                         <div class="comments" ng-show="false">
                             <ul class="commentList" layout="column">
                                 <li ng-repeat="c in p.comments">
-                                    <!--<div class="commenterImage">
+                                    &lt;!&ndash;<div class="commenterImage">
                                         <img src="{{p.avatorurl}}" />
-                                    </div>-->
+                                    </div>&ndash;&gt;
                                     <div>{{c.username}}</div>
                                     <div class="commentText">
                                         <p class="">
@@ -247,14 +247,14 @@
                                     </div>
                                 </li>
                             </ul>
-                            <!--<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
-                            </span>More</a>-->
+                            &lt;!&ndash;<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
+                            </span>More</a>&ndash;&gt;
                         </div>
 
                     </div>
                 </md-card-content>
             </li>
-        </ul>
+        </ul>-->
     </div>
 </md-content>
 

@@ -16,6 +16,15 @@ lc.factory('User',function ($http, $q) {
         })
     };
 
+    userService.delComment = function delComment(comment){
+        return $http({
+            method: 'POST',
+            url: 'http://localhost:6543/delcomment',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            data: comment
+        })
+    };
+
     userService.getFeeds = function getFeeds(userid){
         return $http({
             method: 'POST',

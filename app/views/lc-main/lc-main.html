@@ -21,7 +21,7 @@
                                     <div class="column sub-text">
                                         {{feed.username}}
                                         <div class="date sub-text">
-                                            {{feed.time}}</div>
+                                            {{feed.time| date:"MM/dd/yyyy"}}</div>
                                     </div>
                                     <!--<h6 class="main-feed-profile-desc"> {{feed.username}} <br> {{feed.time}} </h6>-->
                                 </div>
@@ -49,7 +49,7 @@
                                                 <div class="cmmnt-avatar col-md-2 col-lg-2 col-sm-2"><a href="javascript:void(0);"><img src={{c.avatorurl}} alt=""></a></div>
                                                 <div class="cmmnt-content" >
                                                     <header><a href="javascript:void(0);" class="userlink">{{c.username}}</a> - <span class="pubdate">{{c.time | date:"MM/dd/yyyy"}}</span></header>
-                                                    <p>{{c.comment}}</p>
+                                                    <p>{{c.comment}}</p><span ng-show="c.userid==cuserid" ng-click="deletecomment(c.userid, c.commentid, feed.picid)" class="glyphicon glyphicon-remove-sign tag-del" ></span>
                                                 </div>
                                             </div>
                                         </li>

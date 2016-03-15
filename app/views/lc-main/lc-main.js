@@ -17,12 +17,13 @@ angular.module('lookchic.main', ['ngRoute'])
         //TODO: var currentuserAvator = Auth.getUser().lc_userAvator;
 /*        console.log ( 'start get feeds ', currentuserid);
         console.log (Auth.getUser());*/
+        $scope.cuserid = currentuserid;
 
         $scope.initFirst=function(){
             User.getFeeds(currentuserid)
                 .success(function (data, status, headers, config) {
                     $scope.feeds = data.feeds;
-                    console.log(feeds);
+                    //console.log(feeds);
                     //$route.reload();
                 })
                 .error(function (data, status, headers, config) {
@@ -52,6 +53,26 @@ angular.module('lookchic.main', ['ngRoute'])
                     //return data;
                 });
             }
+        };
+
+        $scope.deletecomment = function(uid,cid,feedid) {
+
+            var comm = {
+                picid: feedid,
+                userid: uid,
+                commentid: cid
+            };
+
+            User.delComment(comm)
+                .success(function (data, status, headers, config) {
+                    console.log('post comments ' + txt + ', feedid: ' + feedid);
+                    console.log(data);
+                    $filter('filter')($scope.feeds, {picid: feedid}).comments.pop(cid);
+                    $('#cmmt-'+feedid).val('');
+                }).error(function (data, status, headers, config) {
+                console.log('error status: ' + status);
+                //return data;
+            });
         };
 
         $scope.changeLikeStatus = function(feedid, likeStatus) {
