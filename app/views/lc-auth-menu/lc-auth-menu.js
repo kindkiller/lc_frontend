@@ -33,6 +33,7 @@ function authController($scope,$mdDialog,$location,$anchorScroll,Auth,$rootScope
     $scope.goto = function(){
         $location.hash('login');
         $anchorScroll();
+        $location.url('');
     };
 
     $scope.user_login = function(user){

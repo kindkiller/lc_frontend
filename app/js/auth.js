@@ -52,11 +52,12 @@ lc.factory('Auth',function ($http, $rootScope, $window,$location, $cookieStore) 
     //log out the user and broadcast the logoutSuccess event
     authService.user_logout = function(){
         //Session.destroy();
-        $location.path('/home');
         $window.sessionStorage.removeItem("userInfo");
         $cookieStore.remove("lc_user");
         $cookieStore.remove("lcuser");
         $cookieStore.remove("lc_token");
+        $rootScope.lcUser={};
+        $location.path('/home');
 
        /* $location.path('/').replace();
         $rootScope.$apply();*/

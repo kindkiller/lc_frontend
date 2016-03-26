@@ -19,7 +19,7 @@ var lc = angular.module('lookchic', [
 config(['$routeProvider', function($routeProvider) {
     $routeProvider
     // route for the home page
-       /* .when('/', {
+        /*.when('/', {
             templateUrl : 'views/lc-home/lc-home.html',
             controller  : 'authCtrl'
         })*/
@@ -56,7 +56,7 @@ config(['$routeProvider', function($routeProvider) {
         .otherwise({redirectTo: '/home'});
 }]);
 
-lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $route) {
+lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $route, Auth) {
    /* $rootScope.$on("$routeChangeSuccess", function(userInfo) {
         console.log(userInfo);
     });*/
@@ -82,7 +82,7 @@ lc.run(function ($rootScope, $location, $window,$http,$cookieStore,$injector, $r
     }
     $rootScope.$on('$routeChangeStart', function(currRoute, prevRoute) {
         // if route requires auth and user is not logged in
-        if (!$rootScope.lcUser) {
+        if (!Auth.isLoggedIn()) {
             // redirects to index
             if ($location.path() != "/editprofile")
             {

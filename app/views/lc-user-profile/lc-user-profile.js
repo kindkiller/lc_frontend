@@ -13,7 +13,7 @@ angular.module('lookchic.userprofile', ['ngRoute'])
         var currentuserid = Auth.getUser().lc_userid;
 
         $scope.options = {
-            visible: 3,
+            visible: 5,
             startSlide: 2,
             border: 3,
             width: 300,
