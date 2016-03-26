@@ -6,11 +6,12 @@
 
 lc.factory('User',function ($http, $q) {
     var userService = {};
+    var serviceURL = "http://localhost:6543";
 
     userService.postComment = function postComment(comment){
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/addcomment',
+            url: serviceURL + '/addcomment',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: comment
         })
@@ -19,7 +20,7 @@ lc.factory('User',function ($http, $q) {
     userService.delComment = function delComment(comment){
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/delcomment',
+            url: serviceURL + '/delcomment',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: comment
         })
@@ -28,7 +29,7 @@ lc.factory('User',function ($http, $q) {
     userService.getFeeds = function getFeeds(userid){
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/main',
+            url: serviceURL + '/main',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
             data: {
                 userid: userid
@@ -39,7 +40,7 @@ lc.factory('User',function ($http, $q) {
     userService.editProfile = function editProfile(userid,data){
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/editprofile',
+            url: serviceURL + '/editprofile',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded'},
             data: {
                 userid: userid,
@@ -51,7 +52,7 @@ lc.factory('User',function ($http, $q) {
     userService.searchitem = function searchitem(kword){
         return $http({
             method: 'GET',
-            url: 'http://localhost:6543/search',
+            url: serviceURL + '/search',
             params: {
                 keyword: kword
             }
@@ -62,7 +63,7 @@ lc.factory('User',function ($http, $q) {
     userService.like = function like(data){
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/addlike',
+            url: serviceURL + '/addlike',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: data
         })
@@ -71,7 +72,7 @@ lc.factory('User',function ($http, $q) {
     userService.addFavor = function addFavor(data){
         return $http({
             method: 'POST',
-            url: 'http://localhost:6543/addfavorite',
+            url: serviceURL + '/addfavorite',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             data: data
         })
@@ -88,7 +89,7 @@ lc.factory('User',function ($http, $q) {
     userService.getUserProfile = function getUserProfile(uid){
         return $http({
             method: 'GET',
-            url: 'http://localhost:6543/userprofile',
+            url: serviceURL + '/userprofile',
             params: {
                 userid: uid
             }
@@ -98,7 +99,7 @@ lc.factory('User',function ($http, $q) {
     userService.getUserPosts = function getUserPosts(uid){
         return $http({
             method: 'GET',
-            url: 'http://localhost:6543/userposts',
+            url: serviceURL + '/userposts',
             params: {
                 userid: uid
             }
@@ -108,7 +109,7 @@ lc.factory('User',function ($http, $q) {
     userService.getUserFav = function getUserFav(uid){
         return $http({
             method: 'GET',
-            url: 'http://localhost:6543/userfav',
+            url: serviceURL + '/userfav',
             params: {
                 userid: uid
             }

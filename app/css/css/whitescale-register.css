@@ -58,12 +58,22 @@ $align:center;
 
 .register-form h2 {
   font-size: 20px;
-  margin: 0 0 10px 0;
+  margin: 10px 0 0 0;
   color: #FFF;
   /*font-family: Tahoma, Arial, sans-serif;*/
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.register-form h3 {
+  font: 14px Open Sans;
+  /*color: #333;*/
+  font-family: Tahoma, Arial, sans-serif;
+
+  color:#6E6E6E;
+  /*text-shadow: #000 0px 1px 7px;*/
+  margin-bottom:15px;
+
+}
 .register-form p {
   font: 14px Open Sans;
   /*color: #333;*/
@@ -71,7 +81,7 @@ $align:center;
 
   color:#6E6E6E;
   /*text-shadow: #000 0px 1px 7px;*/
-  margin-bottom:30px;
+  /*margin-bottom:30px;*/
 
 }
 
@@ -196,9 +206,10 @@ hr.divider-line {
 
 .reg-last-name-help,.reg-first-name-help,.reg-id-help, .reg-password-help, .reg-password-conf-help{
   /*font-family: #989494;*/
-  display:none;
+  /*display:none;*/
+  /*color:white;*/
   padding:5px;
-  margin:0px 0px 15px 0px;
+  margin: 0px 0px 5px 0px;
 }
 
 
@@ -234,7 +245,7 @@ hr.divider-line {
    opacity: 0.5;
 }
 
-.register-form input[type=text]ut#text:-ms-input-placeholder {  
+.register-form input[type=text]#text:-ms-input-placeholder {
    font-size: 16px;
    opacity: 0.5;
 }

@@ -14,7 +14,7 @@ angular.module('lookchic.userprofile', ['ngRoute'])
 
         $scope.options = {
             visible: 3,
-            startSlide: 38,
+            startSlide: 2,
             border: 3,
             width: 300,
             height: 400,

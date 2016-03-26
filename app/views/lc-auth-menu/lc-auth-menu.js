@@ -128,8 +128,8 @@ function authController($scope,$mdDialog,$location,$anchorScroll,Auth,$rootScope
                 .error(function(data, status, headers, config) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
-                    console.log('login error: ', data);
-                    console.log('login error status: ', status);
+                    console.log('signup error: ', data);
+                    console.log('signup error status: ', status);
                 });
             }
             else
