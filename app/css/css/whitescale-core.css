@@ -24,7 +24,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 35px;
+  margin: 15px 0;
   text-transform: uppercase;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: 700;
@@ -206,14 +206,11 @@ a:focus {
     background-color:transparent;
 }
 
-
 .dropdown-search-option {
 /*    left: 59.3%;
     /!*left: 955px;*!/
     top: 88px;*/
 }
-
-
 
 .btn-customize-search:hover {
 
@@ -225,6 +222,12 @@ a:focus {
 .btn-customize-search:active {
     position:relative;
     top:1px;
+}
+
+.btn-customize-search-option:hover {
+    /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);*/
+    border-color: #e9e9e9;
+    background-color:#e9e9e9;
 }
 
 .container-1{
@@ -291,7 +294,7 @@ a:focus {
 
 @media(min-width:768px) {
     .navbar-custom {
-        padding: 20px 0;
+        padding: 20px 10px;
         border-bottom: 0;
         letter-spacing: 1px;
         background: 0 0;
@@ -302,7 +305,7 @@ a:focus {
 
     /*navbar background color*/
     .navbar-custom.top-nav-collapse {
-        padding: 5px 5px;
+        padding: 5px 10px;
         border-bottom: 1px solid rgba(255,255,255,0.3);
         background: #FFFFFF;
         background-color: #FFFFFF;/*rgba(255, 255, 255, 0.2);*/

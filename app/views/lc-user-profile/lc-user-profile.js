@@ -8,7 +8,7 @@ angular.module('lookchic.userprofile', ['ngRoute'])
     .controller('userprofileCtrl', function($scope,$routeParams,$location,User,Auth) {
         $scope.layout = 'grid';
 
-        var uid = $routeParams.keyword;
+        var uid = $routeParams.userid;
         console.log(uid);
         var currentuserid = Auth.getUser().lc_userid;
 
@@ -39,16 +39,16 @@ angular.module('lookchic.userprofile', ['ngRoute'])
                 console.log('user profile status: ', status);
                 $scope.err = data.msg;
             });
-
-            /*User.getFeeds(currentuserid)
-            .success(function (data, status, headers, config) {
-                $scope.posts = data.feeds;
-                //$route.reload();
-            })
-            .error(function (data, status, headers, config) {
-                console.log('error status: ' + status);
-            });*/
         };
+
+        $scope.if_cur_user = function () {
+            if (uid = currentuserid) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
 
         $scope.user_follow = function(fuid){
 

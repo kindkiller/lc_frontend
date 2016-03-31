@@ -1,4 +1,4 @@
-    <div layout="row" flex md-scroll-y style="background: transparent;top:50px;"  ng-init="initProfile()">
+    <div class="row" flex md-scroll-y style="background: transparent;top:50px;"  ng-init="initProfile()">
 
 
         <div class="navbar-default sidebar" role="navigation" style="margin-top:1px ">
@@ -30,36 +30,36 @@
                     <hr>
                     <div class="row">
                         <!-- left column -->
-                        <div class="col-md-3">
+                        <div class="col-md-3 col-xs-3">
                             <div class="text-center">
-                                <div class="img-container" ng-show="isEmpty(afiles)&&!isCropped">
-                                    <img ng-src="{{user.userProfileUrl}}" src="https://instagramimages-a.akamaihd.net/profiles/anonymousUser.jpg" alt="user-img" class="user-avatar" >
+                                <div class="user-avatar avatar" ng-show="isEmpty(afiles)">
+                                    <img ng-src="{{user.userProfileUrl}}" src="images/img/anonymousUser.jpg" alt="user-img" class="user-avatar" >
                                 </div>
 
-                                <div class="img-container" ng-show="!isCropped">
+                                <div ng-show="confirm">
                                     <img ng-cropper ng-cropper-proxy="cropperProxy" ng-cropper-options="options" ng-cropper-show="showEvent" ng-cropper-hide="hideEvent"
-                                         id="lc_avatar" ngf-src="afiles[0]" class="avatar_pview" ngf-accept="'image/*'"  ng-show="!isEmpty(afiles)">
+                                         id="lc_avatar" ng-src="{{dataUrl}}" class="avatar_pview" ng-if="dataUrl">
                                 </div>
 
-                                <div class="img-container ">
-                                    <img ng-if="preview.dataUrl" ng-src="{{preview.dataUrl}}" class="user-avatar avatar">
+                                <div >
+                                    <img ng-if="preview.dataUrl && !confirm" ng-src="{{preview.dataUrl}}" class="user-avatar avatar">
                                 </div>
                                 <!--<img src="../../img/myprofile.png" class="dashboard-img-upload" alt="avatar">-->
                                 <h6>Upload a different photo...</h6>
 
                                 <div ngf-drop ngf-select ng-model="afiles"  type="file" class="form-control"
                                      ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true"
-                                     ngf-accept="'image/*'">Change</div>
+                                     ngf-accept="'image/*'" ng-show="!confirm" >Change</div>
                                 <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
                                 <!--</md-button>-->
-                                <div ng-show="isCropped" ng-click="avatar_cropper()" class="form-control">Confirm</div>
+                                <div ng-show="confirm" ng-click="avatar_cropper()" class="form-control">Confirm</div>
 
                                 <!--<input type="file" class="form-control">-->
                             </div>
                         </div>
 
                         <!-- edit form column -->
-                        <div class="col-md-9 personal-info">
+                        <div class="col-md-9 col-xs-9 personal-info">
                             <div class="alert alert-info alert-dismissable">
                                 <a class="panel-close close" data-dismiss="alert">×</a>
                                 <i class="fa fa-coffee"></i>

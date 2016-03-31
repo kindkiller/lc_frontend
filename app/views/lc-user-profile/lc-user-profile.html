@@ -20,9 +20,9 @@
                         <div class="col-md-9 col-sm-9 col-md-offset-1">
                             <div class="row overview">
                                 <div class="col-md-3 col-sm-3 profile-statistics text-center">
-                                    <a href="" class="profile-statistics">303</a>
+                                    <a href="" class="profile-statistics">{{user.favorites.length}}</a>
                                     <br>
-                                    <a href="" class="profile-statistics">喜欢</a>
+                                    <a href="" class="profile-statistics">收藏</a>
                                 </div>
                                 <div class="col-md-3 col-sm-3 profile-statistics text-center">
                                     <a href="" class="profile-statistics">{{user.following}}</a>
@@ -41,220 +41,28 @@
                                 </div>
                             </div>
                         </div>
-                        <md-button ng-click="user_follow(user)" style="border: solid; border-color: #9E9E9E" ng-show="">Follow</md-button>
-                        <md-button ng-click="user_edit(user)" style="border: solid; border-color: #9E9E9E"  ng-show="">Edit</md-button>
+
                     </div>
+                </div>
+                <div class="row" style="margin-top: 10px">
+                    <md-button ng-show="if_cur_user()" ng-click="user_follow(user)" style="border: solid; border-color: #9E9E9E; color: #000000;" ng-show="">Follow</md-button>
+                    <md-button ng-show="!if_cur_user()" ng-click="user_edit(user)" style="border: solid; border-color: #9E9E9E; color: #000000;" >Edit</md-button>
                 </div>
             </div>
         </div>
     </header>
     <div>
-        <!--<div class="bar">
 
-            &lt;!&ndash; These two buttons switch the layout variable,
-                 which causes the correct UL to be shown. &ndash;&gt;
-            My Posts
-            <a class="list-icon" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></a>
-            <a class="grid-icon" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></a>
-        </div>-->
-
-        <!-- We have two layouts. We choose which one to show depending on the "layout" binding -->
-        <!--<div ng-model="user.userFeeds.url"></div>-->
         <carousel3d ng-model="user.userFeeds" carousel3d-options="options"
-                    carousel3d-source-prop="url"
-                    ></carousel3d>
+            carousel3d-source-prop="url"></carousel3d>
 
-        <!--<div style="display: none;">{{p.picid}}</div>-->
-
-                    <!--<div flex class="feed-holder" layout="column">-->
-
-                    <!--<div ondrop="drop(event)" ondragover="allowDrop(event)" style="opacity: 1;height:400px;width:300px;">-->
-                        <!--<img ng-src="{{p.url}}">-->
-                    <!--</div>-->
-
-                       <!-- <div class="likes">
-                            <a class="btn"> <span class="glyphicon glyphicon-heart">
-                                </span><span class="badge">{{p.likeCount}}</span></a>
-                            <a class="btn"> <span class="glyphicon glyphicon-plus">
-                                </span></a>
-                            <a class="btn right"> <span class="glyphicon glyphicon-alert">
-                                </span></a>
-                        </div>
-                        <div class="comments" ng-show="false">
-                            <ul class="commentList" layout="column">
-                                <li ng-repeat="c in p.comments">
-                                    &lt;!&ndash;<div class="commenterImage">
-                                        <img src="{{p.avatorurl}}" />
-                                    </div>&ndash;&gt;
-                                    <div>{{c.username}}</div>
-                                    <div class="commentText">
-                                        <p class="">
-                                            {{c.comment}}</p>
-                                        <span class="date sub-text">{{c.time | date:"MM/dd/yyyy"}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            &lt;!&ndash;<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
-                            </span>More</a>&ndash;&gt;
-                        </div>-->
-
-                    <!--</div>-->
-
-        <!--<ul ng-show="layout == 'grid'" class="grid">
-            &lt;!&ndash; A view with big photos and no text &ndash;&gt;
-            <li ng-repeat="p in user.userFeeds">
-                <md-card-content layout="row" style="background-color: #ffffff">
-                    <div style="display: none;">{{p.picid}}</div>
-
-                    <div flex class="feed-holder" layout="column">
-
-                        <div ondrop="drop(event)" ondragover="allowDrop(event)" style="opacity: 1">
-                            <img ng-src="{{p.url}}">
-                            &lt;!&ndash;<div id="tag2" class="tag" draggable="true" ondragstart="drag(event)" style="top: 60%;
-                                        left: 55%">
-                                <a href="#">
-                                    test2</a>
-                            </div>&ndash;&gt;
-                        </div>
-
-                        <md-chips class="hashtags" ng-repeat="ht in p.hashtags">
-                            <md-chip><a href="#">#hashtag1{{ht}}</a></md-chip>
-                        </md-chips>
-                        <div class="likes">
-                            <a class="btn"> <span class="glyphicon glyphicon-heart">
-                                </span><span class="badge">{{p.likeCount}}</span></a>
-                            <a class="btn"> <span class="glyphicon glyphicon-plus">
-                                </span></a>
-                            <a class="btn right"> <span class="glyphicon glyphicon-alert">
-                                </span></a>
-                        </div>
-                        <div class="comments" ng-show="false">
-                            <ul class="commentList" layout="column">
-                                <li ng-repeat="c in p.comments">
-                                    &lt;!&ndash;<div class="commenterImage">
-                                        <img src="{{p.avatorurl}}" />
-                                    </div>&ndash;&gt;
-                                    <div>{{c.username}}</div>
-                                    <div class="commentText">
-                                        <p class="">
-                                            {{c.comment}}</p>
-                                        <span class="date sub-text">{{c.time | date:"MM/dd/yyyy"}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            &lt;!&ndash;<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
-                            </span>More</a>&ndash;&gt;
-                        </div>
-
-                    </div>
-                </md-card-content>
-            </li>
-        </ul>
-
-        <ul ng-show="layout == 'list'" class="list">
-            &lt;!&ndash; A compact view smaller photos and titles &ndash;&gt;
-            <li ng-repeat="p in user.favorites">
-                <md-card-content layout="row" style="background-color: #ffffff">
-                    <div style="display: none;">{{p.picid}}</div>
-
-                    <div flex class="feed-holder" layout="column">
-
-                        <div ondrop="drop(event)" ondragover="allowDrop(event)" style="opacity: 1">
-                            <img ng-src="{{p.url}}">
-                            &lt;!&ndash;<div id="tag2" class="tag" draggable="true" ondragstart="drag(event)" style="top: 60%;
-                                        left: 55%">
-                                <a href="#">
-                                    test2</a>
-                            </div>&ndash;&gt;
-                        </div>
-
-                        <md-chips class="hashtags" ng-repeat="ht in p.hashtags">
-                            <md-chip><a href="#">#hashtag1{{ht}}</a></md-chip>
-                        </md-chips>
-                        <div class="likes">
-                            <a class="btn"> <span class="glyphicon glyphicon-heart">
-                                </span><span class="badge">{{p.likeCount}}</span></a>
-                            <a class="btn"> <span class="glyphicon glyphicon-plus">
-                                </span></a>
-                            <a class="btn right"> <span class="glyphicon glyphicon-alert">
-                                </span></a>
-                        </div>
-                        <div class="comments" ng-show="false">
-                            <ul class="commentList" layout="column">
-                                <li ng-repeat="c in p.comments">
-                                    &lt;!&ndash;<div class="commenterImage">
-                                        <img src="{{p.avatorurl}}" />
-                                    </div>&ndash;&gt;
-                                    <div>{{c.username}}</div>
-                                    <div class="commentText">
-                                        <p class="">
-                                            {{c.comment}}</p>
-                                        <span class="date sub-text">{{c.time | date:"MM/dd/yyyy"}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            &lt;!&ndash;<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
-                            </span>More</a>&ndash;&gt;
-                        </div>
-
-                    </div>
-                </md-card-content>
-            </li>
-        </ul>-->
 
     </div>
     <div layout="column">
-        <div>My Forites</div>
-        <!--<ul ng-show="true" class="list">
-            &lt;!&ndash; A compact view smaller photos and titles &ndash;&gt;
-            <li ng-repeat="p in user.favorites">
-                <md-card-content layout="row" style="background-color: #ffffff">
-                    <div style="display: none;">{{p.picid}}</div>
+        <div>收藏</div>
+        <carousel3d ng-model="user.favorites" carousel3d-options="options"
+                    carousel3d-source-prop="url"></carousel3d>
 
-                    <div flex class="feed-holder" layout="column">
-
-                        <div ondrop="drop(event)" ondragover="allowDrop(event)" style="opacity: 1">
-                            <img ng-src="{{p.url}}">
-                            &lt;!&ndash;<div id="tag2" class="tag" draggable="true" ondragstart="drag(event)" style="top: 60%;
-                                        left: 55%">
-                                <a href="#">
-                                    test2</a>
-                            </div>&ndash;&gt;
-                        </div>
-
-                        <md-chips class="hashtags" ng-repeat="ht in p.hashtags">
-                            <md-chip><a href="#">#hashtag1{{ht}}</a></md-chip>
-                        </md-chips>
-                        <div class="likes">
-                            <a class="btn"> <span class="glyphicon glyphicon-heart">
-                                </span><span class="badge">{{p.likeCount}}</span></a>
-                            <a class="btn"> <span class="glyphicon glyphicon-plus">
-                                </span></a>
-                            <a class="btn right"> <span class="glyphicon glyphicon-alert">
-                                </span></a>
-                        </div>
-                        <div class="comments" ng-show="false">
-                            <ul class="commentList" layout="column">
-                                <li ng-repeat="c in p.comments">
-                                    &lt;!&ndash;<div class="commenterImage">
-                                        <img src="{{p.avatorurl}}" />
-                                    </div>&ndash;&gt;
-                                    <div>{{c.username}}</div>
-                                    <div class="commentText">
-                                        <p class="">
-                                            {{c.comment}}</p>
-                                        <span class="date sub-text">{{c.time | date:"MM/dd/yyyy"}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                            &lt;!&ndash;<a href="#" class="btn"> <span class="glyphicon glyphicon-chevron-down">
-                            </span>More</a>&ndash;&gt;
-                        </div>
-
-                    </div>
-                </md-card-content>
-            </li>
-        </ul>-->
     </div>
 </md-content>
 

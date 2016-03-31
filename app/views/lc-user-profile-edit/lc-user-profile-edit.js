@@ -7,6 +7,8 @@ angular.module('lookchic.editprofile', ['ngRoute'])
     .controller('editprofileCtrl', function($scope,Upload,$timeout,User,Auth,Cropper) {
 
         $scope.afiles={};
+        $scope.preCrop={};
+
         var currentuserid = Auth.getUser().lc_userid;
 
         $scope.menu = [
@@ -101,16 +103,22 @@ angular.module('lookchic.editprofile', ['ngRoute'])
         };
 
         $scope.isCropped=false;
+        $scope.confirm=false;
+
         $scope.$watch("afiles",function(newValue, oldValue) {
             //$scope.filename=$scope.afiles[0].name;
+            $(".cropper-view-box").css("border-radius", "50%");
+            $(".cropper-face").css("border-radius", "50%");
             var blob = newValue;
+            
             $scope.isCropped=false;
             if (!$scope.isEmpty(blob)){
                 Cropper.encode((file = blob[0])).then(function(dataUrl) {
                     $scope.dataUrl = dataUrl;
                     $timeout(showCropper);  // wait for $digest to set image's src
                 });
-                $(".cropper-view-box").css("border-radius", "50%");
+                $scope.confirm = true;
+                
             }
         });
         $scope.preview = function() {
@@ -134,10 +142,11 @@ angular.module('lookchic.editprofile', ['ngRoute'])
             var blob = dataURItoBlob(durl);
 
             $scope.isCropped=true;
+
             $scope.preview();
 
             $scope.afiles[0]=blob;
-
+            $scope.confirm=false;
         };
 
         $scope.cropper = {};
@@ -146,7 +155,11 @@ angular.module('lookchic.editprofile', ['ngRoute'])
         $scope.showEvent = 'show';
         $scope.hideEvent = 'hide';
 
-        function showCropper() { $scope.$broadcast($scope.showEvent); }
+        function showCropper() { 
+            $scope.$broadcast($scope.showEvent);
+            $(".cropper-view-box").css("border-radius", "50%");
+            $(".cropper-face").css("border-radius", "50%");
+        }
         function hideCropper() { $scope.$broadcast($scope.hideEvent); }
         function dataURItoBlob(dataURI) {
             // convert base64/URLEncoded data component to raw binary data held in a string

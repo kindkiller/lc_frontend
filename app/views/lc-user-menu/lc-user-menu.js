@@ -5,6 +5,7 @@
 
 lc.controller('userCtrl', function($scope,$location,$route,$mdDialog,Auth,User,Cropper) {
     $scope.searchtext='';
+    $scope.currentuserid = Auth.getUser().lc_userid;
 
     $scope.search = function(kword){
 

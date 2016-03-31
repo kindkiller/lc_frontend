@@ -9,6 +9,7 @@ var lc = angular.module('lookchic', [
     'angular-carousel-3d',
     'ngCropper',
     'ngFileUpload',
+    'bootstrapLightbox',
     'lookchic.home',
     'lookchic.main',
     'lookchic.results',
