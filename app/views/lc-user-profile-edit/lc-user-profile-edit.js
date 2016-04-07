@@ -48,7 +48,7 @@ angular.module('lookchic.editprofile', ['ngRoute'])
             if (files && files.length) {
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
-                    file.name=$scope.filename;
+                    //file.name=$scope.filename;
                     Upload.upload({
                         method: 'POST',
                         url: 'http://localhost:6543/updateprofile',
@@ -115,6 +115,8 @@ angular.module('lookchic.editprofile', ['ngRoute'])
             if (!$scope.isEmpty(blob)){
                 Cropper.encode((file = blob[0])).then(function(dataUrl) {
                     $scope.dataUrl = dataUrl;
+                    $(".cropper-canvas img").attr('src', dataUrl);
+                    $(".cropper-view-box img").attr('src', dataUrl);
                     $timeout(showCropper);  // wait for $digest to set image's src
                 });
                 $scope.confirm = true;
@@ -145,7 +147,8 @@ angular.module('lookchic.editprofile', ['ngRoute'])
 
             $scope.preview();
 
-            $scope.afiles[0]=blob;
+            //$scope.afiles[0]=blob;
+            $scope.afiles[0]=file;
             $scope.confirm=false;
         };
 
@@ -155,10 +158,11 @@ angular.module('lookchic.editprofile', ['ngRoute'])
         $scope.showEvent = 'show';
         $scope.hideEvent = 'hide';
 
-        function showCropper() { 
-            $scope.$broadcast($scope.showEvent);
+        function showCropper() {
+
             $(".cropper-view-box").css("border-radius", "50%");
             $(".cropper-face").css("border-radius", "50%");
+            $scope.$broadcast($scope.showEvent);
         }
         function hideCropper() { $scope.$broadcast($scope.hideEvent); }
         function dataURItoBlob(dataURI) {
