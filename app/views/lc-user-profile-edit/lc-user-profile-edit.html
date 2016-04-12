@@ -33,7 +33,7 @@
                         <div class="col-md-3 col-xs-3">
                             <div class="text-center">
                                 <div class="user-avatar avatar" ng-show="isEmpty(afiles)">
-                                    <img ng-src="{{user.userProfileUrl}}" src="images/img/anonymousUser.jpg" alt="user-img" class="user-avatar" >
+                                    <img ng-src="{{userProfileUrl == '' && 'images/img/anonymousUser.jpg'|| userProfileUrl}}" alt="user-img" class="user-avatar" >
                                 </div>
 
                                 <div ng-show="confirm">
@@ -98,7 +98,7 @@
                                 <div class="form-group">
                                     <label class="col-lg-3 control-label">Email:</label>
                                     <div class="col-lg-8">
-                                        <input class="form-control" type="text" ng-model="userprofile.email">
+                                        <input class="form-control" type="text" ng-model="userprofile.Email">
                                     </div>
                                 </div>
                                 <div class="form-group">

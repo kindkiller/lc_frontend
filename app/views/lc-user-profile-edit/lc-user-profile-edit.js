@@ -27,10 +27,9 @@ angular.module('lookchic.editprofile', ['ngRoute'])
         $scope.initProfile=function(){
             User.getUserProfile(currentuserid)
                 .success(function (data, status, headers, config) {
-                    console.log ( 'get profile ' + ', Response: ' + JSON.stringify(data) );
-                    console.log ( data.profile.userProfile);
+                    console.log ( 'get profile success' );
                     $scope.userprofile = data.profile.userProfile;
-                    //$route.reload();
+                    $scope.userProfileUrl = data.profile.userProfileUrl;
                 })
                 .error(function (data, status, headers, config) {
                     console.log('error status: ' + status);
@@ -44,42 +43,44 @@ angular.module('lookchic.editprofile', ['ngRoute'])
 
         //Update User Profile
         $scope.update_profile = function (files) {
-
+            var file={};
+            file.name='';
             if (files && files.length) {
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    //file.name=$scope.filename;
-                    Upload.upload({
-                        method: 'POST',
-                        url: 'http://localhost:6543/updateprofile',
-                        fields: {
-                            'userid': currentuserid,
-                            'username': $scope.userprofile.username,
-                            'email': $scope.userprofile.email,
-                            'location': $scope.userprofile.location,
-                            'gender': $scope.userprofile.Gender,
-                            'brithday': $scope.userprofile.brithday,
-                            'occupation': $scope.userprofile.Occupation,
-                            'height': $scope.userprofile.Height,
-                            'weight': $scope.userprofile.Weight
-                        },
-                        file: file,
-
-                        headers: {'Content-Type': 'application/json; charset=UTF-8'}
-
-                    }).progress(function (evt) {
-                        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                        console.log('progress: ' + progressPercentage + '% ' +
-                            evt.config.file.name);
-                    }).success(function (data, status, headers, config) {
-                        $timeout(function() {
-                            console.log('file: ' + config.file.name + ', Response: ' + JSON.stringify(data));
-                        });
-                    }).error(function (data, status, headers, config) {
-                        console.log('error status: ' + status);
-                    });
-                }
+                file = files[0];
+                file.name=$scope.filename;
             }
+
+            Upload.upload({
+                method: 'POST',
+                url: 'http://localhost:6543/updateprofile',
+                fields: {
+                    'userid': currentuserid,
+                    'username': $scope.userprofile.username,
+                    'email': $scope.userprofile.Email,
+                    'location': $scope.userprofile.location,
+                    'gender': $scope.userprofile.Gender,
+                    'brithday': $scope.userprofile.brithday,
+                    'occupation': $scope.userprofile.Occupation,
+                    'height': $scope.userprofile.Height,
+                    'weight': $scope.userprofile.Weight
+                },
+                file: file,
+
+                headers: {'Content-Type': 'application/json; charset=UTF-8'}
+
+            }).progress(function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' +
+                    evt.config.file.name);
+            }).success(function (data, status, headers, config) {
+                $timeout(function() {
+                    console.log('file: ' + config.file.name + ', Response: ' + JSON.stringify(data));
+                    $scope.initProfile();
+                });
+            }).error(function (data, status, headers, config) {
+                console.log('error status: ' + status);
+            });
+
         };
 
         //Image Cropper
@@ -106,7 +107,7 @@ angular.module('lookchic.editprofile', ['ngRoute'])
         $scope.confirm=false;
 
         $scope.$watch("afiles",function(newValue, oldValue) {
-            //$scope.filename=$scope.afiles[0].name;
+            $scope.filename=$scope.afiles[0].name;
             $(".cropper-view-box").css("border-radius", "50%");
             $(".cropper-face").css("border-radius", "50%");
             var blob = newValue;
@@ -148,7 +149,7 @@ angular.module('lookchic.editprofile', ['ngRoute'])
             $scope.preview();
 
             //$scope.afiles[0]=blob;
-            $scope.afiles[0]=file;
+            $scope.afiles[0]=blob;
             $scope.confirm=false;
         };
 
@@ -215,7 +216,7 @@ angular.module('lookchic.editprofile', ['ngRoute'])
         };
 
         $scope.dateOptions = {
-            formatYear: 'yy',
+            formatYear: 'yyyy',
             startingDay: 1
         };
 
